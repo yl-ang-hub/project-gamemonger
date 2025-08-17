@@ -10,12 +10,7 @@ router.get("/games", games.getGames);
 
 router.get("/games/:id", games.getGame);
 
-router.post(
-  "/games",
-  checkGameValidInput,
-  checkErrors,
-  games.newGame
-);
+router.post("/games", checkGameValidInput, checkErrors, games.newGame);
 
 router.patch("/games/:id", games.patchGame);
 
