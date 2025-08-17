@@ -1,8 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const Userpage = () => {
   const [displayedList, setDisplayedList] = useState("");
+
+  const fetchUser = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:5001/api/user/68a0cc104bc0904a639c915a`
+      );
+      if (!res.ok) {
+        throw new Error("Request error");
+      }
+      return await res.json();
+    } catch (error) {
+      console.log(error, error.message);
+    }
+  };
+
+  const queryUsername = useQuery({
+    queryKey: ["username"],
+    queryFn: fetchUser,
+  });
 
   const fetchLists = async () => {
     try {
@@ -43,37 +62,57 @@ const Userpage = () => {
 
   return (
     <div className="ms-3 mt-3">
-      <label htmlFor="userlists">Select your list -</label>
-      <select
-        className="mx-2"
-        name="userlists"
-        id="userlists"
-        onChange={(event) => setDisplayedList(event.target.value)}
-      >
-        {queryListsForUser.data?.map((list) => {
-          return (
-            <option value={list._id} key={list._id}>
-              {list.name}
-            </option>
-          );
-        })}
-      </select>
-      <div>
-        {queryListsForUser.isSuccess &&
-          displayedList !== "" &&
-          getDisplayedListGames().map((game) => {
+      <div className="mx-2 my-2" id="userProfile">
+        <div>
+          {queryUsername.isSuccess && <h1>{queryUsername.data.username}</h1>}
+        </div>
+        <div>
+          {queryUsername.isSuccess && (
+            <img
+              style={{ maxHeight: "200px" }}
+              src={queryUsername.data.picture}
+            />
+          )}
+        </div>
+      </div>
+
+      <div className="mx-2 my-2" id="userLists">
+        <label htmlFor="userlists">Select your list -</label>
+        <select
+          className="mx-2"
+          name="userlists"
+          id="userlists"
+          onChange={(event) => setDisplayedList(event.target.value)}
+        >
+          {queryListsForUser.data?.map((list) => {
             return (
-              <div className="card text-center my-4" key={game._id}>
-                <div className="card-header fw-bold">{game.name}</div>
-                <ul className="list-unstyled">
-                  <li>Description: {game.description}</li>
-                  {game.screenshots.map((img, idx) => (
-                    <li key={idx}>{img}</li>
-                  ))}
-                </ul>
-              </div>
+              <option value={list._id} key={list._id}>
+                {list.name}
+              </option>
             );
           })}
+        </select>
+        <div className="card overflow-scroll px-2" style={{ height: "400px" }}>
+          {queryListsForUser.isSuccess &&
+            displayedList !== "" &&
+            getDisplayedListGames().map((game) => {
+              return (
+                <div className="card text-center my-1" key={game._id}>
+                  <div className="card-header fw-bold">{game.name}</div>
+                  <ul className="list-unstyled">
+                    <li>Description: {game.description}</li>
+                    {game.screenshots.map((img, idx) => (
+                      <li key={idx}>{img}</li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+
+      <div className="card mx-2 my-2" id="userComments">
+        List of all comments posted by users on different games
       </div>
     </div>
   );

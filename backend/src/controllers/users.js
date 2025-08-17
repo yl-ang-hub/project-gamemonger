@@ -1,9 +1,19 @@
 import Users from "../models/Users.js";
 
-export const getUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const allUsers = await Users.find();
     res.json(allUsers);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "cannot read from database" });
+  }
+};
+
+export const getUser = async (req, res) => {
+  try {
+    const user = await Users.findOne({ _id: req.params.userId });
+    res.json(user);
   } catch (error) {
     console.error(error.message);
     res.status(400).json({ status: "error", msg: "cannot read from database" });
@@ -106,10 +116,12 @@ export const deleteGame = async (req, res) => {
 
 export const seedUsersListsGames = async (req, res) => {
   try {
+    await Users.deleteMany({});
     const response = await Users.create([
       {
         _id: "68a0cc104bc0904a639c915a",
         username: "Shrek",
+        picture: "src/assets/images/userImg.jpg",
         lists: [
           {
             _id: "68a0cc104bc0904a639c915b",
@@ -171,6 +183,7 @@ export const seedUsersListsGames = async (req, res) => {
       {
         _id: "68a12f53d27ee9c5eb63955f",
         username: "Goofy",
+        picture: "src/assets/images/userImg.jpg",
         lists: [
           {
             _id: "68a12f53d27ee9c5eb639560",

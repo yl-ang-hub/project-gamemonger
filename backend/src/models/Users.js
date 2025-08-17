@@ -25,6 +25,7 @@ const ListsSchema = new mongoose.Schema(
 const UserListsSchema = new mongoose.Schema(
   {
     username: { type: String, required: true },
+    picture: { type: String },
     lists: {
       type: [ListsSchema],
       // Creates Wishlist by default for new users
