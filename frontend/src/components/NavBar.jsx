@@ -28,13 +28,13 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
+              <Link className="nav-link" to="/user">
+                User
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/favourites">
-                Favourites
+              <Link className="nav-link" to="/login">
+                Login
               </Link>
             </li>
           </ul>
