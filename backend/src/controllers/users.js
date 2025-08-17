@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import Users from "../models/Users.js";
 
 export const getUsers = async (req, res) => {
@@ -36,7 +35,7 @@ export const deleteUser = async (req, res) => {
 export const getListsForUser = async (req, res) => {
   try {
     const user = await Users.findOne({ _id: req.body.userId });
-    res.json({ status: "ok", msg: "lists found", lists: user.lists });
+    res.json(user.lists);
   } catch (error) {
     console.error(error.message);
     res.status(400).json({ status: "error", msg: "cannot read from database" });
@@ -75,7 +74,7 @@ export const renameList = async (req, res) => {
 export const addGame = async (req, res) => {
   try {
     const newGame = {
-      rawgId: uuidv4(),
+      rawgId: "test1234",
       name: req.body.name,
       description: req.body.description,
       screenshots: req.body.imgArray,
