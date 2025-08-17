@@ -124,7 +124,6 @@ export const seedUsersListsGames = async (req, res) => {
         picture: "src/assets/images/userImg.jpg",
         lists: [
           {
-            _id: "68a0cc104bc0904a639c915b",
             name: "Wishlist",
             games: [
               {
@@ -142,6 +141,7 @@ export const seedUsersListsGames = async (req, res) => {
                 _id: "68a14761384ddd44feda38d6",
               },
             ],
+            _id: "68a0cc104bc0904a639c915b",
           },
           {
             name: "don't sleep at night",
@@ -177,8 +177,144 @@ export const seedUsersListsGames = async (req, res) => {
             ],
             _id: "68a14bcca0440b1bd16581c2",
           },
+          {
+            name: "Anime games",
+            games: [
+              {
+                rawgId: "test1234",
+                name: "Final Fantasy XII",
+                description: "good graphics game",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fcc31d1e4c3d21423b53",
+              },
+              {
+                rawgId: "test1234",
+                name: "Final Fantasy XIII",
+                description: "good graphics game",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fcca1d1e4c3d21423b60",
+              },
+              {
+                rawgId: "test1234",
+                name: "Final Fantasy V",
+                description: "good graphics game",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fccd1d1e4c3d21423b6e",
+              },
+              {
+                rawgId: "test1234",
+                name: "Final Fantasy VII",
+                description: "good graphics game",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fcd21d1e4c3d21423b7d",
+              },
+              {
+                rawgId: "test1234",
+                name: "Final Fantasy VI",
+                description: "good graphics game",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fcd51d1e4c3d21423b8d",
+              },
+              {
+                rawgId: "test1234",
+                name: "Final Fantasy VII",
+                description: "good graphics game",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fcd81d1e4c3d21423b9e",
+              },
+              {
+                rawgId: "test1234",
+                name: "Final Fantasy IV",
+                description: "good graphics game",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fcde1d1e4c3d21423bb0",
+              },
+            ],
+            _id: "68a1fc951d1e4c3d21423b47",
+          },
+          {
+            name: "Platform games",
+            games: [
+              {
+                rawgId: "test1234",
+                name: "Flappy Bird",
+                description: "just fly",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd101d1e4c3d21423bd7",
+              },
+              {
+                rawgId: "test1234",
+                name: "Angry Birds",
+                description: "cannon away",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd231d1e4c3d21423bec",
+              },
+              {
+                rawgId: "test1234",
+                name: "Angry Birds 2",
+                description: "cannon away",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd2c1d1e4c3d21423c02",
+              },
+              {
+                rawgId: "test1234",
+                name: "Angry Birds 3",
+                description: "cannon away",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd2f1d1e4c3d21423c19",
+              },
+            ],
+            _id: "68a1fced1d1e4c3d21423bc3",
+          },
+          {
+            name: "Romantic games",
+            games: [
+              {
+                rawgId: "test1234",
+                name: "Choose your date",
+                description: "Ew",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd4b1d1e4c3d21423c4a",
+              },
+              {
+                rawgId: "test1234",
+                name: "Bachelors and Bachelorettes",
+                description: "Ew",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd621d1e4c3d21423c64",
+              },
+            ],
+            _id: "68a1fd3a1d1e4c3d21423c31",
+          },
+          {
+            name: "Casino games",
+            games: [
+              {
+                rawgId: "test1234",
+                name: "Dai Dee",
+                description: "Big 2",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd811d1e4c3d21423c9b",
+              },
+              {
+                rawgId: "test1234",
+                name: "Texas Hold Em",
+                description: "Poker",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd8c1d1e4c3d21423cb8",
+              },
+              {
+                rawgId: "test1234",
+                name: "Blackjack",
+                description: "Reach 21",
+                screenshots: ["img1", "img2"],
+                _id: "68a1fd951d1e4c3d21423cd6",
+              },
+            ],
+            _id: "68a1fd6d1d1e4c3d21423c7f",
+          },
         ],
-        __v: 17,
+        __v: 20,
       },
       {
         _id: "68a12f53d27ee9c5eb63955f",
@@ -186,7 +322,6 @@ export const seedUsersListsGames = async (req, res) => {
         picture: "src/assets/images/userImg.jpg",
         lists: [
           {
-            _id: "68a12f53d27ee9c5eb639560",
             name: "Wishlist",
             games: [
               {
@@ -197,6 +332,7 @@ export const seedUsersListsGames = async (req, res) => {
                 _id: "68a14d69a873f294438018fd",
               },
             ],
+            _id: "68a12f53d27ee9c5eb639560",
           },
           {
             name: "Anime games",
@@ -212,7 +348,7 @@ export const seedUsersListsGames = async (req, res) => {
             _id: "68a14e3bc323c5a09536c923",
           },
         ],
-        __v: 7,
+        __v: 0,
       },
     ]);
     res.json({ status: "ok", msg: "Seeding is successful", details: response });
