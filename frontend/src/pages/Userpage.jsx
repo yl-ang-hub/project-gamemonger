@@ -7,7 +7,7 @@ const Userpage = () => {
   const fetchLists = async () => {
     try {
       // TODO:(ISSUE) Fetch API cannot load http://localhost:27017/api/user/lists due to access control checks.
-      const res = await fetch("http://localhost:27017/api/user/lists", {
+      const res = await fetch("http://localhost:5001/api/user/lists", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
