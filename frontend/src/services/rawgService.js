@@ -1,4 +1,4 @@
-const getGames = async () => {
+const fetchGames = async () => {
   const uri =
     import.meta.env.VITE_RAWG_URI +
     "/games?key=" +
@@ -16,3 +16,5 @@ const getGames = async () => {
     return err;
   }
 };
+
+export { fetchGames };
