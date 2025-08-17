@@ -9,12 +9,8 @@ connectDB();
 
 const app = express();
 
-// cors for API calls: allow localhost:5001 to call localhost:27017
-app.use(
-  cors({
-    origin: "http://localhost:5001", // Replace with your frontend origin
-  })
-);
+// cors for API calls: allow localhost:5173 to call localhost:5001
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
