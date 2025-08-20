@@ -1,20 +1,58 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
-import connectDB from "./src/db/db.js";
-import userRouter from "./src/routers/users.js";
 import cors from "cors";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+
+import connectDB from "./src/db/db.js";
+import userlistRouter from "./src/routers/userlists.js";
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 connectDB();
-
 const app = express();
 
-// cors for API calls: allow localhost:5173 to call localhost:5001
+// cors for API calls: allow calls from localhost
 app.use(cors());
-
+app.use(helmet());
+app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api", userRouter);
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
+    console.error("JSON parsing error:", err.message);
+    return res.status(400).send({ status: 400, msg: "invalid JSON format" });
+  } else if (
+    err instanceof SyntaxError &&
+    err.status === 400 &&
+    err.type === "entity.parse.failed"
+  ) {
+    console.error("URL-encoding parsing error:", err.message);
+    return res.status(400).json({
+      status: 400,
+      msg: "invalid form data format",
+    });
+  }
+  next();
+});
 
-app.listen(process.env.EXPRESS_PORT);
+app.use("/api", userlistRouter);
+
+app.use((err, req, res, next) => {
+  console.error(err.message);
+  console.error(err.stack);
+
+  res.status(err.status || 500).json({ status: "Error", msg: err.message });
+});
+
+const PORT = process.env.EXPRESS_PORT || 5001;
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});
