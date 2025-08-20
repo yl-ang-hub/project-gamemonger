@@ -1,40 +1,12 @@
 import mongoose from "mongoose";
 
-export const GamesSchema = new mongoose.Schema(
-  {
-    rawgId: { type: String, required: true },
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    screenshots: { type: [String], required: true },
-  },
-  {
-    collection: "Games",
-  }
-);
-
-const ListsSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    games: [GamesSchema],
-  },
-  {
-    collection: "Lists",
-  }
-);
-
-const UserListsSchema = new mongoose.Schema(
+const UsersSchema = new mongoose.Schema(
   {
     username: { type: String, required: true },
-    picture: { type: String },
-    lists: {
-      type: [ListsSchema],
-      // Creates Wishlist by default for new users
-      default: [{ name: "Wishlist", games: [] }],
-    },
+    hash: { type: String, required: true },
+    created_at: { type: Date, default: Date.now },
   },
-  {
-    collection: "Users",
-  }
+  { collection: "Users" }
 );
 
-export default mongoose.model("user", UserListsSchema);
+export default mongoose.model("User", UsersSchema);

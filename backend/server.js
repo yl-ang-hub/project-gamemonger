@@ -7,6 +7,7 @@ import rateLimit from "express-rate-limit";
 
 import connectDB from "./src/db/db.js";
 import userlistRouter from "./src/routers/userlists.js";
+import usersRouter from "./src/routers/users.js";
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -43,6 +44,7 @@ app.use((err, req, res, next) => {
   next();
 });
 
+app.use("/auth", usersRouter);
 app.use("/api", userlistRouter);
 
 app.use((err, req, res, next) => {

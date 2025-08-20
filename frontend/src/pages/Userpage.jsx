@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 
 const Userpage = () => {
   const [displayedList, setDisplayedList] = useState("");
+  const queryClient = useQueryClient();
+  const auth = queryClient.getQueryData(["qAuth"]);
 
   const fetchUser = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:5001/api/user/68a0cc104bc0904a639c915a`
-      );
+      const res = await fetch(`http://localhost:5001/api/user/68a0cc104bc0904a639c915a`);
       if (!res.ok) {
         throw new Error("Request error");
       }
@@ -29,6 +29,7 @@ const Userpage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${auth.data.access}`,
         },
         body: JSON.stringify({
           userId: "68a0cc104bc0904a639c915a",
@@ -51,9 +52,7 @@ const Userpage = () => {
   });
 
   const getDisplayedListGames = () => {
-    const list = queryListsForUser.data?.filter(
-      (list) => list._id == displayedList
-    )[0];
+    const list = queryListsForUser.data?.filter((list) => list._id == displayedList)[0];
     console.log(list);
     const games = list.games;
     console.log(games);
@@ -63,15 +62,10 @@ const Userpage = () => {
   return (
     <div className="ms-3 mt-3">
       <div className="mx-2 my-2" id="userProfile">
-        <div>
-          {queryUsername.isSuccess && <h1>{queryUsername.data.username}</h1>}
-        </div>
+        <div>{queryUsername.isSuccess && <h1>{queryUsername.data.username}</h1>}</div>
         <div>
           {queryUsername.isSuccess && (
-            <img
-              style={{ maxHeight: "200px" }}
-              src={queryUsername.data.picture}
-            />
+            <img style={{ maxHeight: "200px" }} src={queryUsername.data.picture} />
           )}
         </div>
       </div>
@@ -82,8 +76,7 @@ const Userpage = () => {
           className="mx-2"
           name="userlists"
           id="userlists"
-          onChange={(event) => setDisplayedList(event.target.value)}
-        >
+          onChange={(event) => setDisplayedList(event.target.value)}>
           {queryListsForUser.data?.map((list) => {
             return (
               <option value={list._id} key={list._id}>
@@ -120,6 +113,7 @@ const Userpage = () => {
 
 export default Userpage;
 
+// SAMPLE DATA RETURNED FROM FETCHLISTS
 const fetchListsData = [
   {
     name: "Wishlist",
