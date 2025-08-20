@@ -1,5 +1,5 @@
 // All Games
-const games = {
+export const games = {
   count: 891577,
   next: "https://api.rawg.io/api/games?key=f53e23f6bf094298b8b9f7fb350a861d&page=2",
   previous: null,
@@ -10908,12 +10908,37 @@ const games = {
   },
   nofollow_collections: ["stores"],
 };
-const gameNames = games.results.map((item) => item.name);
+const gameNames = games.results.map((item) => {
+  return { name: item.name, id: item.id };
+});
 console.log(gameNames);
+
+export const gamesSorted = [
+  { name: "Grand Theft Auto V", id: 3498 },
+  { name: "The Witcher 3: Wild Hunt", id: 3328 },
+  { name: "Portal 2", id: 4200 },
+  { name: "Counter-Strike: Global Offensive", id: 4291 },
+  { name: "Tomb Raider (2013)", id: 5286 },
+  { name: "Portal", id: 13536 },
+  { name: "Left 4 Dead 2", id: 12020 },
+  { name: "The Elder Scrolls V: Skyrim", id: 5679 },
+  { name: "Red Dead Redemption 2", id: 28 },
+  { name: "BioShock Infinite", id: 4062 },
+  { name: "Half-Life 2", id: 13537 },
+  { name: "Borderlands 2", id: 802 },
+  { name: "Life is Strange", id: 3439 },
+  { name: "BioShock", id: 4286 },
+  { name: "Destiny 2", id: 32 },
+  { name: "God of War (2018)", id: 58175 },
+  { name: "Fallout 4", id: 3070 },
+  { name: "PAYDAY 2", id: 3939 },
+  { name: "Limbo", id: 1030 },
+  { name: "Team Fortress 2", id: 11859 },
+];
 
 // only for id:3498 for the below
 // https://api.rawg.io/api/games/{id}
-const gameDetail = {
+export const gameDetail = {
   id: 3498,
   slug: "grand-theft-auto-v",
   name: "Grand Theft Auto V",
@@ -11501,7 +11526,7 @@ const gameDetail = {
 };
 
 // https://api.rawg.io/api/games/{game_pk}/screenshots
-const screenshots = {
+export const screenshots = {
   count: 6,
   next: null,
   previous: null,
@@ -11558,7 +11583,7 @@ const screenshots = {
 };
 
 // https://api.rawg.io/api/games/{id}/movies
-const gameTrailers = {
+export const gameTrailers = {
   count: 8,
   next: null,
   previous: null,
@@ -11647,7 +11672,7 @@ const gameTrailers = {
 };
 
 // https://api.rawg.io/api/games/{id}/reddit
-const redditReviews = {
+export const redditReviews = {
   count: 5184,
   next: "https://api.rawg.io/api/games/3498/reddit?key=f53e23f6bf094298b8b9f7fb350a861d&page=2",
   previous: null,
