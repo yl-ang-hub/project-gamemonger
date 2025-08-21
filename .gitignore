@@ -124,6 +124,3 @@ dist/
 
 .idea/
 .vscode/
-
-# Temporary
-App.jsx
