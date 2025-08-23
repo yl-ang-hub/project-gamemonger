@@ -5,20 +5,36 @@ import Favourites from "./components/Favourites";
 import Games from "./components/Games";
 import Loginpage from "./pages/Loginpage";
 import Userpage from "./pages/Userpage";
+import AuthCtx from "./context/authContext";
+import ProtectedRouter from "./components/ProtectedRouter";
 
 function App() {
+  const [accessToken, setAccessToken] = useState("");
+  const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState("");
+
   return (
     <div className="container">
       <Suspense fallback={<p>Loading...</p>}>
-        <NavBar />
-        <Routes>
-          {/* <Route path="/" element={<Navigate replace to="/games" />} /> */}
-          {/* <Route path="/games" element={<Games />} /> */}
-          <Route path="/favourites" element={<Favourites />} />
-          {/* <Route path="/favourites" element={<Favourites id={currentList} />} /> */}
-          {/* <Route path="/user" element={<Userpage />} /> */}
-          {/* <Route path="/login" element={<Loginpage />} /> */}
-        </Routes>
+        <AuthCtx.Provider
+          value={{ accessToken, setAccessToken, username, setUsername, userId, setUserId }}>
+          <NavBar />
+          <Routes>
+            {/* <Route path="/" element={<Navigate replace to="/games" />} /> */}
+            {/* <Route path="/games" element={<Games />} /> */}
+            <Route path="/favourites" element={<Favourites />} />
+            {/* <Route path="/favourites" element={<Favourites id={currentList} />} /> */}
+            <Route
+              path="/user"
+              element={
+                <ProtectedRouter>
+                  <Userpage />
+                </ProtectedRouter>
+              }
+            />
+            <Route path="/login" element={<Loginpage />} />
+          </Routes>
+        </AuthCtx.Provider>
       </Suspense>
     </div>
   );

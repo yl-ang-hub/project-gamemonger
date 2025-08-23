@@ -25,7 +25,6 @@ const ListsSchema = new mongoose.Schema(
 const UserListsSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    picture: { type: String },
     lists: {
       type: [ListsSchema],
       // Creates Wishlist by default for new users

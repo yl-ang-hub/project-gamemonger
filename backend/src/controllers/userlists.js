@@ -10,16 +10,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-export const getUser = async (req, res) => {
-  try {
-    const user = await Userlists.findOne({ _id: req.params.userId });
-    res.json(user);
-  } catch (error) {
-    console.error(error.message);
-    res.status(400).json({ status: "error", msg: "cannot read from database" });
-  }
-};
-
+// TODO: Reorganise related controllers under users
 // TODO: Switch this to add userlist (not user)
 export const addUser = async (req, res) => {
   try {
@@ -45,8 +36,8 @@ export const deleteUser = async (req, res) => {
 
 export const getListsForUser = async (req, res) => {
   try {
-    const user = await Userlists.findOne({ _id: req.body.userId });
-    res.json(user.lists);
+    const listsOfUser = await Userlists.findOne({ userId: req.body.userId });
+    res.json(listsOfUser.lists);
   } catch (error) {
     console.error(error.message);
     res.status(400).json({ status: "error", msg: "cannot read from database" });
@@ -130,7 +121,6 @@ const usersAndUserlistsSeedData = [
   {
     _id: "68a0cc104bc0904a639c915a",
     userId: "68a5b57a096821ed58028e84",
-    picture: "src/assets/images/userImg.jpg",
     lists: [
       {
         name: "Wishlist",
@@ -328,7 +318,6 @@ const usersAndUserlistsSeedData = [
   {
     _id: "68a12f53d27ee9c5eb63955f",
     userId: "68a5b5db741c656f05f7e6dc",
-    picture: "src/assets/images/userImg.jpg",
     lists: [
       {
         name: "Wishlist",

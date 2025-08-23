@@ -1,68 +1,46 @@
 import React, { useState } from "react";
 import { use } from "react";
-import UserContext from "../context/user";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useQuery } from "@tanstack/react-query";
+import { jwtDecode } from "jwt-decode";
+import AuthCtx from "../context/authContext";
 
 const Loginpage = (props) => {
-  const [usernameInput, setUsernameInput] = useState("");
-  const [passwordInput, setPasswordInput] = useState("");
-  const navigate = useNavigate();
+  const authCtx = use(AuthCtx);
   const fetchData = useFetch();
+  const [usernameInput, setUsernameInput] = useState("Shrek");
+  const [passwordInput, setPasswordInput] = useState("password123");
+  const navigate = useNavigate();
 
   const loginToApp = async () => {
-    const res = await fetch(`${import.meta.env.VITE_SERVER}/auth/login`, "POST", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: usernameInput.trim(),
-        password: passwordInput.trim(),
-      }),
+    const res = await fetchData(`/auth/login`, "POST", {
+      username: usernameInput.trim(),
+      password: passwordInput.trim(),
     });
-    const data = await res.json();
-    if (!res.ok) {
-      // to map all the errors (msg) from express-validator (array)
-      if (Array.isArray(data.msg)) {
-        const returnValue = data.msg.map((item, idx) => <p key={idx}>{item.msg}</p>);
-        return { ok: false, msg: returnValue };
-      } else {
-        // to reflect any other errors (not array)
-        return { ok: false, msg: data.msg };
+
+    try {
+      // console.log(JSON.stringify(res));
+      authCtx.setAccessToken(res.access);
+      const decoded = jwtDecode(res.access);
+      if (decoded) {
+        authCtx.setUsername(decoded.username);
+        authCtx.setUserId(decoded.id);
       }
+      navigate("/user");
+    } catch (e) {
+      console.error(e.message);
+      throw "A login error has occurred";
     }
+    return true;
   };
 
   const auth = useQuery({
-    queryKey: ["qAuth"],
-    queryFn: async () => {
-      const res = await fetchData(`${import.meta.env.VITE_SERVER}/auth/login`, "POST", {
-        username: usernameInput.trim(),
-        password: passwordInput.trim(),
-      });
-      console.log(res);
-      if (res.data) {
-        const decoded = jwtDecode(res.data.access);
-        res.data.username = decoded.username;
-        return res.data;
-      }
-    },
+    queryKey: ["auth"],
+    queryFn: loginToApp,
     enabled: false,
+    retry: false,
   });
-
-  const handleLogin = async () => {
-    await auth.refetch();
-    console.log(auth.isSuccess);
-    console.log(auth.isError);
-    console.log(auth.error);
-    console.log(auth.data);
-    setUsernameInput("");
-    setPasswordInput("");
-    props.setIsLogin(true);
-    navigate("/user");
-  };
 
   return (
     <div className="w-50 h-50 mx-auto">
@@ -81,6 +59,8 @@ const Loginpage = (props) => {
             value={usernameInput}
             onChange={(event) => setUsernameInput(event.target.value)}
           />
+          {auth.isError && JSON.stringify(auth.error)}
+          {/* // TODO: Display error messages */}
         </div>
 
         <div className="card-body">
@@ -94,11 +74,12 @@ const Loginpage = (props) => {
             value={passwordInput}
             onChange={(event) => setPasswordInput(event.target.value)}
           />
+          {/* // TODO: Display error messages */}
         </div>
 
         <div className="card-body row">
           <div className="col-sm-4" />
-          <button className="col-sm-4 btn btn-primary" onClick={handleLogin}>
+          <button className="col-sm-4 btn btn-primary" onClick={auth.refetch}>
             Login
           </button>
           <div className="col-sm-4" />

@@ -9,20 +9,25 @@ const useFetch = () => {
         },
         body: JSON.stringify(body),
       });
+
       const data = await res.json();
 
       if (!res.ok) {
-        // to map all the errors (msg) from express-validator (array)
-        if (Array.isArray(data.msg)) {
-          const returnValue = data.msg.map((item, idx) => <p key={idx}>{item.msg}</p>);
-          return { ok: false, msg: returnValue };
+        if (data?.errors) {
+          const errorMsgArray = data.msg.map((error) => error.msg);
+          const errorMsgs = errorMsgArray.join(", ");
+          console.error("data.errors: ", errorMsgs);
+          throw data.errors[0].msg;
+        } else if (data.status === "error") {
+          console.error("data.msg", data.msg);
+          throw data.msg;
         } else {
-          // to reflect any other errors (not array)
-          return { ok: false, msg: data.msg };
+          console.error("final", data);
+          throw "an unknown error has occurred, please try again later";
         }
-      } else {
-        return { ok: true, data };
       }
+
+      return data;
     };
 
     return fetchData;

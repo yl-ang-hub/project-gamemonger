@@ -1,71 +1,72 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useFetch from "../hooks/useFetch";
+import { use } from "react";
+import AuthCtx from "../context/authContext";
 
 const Userpage = () => {
   const [displayedList, setDisplayedList] = useState("");
+  const fetchData = useFetch();
+  const authCtx = use(AuthCtx);
   const queryClient = useQueryClient();
-  const auth = queryClient.getQueryData(["qAuth"]);
+  const auth = queryClient.getQueryData(["auth"]);
 
-  const fetchUser = async () => {
-    try {
-      const res = await fetch(`http://localhost:5001/api/user/68a0cc104bc0904a639c915a`);
-      if (!res.ok) {
-        throw new Error("Request error");
-      }
-      return await res.json();
-    } catch (error) {
-      console.log(error, error.message);
-    }
+  const fetchUserInfo = async () => {
+    // console.log(authCtx.accessToken);
+    // console.log(authCtx.username);
+    // console.log(authCtx.userId);
+    const data = await fetchData(
+      `/user/${authCtx.userId}`,
+      undefined,
+      undefined,
+      authCtx.accessToken
+    );
+    // console.log(JSON.stringify(data));
+    return data;
   };
 
-  const queryUsername = useQuery({
-    queryKey: ["username"],
-    queryFn: fetchUser,
+  const queryUser = useQuery({
+    queryKey: ["user"],
+    queryFn: fetchUserInfo,
   });
 
   const fetchLists = async () => {
-    try {
-      const res = await fetch("http://localhost:5001/api/user/lists", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${auth.data.access}`,
-        },
-        body: JSON.stringify({
-          userId: "68a0cc104bc0904a639c915a",
-        }),
-      });
-      if (!res.ok) {
-        throw new Error("Request error");
-      }
-      const data = await res.json();
-      setDisplayedList(data[0]._id);
-      return data;
-    } catch (error) {
-      console.log(error, error.message);
-    }
+    const data = await fetchData(
+      `/api/user/lists`,
+      "POST",
+      {
+        userId: authCtx.userId,
+      },
+      authCtx.accessToken
+    );
+    // console.log(JSON.stringify(data));
+    // console.log("data[0]._id is ", data[0]._id);
+    setDisplayedList(data[0]._id);
+    return data;
   };
 
-  const queryListsForUser = useQuery({
-    queryKey: ["queryListsForUser"],
+  const queryUserlists = useQuery({
+    queryKey: ["userlists"],
     queryFn: fetchLists,
   });
 
   const getDisplayedListGames = () => {
-    const list = queryListsForUser.data?.filter((list) => list._id == displayedList)[0];
-    console.log(list);
+    const list = queryUserlists.data?.filter((list) => list._id == displayedList)[0];
+    // console.log(list);
     const games = list.games;
-    console.log(games);
+    // console.log(games);
     return games;
   };
 
   return (
     <div className="ms-3 mt-3">
       <div className="mx-2 my-2" id="userProfile">
-        <div>{queryUsername.isSuccess && <h1>{queryUsername.data.username}</h1>}</div>
         <div>
-          {queryUsername.isSuccess && (
-            <img style={{ maxHeight: "200px" }} src={queryUsername.data.picture} />
+          <h1>{authCtx.username}</h1>
+        </div>
+        <div>
+          {queryUser.isSuccess && (
+            <img style={{ maxHeight: "200px" }} src={queryUser.data.picture} />
           )}
         </div>
       </div>
@@ -77,7 +78,7 @@ const Userpage = () => {
           name="userlists"
           id="userlists"
           onChange={(event) => setDisplayedList(event.target.value)}>
-          {queryListsForUser.data?.map((list) => {
+          {queryUserlists.data?.map((list) => {
             return (
               <option value={list._id} key={list._id}>
                 {list.name}
@@ -85,8 +86,9 @@ const Userpage = () => {
             );
           })}
         </select>
+
         <div className="card overflow-scroll px-2" style={{ height: "400px" }}>
-          {queryListsForUser.isSuccess &&
+          {queryUserlists.isSuccess &&
             displayedList !== "" &&
             getDisplayedListGames().map((game) => {
               return (

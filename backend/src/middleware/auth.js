@@ -7,8 +7,8 @@ export const auth = (req, res, next) => {
   const token = req.headers["authorization"].replace("Bearer ", "");
   if (token) {
     try {
-      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-      req.decoded = decoded;
+      const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
+      if (decoded) req.decoded = decoded;
       next();
     } catch (e) {
       console.error(e.message);

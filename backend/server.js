@@ -4,10 +4,10 @@ dotenv.config();
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-
 import connectDB from "./src/db/db.js";
-import userlistRouter from "./src/routers/userlists.js";
+import authRouter from "./src/routers/auth.js";
 import usersRouter from "./src/routers/users.js";
+import userlistRouter from "./src/routers/userlists.js";
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -44,7 +44,8 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.use("/auth", usersRouter);
+app.use("/auth", authRouter);
+app.use("/user", usersRouter);
 app.use("/api", userlistRouter);
 
 app.use((err, req, res, next) => {

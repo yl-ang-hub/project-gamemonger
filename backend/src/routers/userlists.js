@@ -10,12 +10,11 @@ router.put("/users", userlists.addUser);
 router.delete("/users/:userId", userlists.deleteUser);
 
 // SINGLE USER
-router.get("/user/:userId", userlists.getUser);
 router.post("/user/lists", auth, userlists.getListsForUser);
-router.put("/user/lists", userlists.addList);
-router.patch("/user/lists", userlists.renameList);
-router.put("/user/game", userlists.addGame);
-router.delete("/:userId/:listId/:gameId", userlists.deleteGame);
+router.put("/user/lists", auth, userlists.addList);
+router.patch("/user/lists", auth, userlists.renameList);
+router.put("/user/game", auth, userlists.addGame);
+router.delete("/:userId/:listId/:gameId", auth, userlists.deleteGame);
 
 // SEED DATA
 router.get("/userlists/seed", userlists.seedUsersListsGames);
