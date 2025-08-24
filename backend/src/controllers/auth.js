@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import Users from "../models/Users.js";
+import Userlists from "../models/Userlists.js";
 
 export const register = async (req, res) => {
   try {
@@ -11,12 +12,18 @@ export const register = async (req, res) => {
       return res.status(400).json("username has been used");
     }
 
+    // Create new user in Users collection
     const hash = await bcrypt.hash(req.body.password, 12);
-    await Users.create({
+    const newUser = await Users.create({
       username: req.body.username,
       hash,
     });
-    // TODO: Create userlist entry for new user
+    console.log(JSON.stringify(newUser));
+    // Create default wishlist for new user
+    await Userlists.create({
+      userId: newUser._id,
+    });
+
     res.json({ status: "ok", msg: "user registered" });
   } catch (e) {
     console.error(e.message);

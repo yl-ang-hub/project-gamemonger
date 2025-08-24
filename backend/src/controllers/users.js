@@ -35,3 +35,23 @@ export const seedUsers = async (req, res) => {
     res.status(400).json("Users seeding failed");
   }
 };
+
+// export const getAllUsers = async (req, res) => {
+//   try {
+//     const allUsers = await Userlists.find();
+//     res.json(allUsers);
+//   } catch (error) {
+//     console.error(error.message);
+//     res.status(400).json({ status: "error", msg: "cannot read from database" });
+//   }
+// };
+
+// export const deleteUser = async (req, res) => {
+//   try {
+//     await Userlists.findOneAndDelete({ _id: req.params.userId });
+//     res.json({ status: "ok", msg: "user deleted" });
+//   } catch (error) {
+//     console.error(error.message);
+//     res.status(400).json({ status: "error", msg: "user not deleted" });
+//   }
+// };

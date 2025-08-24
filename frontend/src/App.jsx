@@ -9,6 +9,7 @@ import Loginpage from "./pages/Loginpage";
 import Userpage from "./pages/Userpage";
 import Gamepage from "./pages/Gamepage";
 import Homepage from "./pages/Homepage";
+import Registration from "./pages/Registration";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -44,6 +45,7 @@ function App() {
               }
             />
             <Route path="/login" element={<Loginpage />} />
+            <Route path="/registration" element={<Registration />} />
           </Routes>
         </AuthCtx.Provider>
       </Suspense>

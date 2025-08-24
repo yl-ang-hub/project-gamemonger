@@ -1,45 +1,28 @@
 import React, { useState } from "react";
-import { use } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { useQuery } from "@tanstack/react-query";
-import { jwtDecode } from "jwt-decode";
-import AuthCtx from "../context/authContext";
+import { useMutation } from "@tanstack/react-query";
 
-const Loginpage = (props) => {
-  const authCtx = use(AuthCtx);
+const Registration = () => {
   const fetchData = useFetch();
-  const [usernameInput, setUsernameInput] = useState("Shrek");
+  const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("password123");
   const navigate = useNavigate();
 
-  const loginToApp = async () => {
-    const res = await fetchData(`/auth/login`, "POST", {
+  const registerForApp = async () => {
+    const res = await fetchData(`/auth/register`, "PUT", {
       username: usernameInput.trim(),
       password: passwordInput.trim(),
     });
 
-    try {
-      // console.log(JSON.stringify(res));
-      authCtx.setAccessToken(res.access);
-      const decoded = jwtDecode(res.access);
-      if (decoded) {
-        authCtx.setUsername(decoded.username);
-        authCtx.setUserId(decoded.id);
-      }
-      navigate("/user");
-    } catch (e) {
-      console.error(e.message);
-      throw "A login error has occurred";
-    }
     return true;
   };
 
-  const auth = useQuery({
-    queryKey: ["auth"],
-    queryFn: loginToApp,
-    enabled: false,
-    retry: false,
+  const register = useMutation({
+    mutationFn: registerForApp,
+    onSuccess: () => {
+      navigate("/login");
+    },
   });
 
   return (
@@ -59,7 +42,6 @@ const Loginpage = (props) => {
             value={usernameInput}
             onChange={(event) => setUsernameInput(event.target.value)}
           />
-          {auth.isError && JSON.stringify(auth.error)}
           {/* // TODO: Display error messages */}
         </div>
 
@@ -79,18 +61,14 @@ const Loginpage = (props) => {
 
         <div className="card-body row">
           <div className="col-sm-4" />
-          <button className="col-sm-4 btn btn-primary" onClick={auth.refetch}>
-            Login
+          <button className="col-sm-4 btn btn-primary" onClick={register.mutate}>
+            Sign up
           </button>
           <div className="col-sm-4" />
-        </div>
-
-        <div className="card-body row text-center" style={{ marginTop: "-20px" }}>
-          <Link to="/registration">Sign up</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default Loginpage;
+export default Registration;

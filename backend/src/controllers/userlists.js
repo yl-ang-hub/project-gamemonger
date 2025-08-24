@@ -1,43 +1,19 @@
 import Userlists from "../models/Userlists.js";
 
-export const getAllUsers = async (req, res) => {
-  try {
-    const allUsers = await Userlists.find();
-    res.json(allUsers);
-  } catch (error) {
-    console.error(error.message);
-    res.status(400).json({ status: "error", msg: "cannot read from database" });
-  }
-};
-
-// TODO: Reorganise related controllers under users
-// TODO: Switch this to add userlist (not user)
-export const addUser = async (req, res) => {
-  try {
-    const newUser = await Userlists.create({
-      username: req.body.username,
-    });
-    res.json({ status: "ok", msg: "user created", details: newUser });
-  } catch (error) {
-    console.error(error.message);
-    res.status(400).json({ status: "error", msg: "user not created" });
-  }
-};
-
-export const deleteUser = async (req, res) => {
-  try {
-    await Userlists.findOneAndDelete({ _id: req.params.userId });
-    res.json({ status: "ok", msg: "user deleted" });
-  } catch (error) {
-    console.error(error.message);
-    res.status(400).json({ status: "error", msg: "user not deleted" });
-  }
-};
+// export const initListForNewUser = async (req, res) => {
+//   try {
+//     const newUser =
+//     res.json({ status: "ok", msg: "user created", details: newUser });
+//   } catch (error) {
+//     console.error(error.message);
+//     res.status(400).json({ status: "error", msg: "user not created" });
+//   }
+// };
 
 export const getListsForUser = async (req, res) => {
   try {
     const listsOfUser = await Userlists.findOne({ userId: req.body.userId });
-    res.json(listsOfUser.lists);
+    res.json(listsOfUser?.lists);
   } catch (error) {
     console.error(error.message);
     res.status(400).json({ status: "error", msg: "cannot read from database" });
