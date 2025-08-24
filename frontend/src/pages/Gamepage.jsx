@@ -21,7 +21,7 @@ const Gamepage = () => {
     return data;
   };
   const query = useQuery({
-    queryKey: ["gameDetail"],
+    queryKey: ["gameDetail", rawgId],
     queryFn: getGameDetail,
   });
 
@@ -35,7 +35,7 @@ const Gamepage = () => {
     return data;
   };
   const query2 = useQuery({
-    queryKey: ["gameTrailers"],
+    queryKey: ["gameTrailers", rawgId],
     queryFn: getGameTrailers,
   });
 
@@ -105,13 +105,14 @@ const Gamepage = () => {
               </div>
             )}
             <br />
+            {JSON.stringify(query2.data)}
             {query2.isSuccess && (
               <div className="container border border-info">
                 <br />
                 <video
                   className="w-100"
                   controls
-                  src={query2.data.results[0].data.max}
+                  src={query2.data.results[0]?.data.max}
                 />
                 <div className="border border-warning">
                   List of Video to click

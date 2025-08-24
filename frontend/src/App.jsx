@@ -14,6 +14,7 @@ function App() {
       <Suspense fallback={<p>Loading...</p>}>
         <NavBar />
         <Routes>
+          <Route path="/" element={<Navigate to="/homepage" replace />} />
           {/* <Route path="/" element={<Navigate replace to="/games" />} /> */}
           {/* <Route path="/games" element={<Games />} /> */}
           <Route path="/gamepage/:rawgId" element={<Gamepage />} />
