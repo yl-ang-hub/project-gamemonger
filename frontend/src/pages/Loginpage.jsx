@@ -20,7 +20,6 @@ const Loginpage = (props) => {
     });
 
     try {
-      // console.log(JSON.stringify(res));
       authCtx.setAccessToken(res.access);
       const decoded = jwtDecode(res.access);
       if (decoded) {

@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
 
 app.use("/auth", authRouter);
 app.use("/user", usersRouter);
-app.use("/api", userlistRouter);
+app.use("/lists", userlistRouter);
 app.use("/api", rawgApi);
 
 app.use((err, req, res, next) => {

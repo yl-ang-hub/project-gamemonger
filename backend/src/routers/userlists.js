@@ -10,11 +10,12 @@ const router = express.Router();
 // router.delete("/users/:userId", userlists.deleteUser);
 
 // SINGLE USER
-router.post("/user/lists", auth, userlists.getListsForUser);
-router.put("/user/lists", auth, userlists.addList);
-router.patch("/user/lists", auth, userlists.renameList);
-router.put("/user/game", auth, userlists.addGame);
-router.delete("/:userId/:listId/:gameId", auth, userlists.deleteGame);
+router.post("/", auth, userlists.getListsForUser);
+router.put("/", auth, userlists.addList);
+router.patch("/", auth, userlists.renameList);
+router.delete("/:userId/:listId", auth, userlists.deleteList);
+// router.put("/game", auth, userlists.addGame);
+// router.delete("/:userId/:listId/:gameId", auth, userlists.deleteGame);
 
 // SEED DATA
 router.get("/userlists/seed", userlists.seedUsersListsGames);

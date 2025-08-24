@@ -26,7 +26,7 @@ export const addList = async (req, res) => {
       name: req.body.listName,
       games: [],
     };
-    const user = await Userlists.findOne({ _id: req.body.userId });
+    const user = await Userlists.findOne({ userId: req.body.userId });
     user.lists.push(newList);
     await user.save();
     res.json({ status: "ok", msg: "list saved", details: user });
@@ -38,7 +38,7 @@ export const addList = async (req, res) => {
 
 export const renameList = async (req, res) => {
   try {
-    const user = await Userlists.findOne({ _id: req.body.userId });
+    const user = await Userlists.findOne({ userId: req.body.userId });
     const list = user.lists.filter((list) => list._id == req.body.listId)[0];
     list.name = req.body.listName;
     await user.save();
@@ -46,6 +46,21 @@ export const renameList = async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.status(400).json({ status: "error", msg: "unable to rename list" });
+  }
+};
+
+export const deleteList = async (req, res) => {
+  try {
+    console.log("running", req.params.userId, req.params.listId);
+    const user = await Userlists.findOne({ userId: req.params.userId });
+    const newLists = user.lists.filter((list) => list._id != req.params.listId);
+    console.log(newLists);
+    user.lists = newLists;
+    await user.save();
+    res.json({ status: "ok", msg: "list delete", user });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "unable to delete list" });
   }
 };
 

@@ -1,27 +1,28 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { use } from "react";
 import AuthCtx from "../context/authContext";
+import DeleteListModal from "../components/DeleteListModal";
+import RenameListModal from "../components/RenameListModal";
+import AddListModal from "../components/AddListModal";
 
 const Userpage = () => {
-  const [displayedList, setDisplayedList] = useState("");
   const fetchData = useFetch();
   const authCtx = use(AuthCtx);
-  const queryClient = useQueryClient();
-  const auth = queryClient.getQueryData(["auth"]);
+  const [displayedListId, setDisplayedListId] = useState("");
+  const [displayedListName, setDisplayedListName] = useState("");
+  const [showAddListModal, setShowAddListModal] = useState(false);
+  const [showRenameListModal, setShowRenameListModal] = useState(false);
+  const [showDeleteListModal, setShowDeleteListModal] = useState(false);
 
   const fetchUserInfo = async () => {
-    // console.log(authCtx.accessToken);
-    // console.log(authCtx.username);
-    // console.log(authCtx.userId);
     const data = await fetchData(
       `/user/${authCtx.userId}`,
       undefined,
       undefined,
       authCtx.accessToken
     );
-    // console.log(JSON.stringify(data));
     return data;
   };
 
@@ -32,16 +33,15 @@ const Userpage = () => {
 
   const fetchLists = async () => {
     const data = await fetchData(
-      `/api/user/lists`,
+      `/lists`,
       "POST",
       {
         userId: authCtx.userId,
       },
       authCtx.accessToken
     );
-    // console.log(JSON.stringify(data));
-    // console.log("data[0]._id is ", data[0]._id);
-    setDisplayedList(data[0]._id);
+    if (displayedListId === "") setDisplayedListId(data[0]._id);
+    if (displayedListName === "") setDisplayedListName(data[0].name);
     return data;
   };
 
@@ -51,65 +51,112 @@ const Userpage = () => {
   });
 
   const getDisplayedListGames = () => {
-    const list = queryUserlists.data?.filter((list) => list._id == displayedList)[0];
-    // console.log(list);
-    const games = list.games;
-    // console.log(games);
+    const list = queryUserlists.data?.filter((list) => list._id == displayedListId)[0];
+    const games = list?.games || [];
     return games;
   };
 
   return (
-    <div className="ms-3 mt-3">
-      <div className="mx-2 my-2" id="userProfile">
-        <div>
-          <h1>{authCtx.username}</h1>
-        </div>
-        <div>
-          {queryUser.isSuccess && (
-            <img style={{ maxHeight: "200px" }} src={queryUser.data.picture} />
-          )}
-        </div>
-      </div>
+    <>
+      {showAddListModal && <AddListModal setShowAddListModal={setShowAddListModal} />}
 
-      <div className="mx-2 my-2" id="userLists">
-        <label htmlFor="userlists">Select your list -</label>
-        <select
-          className="mx-2"
-          name="userlists"
-          id="userlists"
-          onChange={(event) => setDisplayedList(event.target.value)}>
-          {queryUserlists.data?.map((list) => {
-            return (
-              <option value={list._id} key={list._id}>
-                {list.name}
-              </option>
-            );
-          })}
-        </select>
+      {showRenameListModal && (
+        <RenameListModal
+          setShowRenameListModal={setShowRenameListModal}
+          setDisplayedListName={setDisplayedListName}
+          displayedListId={displayedListId}
+          displayedListName={displayedListName}
+        />
+      )}
 
-        <div className="card overflow-scroll px-2" style={{ height: "400px" }}>
-          {queryUserlists.isSuccess &&
-            displayedList !== "" &&
-            getDisplayedListGames().map((game) => {
+      {showDeleteListModal && (
+        <DeleteListModal
+          setShowDeleteListModal={setShowDeleteListModal}
+          displayedListId={displayedListId}
+          displayedListName={displayedListName}
+          setDisplayedListId={setDisplayedListId}
+          setDisplayedListName={setDisplayedListName}
+        />
+      )}
+
+      <div className="ms-3 mt-3">
+        <div className="mx-2 my-2" id="userProfile">
+          <div>
+            <h1>{authCtx.username}</h1>
+          </div>
+          <div>
+            {queryUser.isSuccess && (
+              <img style={{ maxHeight: "200px" }} src={queryUser.data.picture} />
+            )}
+          </div>
+        </div>
+
+        <div className="mx-2 my-2" id="userLists">
+          <label htmlFor="userlists">Select your list -</label>
+          <select
+            className="mx-2"
+            name="userlists"
+            id="userlists"
+            onChange={(event) => {
+              setDisplayedListId(event.target.value);
+              setDisplayedListName(event.target.selectedOptions[0].innerText);
+            }}>
+            {queryUserlists.data?.map((list) => {
               return (
-                <div className="card text-center my-1" key={game._id}>
-                  <div className="card-header fw-bold">{game.name}</div>
-                  <ul className="list-unstyled">
-                    <li>Description: {game.description}</li>
-                    {game.screenshots.map((img, idx) => (
-                      <li key={idx}>{img}</li>
-                    ))}
-                  </ul>
-                </div>
+                <option value={list._id} key={list._id} listname={list.name}>
+                  {list.name}
+                </option>
               );
             })}
+          </select>
+
+          <div className="card overflow-scroll px-2" style={{ height: "400px" }}>
+            {/* List Name & Options */}
+            <div className="row">
+              <h3 className="col">{displayedListName}</h3>
+              <button
+                className="col-sm-2 btn btn-primary"
+                onClick={() => setShowAddListModal(true)}>
+                Add List
+              </button>
+              <button
+                className="col-sm-2 btn btn-primary"
+                onClick={() => setShowRenameListModal(true)}>
+                Rename List
+              </button>
+              <button
+                className="col-sm-2 btn btn-warning"
+                onClick={() => setShowDeleteListModal(true)}>
+                Delete List
+              </button>
+            </div>
+
+            {/* List of Games */}
+            <div>
+              {queryUserlists.isSuccess &&
+                displayedListId !== "" &&
+                getDisplayedListGames().map((game) => {
+                  return (
+                    <div className="card text-center my-1" key={game._id}>
+                      <div className="card-header fw-bold">{game.name}</div>
+                      <ul className="list-unstyled">
+                        <li>Description: {game.description}</li>
+                        {game.screenshots.map((img, idx) => (
+                          <li key={idx}>{img}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </div>
+
+        <div className="card mx-2 my-2" id="userComments">
+          List of all comments posted by users on different games
         </div>
       </div>
-
-      <div className="card mx-2 my-2" id="userComments">
-        List of all comments posted by users on different games
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useMutation } from "@tanstack/react-query";
 
@@ -43,6 +43,7 @@ const Registration = () => {
             onChange={(event) => setUsernameInput(event.target.value)}
           />
           {/* // TODO: Display error messages */}
+          {/* // TODO: Add validation to username */}
         </div>
 
         <div className="card-body">
@@ -57,6 +58,7 @@ const Registration = () => {
             onChange={(event) => setPasswordInput(event.target.value)}
           />
           {/* // TODO: Display error messages */}
+          {/* // TODO: Add validation to password */}
         </div>
 
         <div className="card-body row">
