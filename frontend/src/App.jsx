@@ -16,8 +16,8 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Navigate replace to="/games" />} /> */}
           {/* <Route path="/games" element={<Games />} /> */}
-          <Route path="/gamepage" element={<Gamepage />} />
-          <Route path="/home" element={<Homepage />} />
+          <Route path="/gamepage/:rawgId" element={<Gamepage />} />
+          <Route path="/homepage" element={<Homepage />} />
           {/* <Route path="/favourites" element={<Favourites id={currentList} />} /> */}
           {/* <Route path="/user" element={<Userpage />} /> */}
           {/* <Route path="/login" element={<Loginpage />} /> */}

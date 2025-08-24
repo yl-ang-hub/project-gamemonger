@@ -2,59 +2,142 @@ import React, { useEffect } from "react";
 import NavBar from "../components/NavBar";
 import useFetch from "../hooks/useFetch";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+// import { use } from "react";
 
 const Gamepage = () => {
+  // const authCtx = use(AuthCtx);
+  const { rawgId } = useParams();
   const fetchData = useFetch();
   const queryClient = useQueryClient();
 
-  const getGames = async () => {
-    const data = await fetchData("/api/games", "GET", undefined, undefined);
+  const getGameDetail = async () => {
+    const data = await fetchData(
+      "/api/games/" + rawgId,
+      "GET",
+      undefined,
+      undefined
+    );
     return data;
   };
   const query = useQuery({
-    queryKey: ["games"],
-    queryFn: getGames,
+    queryKey: ["gameDetail"],
+    queryFn: getGameDetail,
+  });
+
+  const getGameTrailers = async () => {
+    const data = await fetchData(
+      "/api/games/trailers/" + rawgId,
+      "GET",
+      undefined,
+      undefined
+    );
+    return data;
+  };
+  const query2 = useQuery({
+    queryKey: ["gameTrailers"],
+    queryFn: getGameTrailers,
   });
 
   return (
     <>
-      {/* {JSON.stringify(query.data)} */}
-      {query.isSuccess &&
-        query.data.results.map((item) => {
-          return <div key={item.count}>{item.name}</div>;
-        })}
       <div className="container border border-dark">
-        <div className="container border border-primary">
-          <br />
-          <div className=" d-flex">
-            <div className="container border border-info">
-              <br />
-              <div className="border border-dark">Game Logo</div>
-              <div className="border border-warning">
-                List of Screenshots to click
+        <div>
+          <div className="container border border-primary">
+            <br />
+            {query.isSuccess && (
+              <div className=" d-flex">
+                <div className="container border border-info">
+                  <br />
+                  <div className="border border-dark">{query.data.name}</div>
+                  <img
+                    className="img-fluid"
+                    alt={query.data.name}
+                    src={query.data.background_image}
+                  />
+
+                  <div className="border border-warning">
+                    List of Screenshots to click
+                  </div>
+                  <br />
+                </div>
+                <div className="container border border-danger">
+                  <br />
+                  <div className="border border-dark">Summary Review</div>
+                  <div className="border border-warning">
+                    <div>Released Date: {query.data.released}</div>
+                    <div>Rating: {query.data.rating}/5</div>
+                    <div>Esrb Rating: {query.data.esrb_rating.name}</div>
+                    <div>Genres: {query.data.genres[0].name}</div>
+                    <div>
+                      Platforms:{" "}
+                      {query.data.parent_platforms.map((item, index) => {
+                        return (
+                          <div className="badge bg-secondary me-1" key={index}>
+                            {item.platform.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div>
+                      Stores:{" "}
+                      {query.data.stores.map((item, index) => {
+                        return (
+                          <div className="badge bg-secondary me-1" key={index}>
+                            {item.store.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div>
+                      Developers:{" "}
+                      {query.data.developers.map((item, index) => {
+                        return (
+                          <div className="badge bg-secondary me-1" key={index}>
+                            {item.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <br />
+                </div>
               </div>
-              <br />
-            </div>
-            <div className="container border border-danger">
-              <br />
-              <div className="border border-dark">Summary Review</div>
-              <div className="border border-warning">Genernal Info</div>
-              <br />
-            </div>
+            )}
+            <br />
+            {query2.isSuccess && (
+              <div className="container border border-info">
+                <br />
+                <video
+                  className="w-100"
+                  controls
+                  src={query2.data.results[0].data.max}
+                />
+                <div className="border border-warning">
+                  List of Video to click
+                </div>
+                <br />
+              </div>
+            )}
+            <br />
           </div>
           <br />
-          <div className="container border border-info">
-            <br />
-            <div className="border border-dark">Gameplay Video</div>
-            <div className="border border-warning">List of Video to click</div>
-            <br />
-          </div>
-          <br />
+          {query.isSuccess && (
+            <div
+              className={`container d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white border border-danger`}
+              style={{
+                maxHeight: "300px",
+                borderRadius: "5px",
+              }}
+            >
+              <div> This is {query.data.name}.</div>
+              <div
+                dangerouslySetInnerHTML={{ __html: query.data.description }}
+              ></div>
+            </div>
+          )}
         </div>
-        <br />
-        <div className="container border border-primary">
-          <div>Game intro</div>
-        </div>
+
         <br />
         <div className="container border border-primary">
           <br />

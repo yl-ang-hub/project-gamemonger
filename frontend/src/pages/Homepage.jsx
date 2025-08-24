@@ -26,6 +26,7 @@ const Homepage = () => {
             return (
               <Games
                 key={item.id}
+                rawgId={item.id}
                 name={item.name}
                 background_image={item.background_image}
               />
