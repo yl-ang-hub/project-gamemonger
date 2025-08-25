@@ -10,6 +10,7 @@ import Userpage from "./pages/Userpage";
 import Gamepage from "./pages/Gamepage";
 import Homepage from "./pages/Homepage";
 import Registration from "./pages/Registration";
+import SearchGames from "./pages/SearchGames";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -27,15 +28,20 @@ function App() {
             setUsername,
             userId,
             setUserId,
-          }}>
+          }}
+        >
           <NavBar />
           <Routes>
             <Route path="/" element={<Navigate to="/homepage" replace />} />
-            <Route path="/gamepage" element={<Navigate to="/homepage" replace />} />
+            <Route
+              path="/gamepage"
+              element={<Navigate to="/homepage" replace />}
+            />
             {/* <Route path="/" element={<Navigate replace to="/games" />} /> */}
             {/* <Route path="/games" element={<Games />} /> */}
             <Route path="/gamepage/:rawgId" element={<Gamepage />} />
             <Route path="/homepage" element={<Homepage />} />
+            <Route path="/search" element={<SearchGames />} />
             {/* <Route path="/favourites" element={<Favourites id={currentList} />} /> */}
             <Route
               path="/user"

@@ -1,7 +1,9 @@
 const useFetch = () => {
   try {
     const fetchData = async (endpoint, method, body, token) => {
-      const res = await fetch(import.meta.env.VITE_SERVER + endpoint, {
+      const uri = import.meta.env.VITE_SERVER + endpoint;
+      console.log(uri);
+      const res = await fetch(uri, {
         method,
         headers: {
           "Content-Type": "application/json",

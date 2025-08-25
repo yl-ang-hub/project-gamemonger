@@ -5,6 +5,7 @@ import * as rawgApi from "../controllers/rawgApi.js";
 const router = express.Router();
 
 router.get("/games", rawgApi.getGames);
+router.post("/games/search/", rawgApi.searchGames);
 router.get("/games/:rawgId", rawgApi.getGameDetail);
 router.get("/games/trailers/:rawgId", rawgApi.getGameTrailers);
 

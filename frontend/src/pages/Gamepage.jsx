@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import AuthCtx from "../context/authContext";
-// import { use } from "react";
+import { use } from "react";
 
 const Gamepage = () => {
   const authCtx = use(AuthCtx);
