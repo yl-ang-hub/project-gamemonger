@@ -1,12 +1,21 @@
 import React from "react";
 import { Link } from "react-router";
 import PropTypes from "prop-types";
-import { use } from "react";
+import { use, useRef } from "react";
 import AuthCtx from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const authCtx = use(AuthCtx);
   const isAuthenticated = authCtx.accessToken.length > 0;
+  const nameRef = useRef("");
+  const navigate = useNavigate();
+
+  const doSearch = (e) => {
+    e.preventDefault();
+    const query = nameRef.current.value;
+    navigate(`/search/${query}`);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -61,7 +70,23 @@ const NavBar = () => {
                 </Link>
               </li>
             )}
-          </ul>
+          </ul>{" "}
+          <form className="d-flex" role="search">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              ref={nameRef}
+            />
+            <button
+              className="btn btn-outline-success"
+              type="submit"
+              onClick={doSearch}
+            >
+              Search
+            </button>
+          </form>
         </div>
       </div>
     </nav>

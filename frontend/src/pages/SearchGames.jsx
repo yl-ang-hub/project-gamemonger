@@ -1,10 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SearchGames = () => {
   const fetchData = useFetch();
-  const nameRef = useRef("");
+  const nameRef = useRef(null);
   const [data, setData] = useState("");
+  const navigate = useNavigate();
+
+  const { query } = useParams();
+
+  console.log("query is", query);
 
   const doSearch = async (e) => {
     console.log(nameRef.current.value);
@@ -18,6 +24,13 @@ const SearchGames = () => {
     );
     setData(result);
   };
+
+  useEffect(() => {
+    if (query && nameRef.current) {
+      nameRef.current.value = query;
+      doSearch();
+    }
+  }, [query]);
 
   return (
     <div>
@@ -36,7 +49,7 @@ const SearchGames = () => {
         {data &&
           data !== "" &&
           data.results?.map((game, index) => {
-            return <div>{game.name}</div>;
+            return <div key={index}>{game.name}</div>;
           })}
       </div>
     </div>

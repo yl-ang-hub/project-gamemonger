@@ -42,6 +42,7 @@ function App() {
             <Route path="/gamepage/:rawgId" element={<Gamepage />} />
             <Route path="/homepage" element={<Homepage />} />
             <Route path="/search" element={<SearchGames />} />
+            <Route path="/search/:query" element={<SearchGames />} />
             {/* <Route path="/favourites" element={<Favourites id={currentList} />} /> */}
             <Route
               path="/user"
