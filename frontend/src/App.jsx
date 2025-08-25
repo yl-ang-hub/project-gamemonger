@@ -45,7 +45,7 @@ function App() {
                 </ProtectedRouter>
               }
             />
-            {/* Hello!!!! */}
+            {/* Hello World!!!! */}
             <Route path="/login" element={<Loginpage />} />
             <Route path="/registration" element={<Registration />} />
           </Routes>
