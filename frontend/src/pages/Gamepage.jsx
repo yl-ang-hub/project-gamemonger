@@ -1,33 +1,28 @@
-<<<<<<< Updated upstream
-import React, { useEffect, useState } from "react";
-=======
-import React, { useEffect, useRef } from "react";
->>>>>>> Stashed changes
+import React, { useEffect, useState, useRef } from "react";
 import NavBar from "../components/NavBar";
 import useFetch from "../hooks/useFetch";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import AuthCtx from "../context/authContext";
 import { use } from "react";
-<<<<<<< Updated upstream
 import AddGameToListModal from "../components/AddGameToListModal";
-=======
 import GamePageReviews from "../components/GamePageReviews";
->>>>>>> Stashed changes
 
 const Gamepage = () => {
   const authCtx = use(AuthCtx);
   const { rawgId } = useParams();
   const fetchData = useFetch();
   const queryClient = useQueryClient();
-<<<<<<< Updated upstream
   const [showAddGameToListModal, setShowAddGameToListModal] = useState(false);
-=======
   const reviewRef = useRef("");
->>>>>>> Stashed changes
 
   const getGameDetail = async () => {
-    const data = await fetchData("/api/games/" + rawgId, "GET", undefined, undefined);
+    const data = await fetchData(
+      "/api/games/" + rawgId,
+      "GET",
+      undefined,
+      undefined
+    );
     return data;
   };
   const queryGameDetail = useQuery({
@@ -36,7 +31,12 @@ const Gamepage = () => {
   });
 
   const getGameTrailers = async () => {
-    const data = await fetchData("/api/games/trailers/" + rawgId, "GET", undefined, undefined);
+    const data = await fetchData(
+      "/api/games/trailers/" + rawgId,
+      "GET",
+      undefined,
+      undefined
+    );
     return data;
   };
   const queryGameTrailers = useQuery({
@@ -82,7 +82,10 @@ const Gamepage = () => {
   return (
     <>
       {showAddGameToListModal && (
-        <AddGameToListModal setShowAddGameToListModal={setShowAddGameToListModal} rawgId={rawgId} />
+        <AddGameToListModal
+          setShowAddGameToListModal={setShowAddGameToListModal}
+          rawgId={rawgId}
+        />
       )}
 
       <div className="container border border-dark">
@@ -102,17 +105,22 @@ const Gamepage = () => {
                     src={queryGameDetail.data.background_image}
                   />
 
-                  <div className="border border-warning">List of Screenshots to click</div>
+                  <div className="border border-warning">
+                    List of Screenshots to click
+                  </div>
                   <br />
                 </div>
                 <div className="container border border-danger">
                   <br />
                   <div className="border border-dark">
-                    <div className="border border-primary">Add to shopping cart</div>
+                    <div className="border border-primary">
+                      Add to shopping cart
+                    </div>
                     <div className="border border-secondary">
                       <button
                         className="btn btn-primary"
-                        onClick={() => setShowAddGameToListModal(true)}>
+                        onClick={() => setShowAddGameToListModal(true)}
+                      >
                         Add to my list
                       </button>
                     </div>
@@ -168,10 +176,6 @@ const Gamepage = () => {
             {queryGameTrailers.isSuccess && (
               <div className="container border border-info">
                 <br />
-<<<<<<< Updated upstream
-                <video className="w-100" controls src={query2.data.results[0]?.data.max} />
-                <div className="border border-warning">List of Video to click</div>
-=======
                 <video
                   className="w-100"
                   controls
@@ -180,7 +184,6 @@ const Gamepage = () => {
                 <div className="border border-warning">
                   List of Video to click
                 </div>
->>>>>>> Stashed changes
                 <br />
               </div>
             )}
@@ -193,11 +196,6 @@ const Gamepage = () => {
               style={{
                 maxHeight: "300px",
                 borderRadius: "5px",
-<<<<<<< Updated upstream
-              }}>
-              <div> This is {query.data.name}.</div>
-              <div dangerouslySetInnerHTML={{ __html: query.data.description }}></div>
-=======
               }}
             >
               <div> This is {queryGameDetail.data.name}.</div>
@@ -206,7 +204,6 @@ const Gamepage = () => {
                   __html: queryGameDetail.data.description,
                 }}
               ></div>
->>>>>>> Stashed changes
             </div>
           )}
         </div>

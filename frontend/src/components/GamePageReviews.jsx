@@ -24,7 +24,7 @@ const GamePageReviews = (props) => {
 
   const mutate = useMutation({
     mutationFn: deleteReview,
-    onSuccess: () => {
+    onError: () => {
       console.log(1);
       queryClient.invalidateQueries(["userReviews", props.rawgId]);
     },
