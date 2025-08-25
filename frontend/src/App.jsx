@@ -51,7 +51,7 @@ function App() {
                 </ProtectedRouter>
               }
             />
-            {/* Helloyen */}
+            {/* Hello Worldyen */}
             <Route path="/login" element={<Loginpage />} />
             <Route path="/registration" element={<Registration />} />
           </Routes>
