@@ -1,24 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import useFetch from "../hooks/useFetch";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import AuthCtx from "../context/authContext";
 import { use } from "react";
+import AddGameToListModal from "../components/AddGameToListModal";
 
 const Gamepage = () => {
   const authCtx = use(AuthCtx);
   const { rawgId } = useParams();
   const fetchData = useFetch();
   const queryClient = useQueryClient();
+  const [showAddGameToListModal, setShowAddGameToListModal] = useState(false);
 
   const getGameDetail = async () => {
-    const data = await fetchData(
-      "/api/games/" + rawgId,
-      "GET",
-      undefined,
-      undefined
-    );
+    const data = await fetchData("/api/games/" + rawgId, "GET", undefined, undefined);
     return data;
   };
   const query = useQuery({
@@ -27,12 +24,7 @@ const Gamepage = () => {
   });
 
   const getGameTrailers = async () => {
-    const data = await fetchData(
-      "/api/games/trailers/" + rawgId,
-      "GET",
-      undefined,
-      undefined
-    );
+    const data = await fetchData("/api/games/trailers/" + rawgId, "GET", undefined, undefined);
     return data;
   };
   const query2 = useQuery({
@@ -42,6 +34,10 @@ const Gamepage = () => {
 
   return (
     <>
+      {showAddGameToListModal && (
+        <AddGameToListModal setShowAddGameToListModal={setShowAddGameToListModal} rawgId={rawgId} />
+      )}
+
       <div className="container border border-dark">
         <div>
           <div className="container border border-primary">
@@ -57,14 +53,21 @@ const Gamepage = () => {
                     src={query.data.background_image}
                   />
 
-                  <div className="border border-warning">
-                    List of Screenshots to click
-                  </div>
+                  <div className="border border-warning">List of Screenshots to click</div>
                   <br />
                 </div>
                 <div className="container border border-danger">
                   <br />
-                  <div className="border border-dark">Summary Review</div>
+                  <div className="border border-dark">
+                    <div className="border border-primary">Add to shopping cart</div>
+                    <div className="border border-secondary">
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => setShowAddGameToListModal(true)}>
+                        Add to my list
+                      </button>
+                    </div>
+                  </div>
                   <div className="border border-warning">
                     <div>Released Date: {query.data.released}</div>
                     <div>Rating: {query.data.rating}/5</div>
@@ -110,14 +113,8 @@ const Gamepage = () => {
             {query2.isSuccess && (
               <div className="container border border-info">
                 <br />
-                <video
-                  className="w-100"
-                  controls
-                  src={query2.data.results[0]?.data.max}
-                />
-                <div className="border border-warning">
-                  List of Video to click
-                </div>
+                <video className="w-100" controls src={query2.data.results[0]?.data.max} />
+                <div className="border border-warning">List of Video to click</div>
                 <br />
               </div>
             )}
@@ -130,12 +127,9 @@ const Gamepage = () => {
               style={{
                 maxHeight: "300px",
                 borderRadius: "5px",
-              }}
-            >
+              }}>
               <div> This is {query.data.name}.</div>
-              <div
-                dangerouslySetInnerHTML={{ __html: query.data.description }}
-              ></div>
+              <div dangerouslySetInnerHTML={{ __html: query.data.description }}></div>
             </div>
           )}
         </div>

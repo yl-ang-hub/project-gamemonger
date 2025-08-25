@@ -13,7 +13,7 @@ import userReviews from "./src/routers/userReviews.js";
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 1000000,
   standardHeaders: true,
   legacyHeaders: false,
 });

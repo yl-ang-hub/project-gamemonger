@@ -159,19 +159,32 @@ const Userpage = () => {
                   return (
                     <div className="card text-center my-1" key={game._id}>
                       <div className="card-header fw-bold">{game.name}</div>
-                      <ul className="list-unstyled">
-                        <li>Description: {game.description}</li>
-                        {game.screenshots.map((img, idx) => (
-                          <li key={idx}>{img}</li>
-                        ))}
-                        <li>
-                          <button
-                            className="btn btn-primary"
-                            onClick={() => mutate.mutate(game._id)}>
-                            Delete Game
-                          </button>
-                        </li>
-                      </ul>
+
+                      <div className="row">
+                        <div className="col-sm-4" id="game-img">
+                          {game.screenshots.map((img, idx) => (
+                            <li key={idx}>
+                              <img src={img} style={{ maxHeight: "100%", maxWidth: "120%" }} />
+                            </li>
+                          ))}
+                        </div>
+
+                        <div className="col-sm-1"> </div>
+
+                        <div className="col-sm-7" id="game-desc">
+                          <div className="row text-start">
+                            <span dangerouslySetInnerHTML={{ __html: game.description }} />
+                          </div>
+                          <div className="row">
+                            <button
+                              className="col-sm-4 offset-sm-7 btn btn-primary mb-3"
+                              onClick={() => mutate.mutate(game._id)}>
+                              Delete game from my list
+                            </button>
+                            <br />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
