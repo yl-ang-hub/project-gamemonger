@@ -8,7 +8,7 @@ export const GamesSchema = new mongoose.Schema(
     screenshots: { type: [String], required: true },
   },
   {
-    collection: "Games",
+    collection: "GamesInLists",
   }
 );
 
