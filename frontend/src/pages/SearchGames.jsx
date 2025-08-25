@@ -32,6 +32,10 @@ const SearchGames = () => {
     }
   }, [query]);
 
+  const handleLink = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <input
@@ -49,7 +53,11 @@ const SearchGames = () => {
         {data &&
           data !== "" &&
           data.results?.map((game, index) => {
-            return <div key={index}>{game.name}</div>;
+            return (
+              <div key={index}>
+                <a href={`/gamepage/${game.id}`}>{game.name}</a>
+              </div>
+            );
           })}
       </div>
     </div>
