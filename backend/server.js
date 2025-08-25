@@ -9,6 +9,7 @@ import authRouter from "./src/routers/auth.js";
 import usersRouter from "./src/routers/users.js";
 import userlistRouter from "./src/routers/userlists.js";
 import rawgApi from "./src/routers/rawgApi.js";
+import userReviews from "./src/routers/userReviews.js";
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -49,6 +50,7 @@ app.use("/auth", authRouter);
 app.use("/user", usersRouter);
 app.use("/lists", userlistRouter);
 app.use("/api", rawgApi);
+app.use("/api", userReviews);
 
 app.use((err, req, res, next) => {
   console.error(err.message);
