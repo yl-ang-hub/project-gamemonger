@@ -36,15 +36,15 @@ export const seedUsers = async (req, res) => {
   }
 };
 
-// export const getAllUsers = async (req, res) => {
-//   try {
-//     const allUsers = await Userlists.find();
-//     res.json(allUsers);
-//   } catch (error) {
-//     console.error(error.message);
-//     res.status(400).json({ status: "error", msg: "cannot read from database" });
-//   }
-// };
+export const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await Users.find();
+    res.json(allUsers);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "cannot read from database" });
+  }
+};
 
 // export const deleteUser = async (req, res) => {
 //   try {
