@@ -6,11 +6,61 @@ export const addUserReviews = async (req, res) => {
       rating: req.body.rating,
       review: req.body.review,
       rawgId: req.body.rawgId,
-      userId: req.body.Id,
+      userId: req.body.userId,
     });
     await newReview.save();
-    res.json({ status: "ok", msg: "adding successful" });
+    res.json({ status: "ok", msg: "Review added successfully" });
   } catch (error) {
-    res.status(400).send("an error has occured");
+    res.status(400).send("an error has occured when adding review");
+  }
+};
+
+export const getAllReviews = async (req, res) => {
+  try {
+    const allReviews = await UserReviewModel.find().populate("userId");
+    res.json(allReviews);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).send("an error has occured when getting all reviews");
+  }
+};
+
+export const getOneGameReviews = async (req, res) => {
+  try {
+    const oneGameReviews = await UserReviewModel.find({
+      rawgId: req.body.rawgId,
+    }).populate("userId");
+    return res.json(oneGameReviews);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).send("an error has occured when getting one game reviews");
+  }
+};
+
+export const deleteOneGameReviewByReviewId = async (req, res) => {
+  try {
+    const deleteOneGameReview = await UserReviewModel.findByIdAndDelete(
+      req.body.reviewId
+    );
+  } catch (error) {
+    console.error(error.message);
+    res
+      .status(400)
+      .send("an error has occured when deleting one game reviews by userId");
+  }
+};
+
+export const seedReviews = async (req, res) => {
+  try {
+    await UserReviewModel.deleteMany({});
+    const seedingReviews = await UserReviewModel.create({
+      rating: 4,
+      review: "hello world",
+      rawgId: "3498",
+      userId: "",
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).send("an error has occured when seeding");
   }
 };

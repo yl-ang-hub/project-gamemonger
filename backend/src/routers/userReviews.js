@@ -6,6 +6,9 @@ import { checkErrors } from "../validators/checkErrors.js";
 
 const router = express.Router();
 
+router.get("/reviews", userReviews.getAllReviews);
+router.post("/gameReviews", userReviews.getOneGameReviews);
+router.delete("/reviews", userReviews.deleteOneGameReviewByReviewId);
 router.post(
   "/reviews",
   auth,
