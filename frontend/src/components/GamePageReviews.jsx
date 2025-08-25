@@ -19,12 +19,12 @@ const GamePageReviews = (props) => {
       authCtx.accessToken
     );
 
-    return "true";
+    return data;
   };
 
   const mutate = useMutation({
     mutationFn: deleteReview,
-    onError: () => {
+    onSuccess: () => {
       console.log(1);
       queryClient.invalidateQueries(["userReviews", props.rawgId]);
     },
