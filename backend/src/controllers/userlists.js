@@ -1,15 +1,5 @@
 import Userlists from "../models/Userlists.js";
 
-// export const initListForNewUser = async (req, res) => {
-//   try {
-//     const newUser =
-//     res.json({ status: "ok", msg: "user created", details: newUser });
-//   } catch (error) {
-//     console.error(error.message);
-//     res.status(400).json({ status: "error", msg: "user not created" });
-//   }
-// };
-
 export const getListsForUser = async (req, res) => {
   try {
     const listsOfUser = await Userlists.findOne({ userId: req.body.userId });
@@ -85,7 +75,7 @@ export const addGame = async (req, res) => {
 
 export const deleteGame = async (req, res) => {
   try {
-    const user = await Userlists.findOne({ _id: req.params.userId });
+    const user = await Userlists.findOne({ userId: req.params.userId });
     const list = user.lists.filter((list) => list._id == req.params.listId)[0];
     const idx = list.games.findIndex((game) => game._id == req.params.gameId);
     list.games.splice(idx, 1);

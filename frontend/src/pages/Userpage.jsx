@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { use } from "react";
@@ -8,8 +8,10 @@ import RenameListModal from "../components/RenameListModal";
 import AddListModal from "../components/AddListModal";
 
 const Userpage = () => {
+  const queryClient = useQueryClient();
   const fetchData = useFetch();
   const authCtx = use(AuthCtx);
+  const [wishlistId, setWishlistId] = useState("");
   const [displayedListId, setDisplayedListId] = useState("");
   const [displayedListName, setDisplayedListName] = useState("");
   const [showAddListModal, setShowAddListModal] = useState(false);
@@ -40,6 +42,7 @@ const Userpage = () => {
       },
       authCtx.accessToken
     );
+    setWishlistId(data[0]._id);
     if (displayedListId === "") setDisplayedListId(data[0]._id);
     if (displayedListName === "") setDisplayedListName(data[0].name);
     return data;
@@ -50,11 +53,27 @@ const Userpage = () => {
     queryFn: fetchLists,
   });
 
-  const getDisplayedListGames = () => {
-    const list = queryUserlists.data?.filter((list) => list._id == displayedListId)[0];
+  const getDisplayedListGames = (data) => {
+    const list = data?.filter((list) => list._id == displayedListId)[0];
     const games = list?.games || [];
     return games;
   };
+
+  const delGame = async (gameId) => {
+    await fetchData(
+      `/lists/${authCtx.userId}/${displayedListId}/${gameId}`,
+      "DELETE",
+      undefined,
+      authCtx.accessToken
+    );
+  };
+
+  const mutate = useMutation({
+    mutationFn: (gameId) => delGame(gameId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["userlists"]);
+    },
+  });
 
   return (
     <>
@@ -76,6 +95,7 @@ const Userpage = () => {
           displayedListName={displayedListName}
           setDisplayedListId={setDisplayedListId}
           setDisplayedListName={setDisplayedListName}
+          wishlistId={wishlistId}
         />
       )}
 
@@ -135,7 +155,7 @@ const Userpage = () => {
             <div>
               {queryUserlists.isSuccess &&
                 displayedListId !== "" &&
-                getDisplayedListGames().map((game) => {
+                getDisplayedListGames(queryUserlists?.data).map((game) => {
                   return (
                     <div className="card text-center my-1" key={game._id}>
                       <div className="card-header fw-bold">{game.name}</div>
@@ -144,6 +164,13 @@ const Userpage = () => {
                         {game.screenshots.map((img, idx) => (
                           <li key={idx}>{img}</li>
                         ))}
+                        <li>
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => mutate.mutate(game._id)}>
+                            Delete Game
+                          </button>
+                        </li>
                       </ul>
                     </div>
                   );
@@ -153,7 +180,11 @@ const Userpage = () => {
         </div>
 
         <div className="card mx-2 my-2" id="userComments">
-          List of all comments posted by users on different games
+          <h3>Recent Purchases</h3>
+        </div>
+
+        <div className="card mx-2 my-2" id="userComments">
+          <h3>My Comments</h3>
         </div>
       </div>
     </>

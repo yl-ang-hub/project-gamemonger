@@ -29,7 +29,7 @@ const Registration = () => {
     <div className="w-50 h-50 mx-auto">
       <div className="card">
         <div className="card-title text-center mt-4 mb-4">
-          <h3>Login</h3>
+          <h3>Registration</h3>
         </div>
 
         <div className="card-body">
@@ -42,8 +42,9 @@ const Registration = () => {
             value={usernameInput}
             onChange={(event) => setUsernameInput(event.target.value)}
           />
+          <div>Test</div>
+          <div>{register.isError && JSON.stringify(register.error)}</div>
           {/* // TODO: Display error messages */}
-          {/* // TODO: Add validation to username */}
         </div>
 
         <div className="card-body">
@@ -58,12 +59,16 @@ const Registration = () => {
             onChange={(event) => setPasswordInput(event.target.value)}
           />
           {/* // TODO: Display error messages */}
-          {/* // TODO: Add validation to password */}
         </div>
 
         <div className="card-body row">
           <div className="col-sm-4" />
-          <button className="col-sm-4 btn btn-primary" onClick={register.mutate}>
+          <button
+            className="col-sm-4 btn btn-primary"
+            onClick={(event) => {
+              event.preventDefault();
+              register.mutate;
+            }}>
             Sign up
           </button>
           <div className="col-sm-4" />
