@@ -33,10 +33,10 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Navigate to="/homepage" replace />} />
-            <Route
+            {/* <Route
               path="/gamepage"
               element={<Navigate to="/homepage" replace />}
-            />
+            /> */}
             {/* <Route path="/" element={<Navigate replace to="/games" />} /> */}
             {/* <Route path="/games" element={<Games />} /> */}
             <Route path="/gamepage/:rawgId" element={<Gamepage />} />
