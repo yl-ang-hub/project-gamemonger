@@ -20,9 +20,8 @@ const OverLay = (props) => {
   const mutate = useMutation({
     mutationFn: deleteList,
     onSuccess: () => {
-      // TODO: Auto bounce to first list after delete
-      // props.setDisplayedListId("");
-      // props.setDisplayedListName("");
+      props.setDisplayedListId(props.wishlistId);
+      props.setDisplayedListName("Wishlist");
       props.setShowDeleteListModal(false);
       queryClient.invalidateQueries(["userlists"]);
     },
@@ -62,6 +61,7 @@ const DeleteListModal = (props) => {
           displayedListName={props.displayedListName}
           setDisplayedListId={props.setDisplayedListId}
           setDisplayedListName={props.setDisplayedListName}
+          wishlistId={props.wishlistId}
         />,
         document.querySelector("#modal-root")
       )}
