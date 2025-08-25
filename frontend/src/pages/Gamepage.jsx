@@ -17,12 +17,7 @@ const Gamepage = () => {
   const reviewRef = useRef("");
 
   const getGameDetail = async () => {
-    const data = await fetchData(
-      "/api/games/" + rawgId,
-      "GET",
-      undefined,
-      undefined
-    );
+    const data = await fetchData("/api/games/" + rawgId, "GET", undefined, undefined);
     return data;
   };
   const queryGameDetail = useQuery({
@@ -31,12 +26,7 @@ const Gamepage = () => {
   });
 
   const getGameTrailers = async () => {
-    const data = await fetchData(
-      "/api/games/trailers/" + rawgId,
-      "GET",
-      undefined,
-      undefined
-    );
+    const data = await fetchData("/api/games/trailers/" + rawgId, "GET", undefined, undefined);
     return data;
   };
   const queryGameTrailers = useQuery({
@@ -45,12 +35,7 @@ const Gamepage = () => {
   });
 
   const getUserReviews = async () => {
-    const data = await fetchData(
-      "/api/gameReviews",
-      "POST",
-      { rawgId },
-      undefined
-    );
+    const data = await fetchData("/api/gameReviews", "POST", { rawgId }, undefined);
     return data;
   };
   const queryUserReviews = useQuery({
@@ -82,10 +67,7 @@ const Gamepage = () => {
   return (
     <>
       {showAddGameToListModal && (
-        <AddGameToListModal
-          setShowAddGameToListModal={setShowAddGameToListModal}
-          rawgId={rawgId}
-        />
+        <AddGameToListModal setShowAddGameToListModal={setShowAddGameToListModal} rawgId={rawgId} />
       )}
 
       <div className="container border border-dark">
@@ -96,31 +78,27 @@ const Gamepage = () => {
               <div className=" d-flex">
                 <div className="container border border-info">
                   <br />
-                  <div className="border border-dark">
-                    {queryGameDetail.data.name}
-                  </div>
+                  <div className="border border-dark">{queryGameDetail.data.name}</div>
                   <img
                     className="img-fluid"
                     alt={queryGameDetail.data.name}
                     src={queryGameDetail.data.background_image}
                   />
 
-                  <div className="border border-warning">
-                    List of Screenshots to click
-                  </div>
+                  <div className="border border-warning">List of Screenshots to click</div>
                   <br />
                 </div>
                 <div className="container border border-danger">
                   <br />
                   <div className="border border-dark">
                     <div className="border border-primary">
-                      Add to shopping cart
+                      Price: $${queryGameDetail.data.price}
+                      <button className="btn btn-primary">Add to Cart</button>
                     </div>
                     <div className="border border-secondary">
                       <button
                         className="btn btn-primary"
-                        onClick={() => setShowAddGameToListModal(true)}
-                      >
+                        onClick={() => setShowAddGameToListModal(true)}>
                         Add to my list
                       </button>
                     </div>
@@ -128,24 +106,17 @@ const Gamepage = () => {
                   <div className="border border-warning">
                     <div>Released Date: {queryGameDetail.data.released}</div>
                     <div>Rating: {queryGameDetail.data.rating}/5</div>
-                    <div>
-                      Esrb Rating: {queryGameDetail.data.esrb_rating.name}
-                    </div>
+                    <div>Esrb Rating: {queryGameDetail.data.esrb_rating.name}</div>
                     <div>Genres: {queryGameDetail.data.genres[0].name}</div>
                     <div>
                       Platforms:{" "}
-                      {queryGameDetail.data.parent_platforms.map(
-                        (item, index) => {
-                          return (
-                            <div
-                              className="badge bg-secondary me-1"
-                              key={index}
-                            >
-                              {item.platform.name}
-                            </div>
-                          );
-                        }
-                      )}
+                      {queryGameDetail.data.parent_platforms.map((item, index) => {
+                        return (
+                          <div className="badge bg-secondary me-1" key={index}>
+                            {item.platform.name}
+                          </div>
+                        );
+                      })}
                     </div>
                     <div>
                       Stores:{" "}
@@ -181,9 +152,7 @@ const Gamepage = () => {
                   controls
                   src={queryGameTrailers.data.results[0]?.data.max}
                 />
-                <div className="border border-warning">
-                  List of Video to click
-                </div>
+                <div className="border border-warning">List of Video to click</div>
                 <br />
               </div>
             )}
@@ -196,14 +165,12 @@ const Gamepage = () => {
               style={{
                 maxHeight: "300px",
                 borderRadius: "5px",
-              }}
-            >
+              }}>
               <div> This is {queryGameDetail.data.name}.</div>
               <div
                 dangerouslySetInnerHTML={{
                   __html: queryGameDetail.data.description,
-                }}
-              ></div>
+                }}></div>
             </div>
           )}
         </div>
@@ -212,11 +179,7 @@ const Gamepage = () => {
         <div className="container border border-primary">
           <br />
           <div className="container border border-danger">
-            <input
-              ref={reviewRef}
-              className="col-sm-10"
-              placeholder="User's review"
-            ></input>
+            <input ref={reviewRef} className="col-sm-10" placeholder="User's review"></input>
             <button className="btn btn-primary" onClick={mutate.mutate}>
               Submit
             </button>

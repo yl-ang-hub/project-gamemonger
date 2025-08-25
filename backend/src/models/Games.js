@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const GameSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    year: { type: Number, required: true },
+    rawgId: { type: String, required: true },
+    price: { type: Number, required: true },
   },
   { collection: "games" }
 );
