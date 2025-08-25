@@ -16,8 +16,6 @@ function App() {
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
 
-  // yoyoyo whatsup
-
   return (
     <div className="container">
       <Suspense fallback={<p>Loading...</p>}>
@@ -51,7 +49,7 @@ function App() {
                 </ProtectedRouter>
               }
             />
-            {/* Hello Worldyen */}
+
             <Route path="/login" element={<Loginpage />} />
             <Route path="/registration" element={<Registration />} />
           </Routes>
