@@ -25,6 +25,7 @@ const CartPage = () => {
   const mutate = useMutation({
     mutationFn: checkoutSession,
     onSuccess: (data) => {
+      localStorage.setItem("sessionId", data.id);
       window.location.href = data.url;
     },
   });
