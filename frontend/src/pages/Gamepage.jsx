@@ -24,7 +24,7 @@ const Gamepage = () => {
 
   const getGameDetail = async () => {
     const data = await fetchData(
-      "/api/games/" + rawgId,
+      "/api/game/" + rawgId,
       "GET",
       undefined,
       undefined
@@ -196,7 +196,8 @@ const Gamepage = () => {
                                   : `${styles.indicator} ${styles.indicatorInactive}`
                               }
                               key={idx}
-                              onClick={() => setSlide(idx)}></button>
+                              onClick={() => setSlide(idx)}
+                            ></button>
                           );
                         })}
                     </span>
@@ -213,7 +214,8 @@ const Gamepage = () => {
                     <div className="border border-secondary">
                       <button
                         className="btn btn-primary"
-                        onClick={() => setShowAddGameToListModal(true)}>
+                        onClick={() => setShowAddGameToListModal(true)}
+                      >
                         Add to my list
                       </button>
                     </div>
@@ -238,7 +240,8 @@ const Gamepage = () => {
                           return (
                             <div
                               className="badge bg-secondary me-1"
-                              key={index}>
+                              key={index}
+                            >
                               {item.platform.name}
                             </div>
                           );
@@ -308,7 +311,8 @@ const Gamepage = () => {
                                 : `${styles.indicator} ${styles.indicatorInactive}`
                             }
                             key={idx}
-                            onClick={() => setSlide(idx)}></button>
+                            onClick={() => setSlide(idx)}
+                          ></button>
                         );
                       })}
                     </span>
@@ -323,12 +327,14 @@ const Gamepage = () => {
               style={{
                 maxHeight: "300px",
                 borderRadius: "5px",
-              }}>
+              }}
+            >
               <div> This is {queryGameDetail.data?.name}.</div>
               <div
                 dangerouslySetInnerHTML={{
                   __html: queryGameDetail.data?.description,
-                }}></div>
+                }}
+              ></div>
             </div>
           )}
         </div>
@@ -341,7 +347,8 @@ const Gamepage = () => {
               <div>Rate this game:</div>
               <fieldset
                 className={styles.rating}
-                onChange={(e) => setRating(e.target.value)}>
+                onChange={(e) => setRating(e.target.value)}
+              >
                 <input type="radio" id="star5" name="rating" value="5" />
                 <label htmlFor="star5">★</label>
 
@@ -361,7 +368,8 @@ const Gamepage = () => {
             <input
               ref={reviewRef}
               className="col-sm-10"
-              placeholder="User's review"></input>
+              placeholder="User's review"
+            ></input>
             <button className="btn btn-primary" onClick={mutate.mutate}>
               Submit
             </button>
