@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { use } from "react";
 import AuthCtx from "../context/authContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
   const authCtx = use(AuthCtx);
+  const navigate = useNavigate();
 
-  localStorage.removeItem("refresh");
-  authCtx.setAccessToken("");
-  authCtx.setUserId("");
-  authCtx.setUsername("");
+  useEffect(() => {
+    localStorage.removeItem("refresh");
+    authCtx.setAccessToken("");
+    authCtx.setUserId("");
+    authCtx.setUsername("");
+    navigate("/homepage");
+  }, []);
 
-  return <Navigate to="/homepage" replace />;
+  return <></>;
 };
 
 export default Logout;
