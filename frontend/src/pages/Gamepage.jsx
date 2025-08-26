@@ -118,18 +118,13 @@ const Gamepage = () => {
   const handleAddToCart = () => {
     authCtx.setCart((prevState) => {
       const newCart = [...prevState];
-      const idx = newCart.findIndex((game) => game.rawgId === rawgId);
-      if (idx === -1) {
-        newCart.push({
-          rawgId: rawgId,
-          name: queryGameDetail.data.name,
-          price: queryGameDetail.data.price,
-          quantity: 1,
-        });
-      } else {
-        // TODO: Fix quantity
-        newCart[idx].quantity = newCart[idx].quantity + 1;
-      }
+      newCart.push({
+        rawgId: rawgId,
+        name: queryGameDetail.data.name,
+        price: queryGameDetail.data.price,
+        quantity: 1,
+      });
+
       console.log(authCtx.username);
       console.log(newCart);
       return newCart;
@@ -196,8 +191,7 @@ const Gamepage = () => {
                                   : `${styles.indicator} ${styles.indicatorInactive}`
                               }
                               key={idx}
-                              onClick={() => setSlide(idx)}
-                            ></button>
+                              onClick={() => setSlide(idx)}></button>
                           );
                         })}
                     </span>
@@ -209,13 +203,16 @@ const Gamepage = () => {
                   <div className="border border-dark">
                     <div className="border border-primary">
                       Price: $${queryGameDetail.data?.price}
-                      <button className="btn btn-primary">Add to Cart</button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleAddToCart}>
+                        Add to Cart
+                      </button>
                     </div>
                     <div className="border border-secondary">
                       <button
                         className="btn btn-primary"
-                        onClick={() => setShowAddGameToListModal(true)}
-                      >
+                        onClick={() => setShowAddGameToListModal(true)}>
                         Add to my list
                       </button>
                     </div>
@@ -240,8 +237,7 @@ const Gamepage = () => {
                           return (
                             <div
                               className="badge bg-secondary me-1"
-                              key={index}
-                            >
+                              key={index}>
                               {item.platform.name}
                             </div>
                           );
@@ -311,8 +307,7 @@ const Gamepage = () => {
                                 : `${styles.indicator} ${styles.indicatorInactive}`
                             }
                             key={idx}
-                            onClick={() => setSlide(idx)}
-                          ></button>
+                            onClick={() => setSlide(idx)}></button>
                         );
                       })}
                     </span>
@@ -327,14 +322,12 @@ const Gamepage = () => {
               style={{
                 maxHeight: "300px",
                 borderRadius: "5px",
-              }}
-            >
+              }}>
               <div> This is {queryGameDetail.data?.name}.</div>
               <div
                 dangerouslySetInnerHTML={{
                   __html: queryGameDetail.data?.description,
-                }}
-              ></div>
+                }}></div>
             </div>
           )}
         </div>
@@ -347,8 +340,7 @@ const Gamepage = () => {
               <div>Rate this game:</div>
               <fieldset
                 className={styles.rating}
-                onChange={(e) => setRating(e.target.value)}
-              >
+                onChange={(e) => setRating(e.target.value)}>
                 <input type="radio" id="star5" name="rating" value="5" />
                 <label htmlFor="star5">★</label>
 
@@ -368,8 +360,7 @@ const Gamepage = () => {
             <input
               ref={reviewRef}
               className="col-sm-10"
-              placeholder="User's review"
-            ></input>
+              placeholder="User's review"></input>
             <button className="btn btn-primary" onClick={mutate.mutate}>
               Submit
             </button>
