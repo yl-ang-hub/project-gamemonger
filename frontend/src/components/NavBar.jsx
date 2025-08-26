@@ -30,8 +30,7 @@ const NavBar = () => {
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
@@ -63,6 +62,13 @@ const NavBar = () => {
                 </Link>
               </li>
             )}
+            {isAuthenticated && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/cart">
+                  Cart
+                </Link>
+              </li>
+            )}
             {!isAuthenticated && (
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
@@ -82,8 +88,7 @@ const NavBar = () => {
             <button
               className="btn btn-outline-success"
               type="submit"
-              onClick={doSearch}
-            >
+              onClick={doSearch}>
               Search
             </button>
           </form>

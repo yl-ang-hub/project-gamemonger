@@ -8,6 +8,7 @@ import connectDB from "./src/db/db.js";
 import authRouter from "./src/routers/auth.js";
 import usersRouter from "./src/routers/users.js";
 import userlistRouter from "./src/routers/userlists.js";
+import paymentRouter from "./src/routers/payment.js";
 import rawgApi from "./src/routers/rawgApi.js";
 import userReviews from "./src/routers/userReviews.js";
 
@@ -25,6 +26,7 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(limiter);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -51,6 +53,7 @@ app.use("/user", usersRouter);
 app.use("/lists", userlistRouter);
 app.use("/api", rawgApi);
 app.use("/api", userReviews);
+app.use("/checkout", paymentRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.message);

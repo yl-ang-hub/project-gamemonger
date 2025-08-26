@@ -65,9 +65,13 @@ export const login = async (req, res) => {
 
 export const refresh = async (req, res) => {
   try {
+    if (!req.body.refresh) {
+      return res.status(401).json({ status: "error", msg: "missing token" });
+    }
+
     const decoded = jwt.verify(req.body.refresh, process.env.REFRESH_SECRET);
     if (!decoded) {
-      res.status(401).json({ status: "error", msg: "missing token" });
+      return res.status(401).json({ status: "error", msg: "missing token" });
     }
 
     const claims = {
@@ -79,9 +83,9 @@ export const refresh = async (req, res) => {
       jwtid: uuidv4(),
     });
 
-    res.json({ access });
+    return res.json({ access });
   } catch (e) {
     console.error(e.message);
-    res.status(401).json({ status: "error", msg: "unauthorised" });
+    return res.status(401).json({ status: "error", msg: "unauthorised" });
   }
 };

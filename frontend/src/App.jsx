@@ -11,11 +11,50 @@ import Gamepage from "./pages/Gamepage";
 import Homepage from "./pages/Homepage";
 import Registration from "./pages/Registration";
 import SearchGames from "./pages/SearchGames";
+import CartPage from "./pages/CartPage";
+import { useMutation } from "@tanstack/react-query";
+import useFetch from "./hooks/useFetch";
+import { jwtDecode } from "jwt-decode";
+import CheckoutSuccess from "./components/CheckoutSuccess";
 
 function App() {
+  const fetchData = useFetch();
   const [accessToken, setAccessToken] = useState("");
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
+  const [cart, setCart] = useState([]);
+
+  const refreshAccessToken = async () => {
+    console.log("running");
+    const res = await fetchData(`/auth/refresh`, "POST", {
+      refresh: localStorage.getItem("refresh"),
+    });
+    return res;
+  };
+
+  const refreshMutate = useMutation({
+    mutationFn: refreshAccessToken,
+    onSuccess: (data) => {
+      try {
+        console.log("running");
+        setAccessToken(data.access);
+        const decoded = jwtDecode(data.access);
+        if (decoded) {
+          setUsername(decoded.username);
+          setUserId(decoded.id);
+        }
+      } catch (e) {
+        console.error(e.message);
+      }
+    },
+  });
+
+  useEffect(() => {
+    // Auto login for users with refresh token in localStorage
+    const refresh = localStorage.getItem("refresh");
+    console.log(refresh);
+    if (refresh && refresh !== "undefined") refreshMutate.mutate();
+  }, []);
 
   return (
     <div className="container">
@@ -28,8 +67,9 @@ function App() {
             setUsername,
             userId,
             setUserId,
-          }}
-        >
+            cart,
+            setCart,
+          }}>
           <NavBar />
           <Routes>
             <Route path="/" element={<Navigate to="/homepage" replace />} />
@@ -55,6 +95,15 @@ function App() {
             {/* Hello World!!!! */}
             <Route path="/login" element={<Loginpage />} />
             <Route path="/registration" element={<Registration />} />
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRouter>
+                  <CartPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route path="/checkout/success" element={<CheckoutSuccess />} />
           </Routes>
         </AuthCtx.Provider>
       </Suspense>
