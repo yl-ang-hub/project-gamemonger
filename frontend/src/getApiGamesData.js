@@ -11779,3 +11779,3369 @@ export const redditReviews = {
     },
   ],
 };
+
+const example = {
+  count: 891952,
+  next: "https://api.rawg.io/api/games?key=f53e23f6bf094298b8b9f7fb350a861d&page=41495",
+  previous:
+    "https://api.rawg.io/api/games?key=f53e23f6bf094298b8b9f7fb350a861d&page=41493",
+  results: [
+    {
+      id: 137981,
+      slug: "deep-sea-school",
+      name: "Deep Sea School",
+      released: "2016-08-07",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/19c/19ce11e25d1a90b495d3669529f10ab3.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 40,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2016-08-07",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [],
+      stores: [
+        {
+          id: 129810,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 6,
+          name: "Exploration",
+          slug: "exploration",
+          language: "eng",
+          games_count: 27931,
+          image_background:
+            "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg",
+        },
+        {
+          id: 250,
+          name: "Underwater",
+          slug: "underwater",
+          language: "eng",
+          games_count: 2252,
+          image_background:
+            "https://media.rawg.io/media/games/157/15742f2f67eacff546738e1ab5c19d20.jpg",
+        },
+        {
+          id: 741,
+          name: "16-bit",
+          slug: "16-bit",
+          language: "eng",
+          games_count: 5502,
+          image_background:
+            "https://media.rawg.io/media/screenshots/f6a/f6a1d3c35be275ae1b81e115a3ddbb00.jpg",
+        },
+        {
+          id: 715,
+          name: "Text based",
+          slug: "text-based-2",
+          language: "eng",
+          games_count: 6961,
+          image_background:
+            "https://media.rawg.io/media/screenshots/2c9/2c99f6a2d11958cd83357422a6ce4bff.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/19c/19ce11e25d1a90b495d3669529f10ab3.jpg",
+        },
+        {
+          id: 1156261,
+          image:
+            "https://media.rawg.io/media/screenshots/93c/93c08ec5868c907d861bd6e99a431aca.jpg",
+        },
+        {
+          id: 1156262,
+          image:
+            "https://media.rawg.io/media/screenshots/19c/19ce11e25d1a90b495d3669529f10ab3.jpg",
+        },
+      ],
+    },
+    {
+      id: 137980,
+      slug: "project-space-runners",
+      name: "Project Space Runners",
+      released: "2018-04-12",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/d8e/d8e9afff095313661030a2cb4fdc4996.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 84,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2018-04-12",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 14,
+          name: "Simulation",
+          slug: "simulation",
+          games_count: 75263,
+          image_background:
+            "https://media.rawg.io/media/games/23b/23b69bfef2a1ce2e3dcdf1aa8ef1150b.jpg",
+        },
+        {
+          id: 7,
+          name: "Puzzle",
+          slug: "puzzle",
+          games_count: 97352,
+          image_background:
+            "https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129809,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 8,
+          name: "First-Person",
+          slug: "first-person",
+          language: "eng",
+          games_count: 36180,
+          image_background:
+            "https://media.rawg.io/media/games/198/1988a337305e008b41d7f536ce9b73f6.jpg",
+        },
+        {
+          id: 83,
+          name: "Puzzle-Platformer",
+          slug: "puzzle-platformer",
+          language: "eng",
+          games_count: 9498,
+          image_background:
+            "https://media.rawg.io/media/games/a92/a92272ea5cfc35b8ad6317fbd81ce0f6.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/d8e/d8e9afff095313661030a2cb4fdc4996.jpg",
+        },
+        {
+          id: 1156263,
+          image:
+            "https://media.rawg.io/media/screenshots/07e/07e124df844c58e9d4387b1324105eba.jpg",
+        },
+        {
+          id: 1156265,
+          image:
+            "https://media.rawg.io/media/screenshots/c32/c32b9cc3db9ab38919550710fcbcdc73.jpg",
+        },
+        {
+          id: 1156267,
+          image:
+            "https://media.rawg.io/media/screenshots/315/3152432a9a05cb8e816c10d77d54ff75.jpg",
+        },
+        {
+          id: 1156269,
+          image:
+            "https://media.rawg.io/media/screenshots/cee/ceea1bacd8f71ecde8e4c0537f0033d8.jpg",
+        },
+        {
+          id: 1156272,
+          image:
+            "https://media.rawg.io/media/screenshots/d8e/d8e9afff095313661030a2cb4fdc4996.jpg",
+        },
+      ],
+    },
+    {
+      id: 137978,
+      slug: "70s-dad-drivin",
+      name: "70s Dad Drivin'",
+      released: "2017-11-30",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/838/8381aadcc4ac3151d55fbd9087282512.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 42,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2017-11-30",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 4,
+          name: "Action",
+          slug: "action",
+          games_count: 189249,
+          image_background:
+            "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129807,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 130,
+          name: "Driving",
+          slug: "driving",
+          language: "eng",
+          games_count: 5524,
+          image_background:
+            "https://media.rawg.io/media/games/19a/19a512a8c1293c22894b7364e1405ec1.jpg",
+        },
+        {
+          id: 703,
+          name: "PICO-8",
+          slug: "pico-8",
+          language: "eng",
+          games_count: 3909,
+          image_background:
+            "https://media.rawg.io/media/screenshots/b45/b45a1289d307ffc657a7335a47fb5464.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/838/8381aadcc4ac3151d55fbd9087282512.jpg",
+        },
+        {
+          id: 1156255,
+          image:
+            "https://media.rawg.io/media/screenshots/8b1/8b1e69347608057bc58078a6b3b11182.jpg",
+        },
+        {
+          id: 1156257,
+          image:
+            "https://media.rawg.io/media/screenshots/838/8381aadcc4ac3151d55fbd9087282512.jpg",
+        },
+      ],
+    },
+    {
+      id: 137977,
+      slug: "fish-oil",
+      name: "FISH OIL",
+      released: "2017-01-07",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/d36/d36628d3b0d046c409816f1e16718b43.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 7,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2017-01-07",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 4,
+          name: "Action",
+          slug: "action",
+          games_count: 189249,
+          image_background:
+            "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129804,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 19143,
+          name: "ohgj",
+          slug: "ohgj",
+          language: "eng",
+          games_count: 6,
+          image_background:
+            "https://media.rawg.io/media/screenshots/d36/d36628d3b0d046c409816f1e16718b43.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/d36/d36628d3b0d046c409816f1e16718b43.jpg",
+        },
+        {
+          id: 1156248,
+          image:
+            "https://media.rawg.io/media/screenshots/d36/d36628d3b0d046c409816f1e16718b43.jpg",
+        },
+      ],
+    },
+    {
+      id: 137976,
+      slug: "delta-spaceline-ld30",
+      name: "Delta Spaceline (LD30)",
+      released: "2014-08-26",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/602/602d12928bd11a6d8609332aeca7cde9.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 25,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2014-08-26",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 10,
+          name: "Strategy",
+          slug: "strategy",
+          games_count: 61229,
+          image_background:
+            "https://media.rawg.io/media/games/0fa/0fadc446fd1e9ae9e23a32793d9a5406.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129805,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 25,
+          name: "Space",
+          slug: "space",
+          language: "eng",
+          games_count: 43948,
+          image_background:
+            "https://media.rawg.io/media/games/daa/daaee07fcb40744d90cf8142f94a241f.jpg",
+        },
+        {
+          id: 245,
+          name: "Trading",
+          slug: "trading",
+          language: "eng",
+          games_count: 1417,
+          image_background:
+            "https://media.rawg.io/media/screenshots/fa4/fa48cb5604f319e7ca2c8fe00ed92a1d_eYGbcOJ.jpg",
+        },
+        {
+          id: 586,
+          name: "Ludum Dare",
+          slug: "ludum-dare",
+          language: "eng",
+          games_count: 4816,
+          image_background:
+            "https://media.rawg.io/media/screenshots/bc8/bc8c7aeb1d47949499b0a35fd2409c6c.jpg",
+        },
+        {
+          id: 1275,
+          name: "Ludum Dare 30",
+          slug: "ludum-dare-30",
+          language: "eng",
+          games_count: 196,
+          image_background:
+            "https://media.rawg.io/media/screenshots/574/57448e2c94f613040282bfddb175909e.jpg",
+        },
+        {
+          id: 17707,
+          name: "ld72",
+          slug: "ld72",
+          language: "eng",
+          games_count: 7,
+          image_background:
+            "https://media.rawg.io/media/screenshots/4c6/4c63e3b02f0113e77d3fdbbcd2d810b7.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/602/602d12928bd11a6d8609332aeca7cde9.jpg",
+        },
+        {
+          id: 1156254,
+          image:
+            "https://media.rawg.io/media/screenshots/602/602d12928bd11a6d8609332aeca7cde9.jpg",
+        },
+      ],
+    },
+    {
+      id: 137975,
+      slug: "gravark-1-a-remake-is-coming",
+      name: "GravArk 1: A remake is coming",
+      released: "2017-12-14",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/0d5/0d53ee696e1468202a27ce92c87633c0.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 78,
+      updated: "2019-08-28T23:22:46",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2017-12-14",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 4,
+          name: "Action",
+          slug: "action",
+          games_count: 189249,
+          image_background:
+            "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129806,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 45,
+          name: "2D",
+          slug: "2d",
+          language: "eng",
+          games_count: 205153,
+          image_background:
+            "https://media.rawg.io/media/games/ffe/ffed87105b14f5beff72ff44a7793fd5.jpg",
+        },
+        {
+          id: 122,
+          name: "Pixel Graphics",
+          slug: "pixel-graphics",
+          language: "eng",
+          games_count: 98087,
+          image_background:
+            "https://media.rawg.io/media/screenshots/6fe/6fe228662a253cd929cc78a103541ee0.jpg",
+        },
+        {
+          id: 72,
+          name: "Local Multiplayer",
+          slug: "local-multiplayer",
+          language: "eng",
+          games_count: 13852,
+          image_background:
+            "https://media.rawg.io/media/games/bbf/bbf8d74ab64440ad76294cff2f4d9cfa.jpg",
+        },
+        {
+          id: 25,
+          name: "Space",
+          slug: "space",
+          language: "eng",
+          games_count: 43948,
+          image_background:
+            "https://media.rawg.io/media/games/daa/daaee07fcb40744d90cf8142f94a241f.jpg",
+        },
+        {
+          id: 102,
+          name: "Turn-Based",
+          slug: "turn-based",
+          language: "eng",
+          games_count: 5551,
+          image_background:
+            "https://media.rawg.io/media/games/6e0/6e0c19bb111bd4fa20cf0eb72a049519.jpg",
+        },
+        {
+          id: 203,
+          name: "Beat 'em up",
+          slug: "beat-em-up",
+          language: "eng",
+          games_count: 3473,
+          image_background:
+            "https://media.rawg.io/media/games/fbb/fbbd9fe21317bde9134114e2b1306069.jpg",
+        },
+        {
+          id: 175,
+          name: "Turn-Based Combat",
+          slug: "turn-based-combat",
+          language: "eng",
+          games_count: 6072,
+          image_background:
+            "https://media.rawg.io/media/games/b5d/b5d5f8b3ac428c1c6e31518ab2670414.jpg",
+        },
+        {
+          id: 1593,
+          name: "Gravity",
+          slug: "gravity",
+          language: "eng",
+          games_count: 3296,
+          image_background:
+            "https://media.rawg.io/media/screenshots/ce3/ce32109b5ccee88ad88443beee35a6a5.jpg",
+        },
+        {
+          id: 12084,
+          name: "planetoid",
+          slug: "planetoid",
+          language: "eng",
+          games_count: 4,
+          image_background:
+            "https://media.rawg.io/media/screenshots/636/636e8ed77c399b478ca8e742d2b1d644.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/0d5/0d53ee696e1468202a27ce92c87633c0.jpg",
+        },
+        {
+          id: 1156264,
+          image:
+            "https://media.rawg.io/media/screenshots/b1e/b1ecd48c557da740c1d3004bd433a54d.jpg",
+        },
+        {
+          id: 1156266,
+          image:
+            "https://media.rawg.io/media/screenshots/f02/f02c7e32d54127f552d43a0a0b737231.jpg",
+        },
+        {
+          id: 1156268,
+          image:
+            "https://media.rawg.io/media/screenshots/a93/a93af5961e373eb5e5053b64b87dd2ae.jpg",
+        },
+        {
+          id: 1156271,
+          image:
+            "https://media.rawg.io/media/screenshots/0d5/0d53ee696e1468202a27ce92c87633c0.jpg",
+        },
+      ],
+    },
+    {
+      id: 137974,
+      slug: "chivalry-isnt-dead",
+      name: "Chivalry Isn't Dead",
+      released: "2017-06-14",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/469/469552dbd9114eb138ed8f6afbbd7aea.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 1,
+      updated: "2019-08-28T23:22:46",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2017-06-14",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [],
+      stores: [
+        {
+          id: 129803,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 45,
+          name: "2D",
+          slug: "2d",
+          language: "eng",
+          games_count: 205153,
+          image_background:
+            "https://media.rawg.io/media/games/ffe/ffed87105b14f5beff72ff44a7793fd5.jpg",
+        },
+        {
+          id: 122,
+          name: "Pixel Graphics",
+          slug: "pixel-graphics",
+          language: "eng",
+          games_count: 98087,
+          image_background:
+            "https://media.rawg.io/media/screenshots/6fe/6fe228662a253cd929cc78a103541ee0.jpg",
+        },
+        {
+          id: 66,
+          name: "Medieval",
+          slug: "medieval",
+          language: "eng",
+          games_count: 7741,
+          image_background:
+            "https://media.rawg.io/media/games/4e0/4e0e7b6d6906a131307c94266e5c9a1c.jpg",
+        },
+        {
+          id: 48,
+          name: "Dungeon Crawler",
+          slug: "dungeon-crawler",
+          language: "eng",
+          games_count: 7760,
+          image_background:
+            "https://media.rawg.io/media/screenshots/d68/d684c5ec81b8ea46bfd4b5c3bae4007f.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/469/469552dbd9114eb138ed8f6afbbd7aea.jpg",
+        },
+        {
+          id: 1156249,
+          image:
+            "https://media.rawg.io/media/screenshots/469/469552dbd9114eb138ed8f6afbbd7aea.jpg",
+        },
+      ],
+    },
+    {
+      id: 137973,
+      slug: "esa-persona",
+      name: "Esa Persona",
+      released: "2017-05-29",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/847/84718763cccb98bedda6e096dc0f6282.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 26,
+      updated: "2019-08-28T23:22:46",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2017-05-29",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 5,
+            name: "macOS",
+            slug: "macos",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 107129,
+            image_background:
+              "https://media.rawg.io/media/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
+          },
+          released_at: "2017-05-29",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 79614,
+            image_background:
+              "https://media.rawg.io/media/games/b54/b54598d1d5cc31899f4f0a7e3122a7b0.jpg",
+          },
+          released_at: "2017-05-29",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+        {
+          platform: {
+            id: 5,
+            name: "Apple Macintosh",
+            slug: "mac",
+          },
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 7,
+          name: "Puzzle",
+          slug: "puzzle",
+          games_count: 97352,
+          image_background:
+            "https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129802,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 31,
+          name: "Singleplayer",
+          slug: "singleplayer",
+          language: "eng",
+          games_count: 245225,
+          image_background:
+            "https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg",
+        },
+        {
+          id: 118,
+          name: "Story Rich",
+          slug: "story-rich",
+          language: "eng",
+          games_count: 26008,
+          image_background:
+            "https://media.rawg.io/media/games/8d6/8d69eb6c32ed6acfd75f82d532144993.jpg",
+        },
+        {
+          id: 122,
+          name: "Pixel Graphics",
+          slug: "pixel-graphics",
+          language: "eng",
+          games_count: 98087,
+          image_background:
+            "https://media.rawg.io/media/screenshots/6fe/6fe228662a253cd929cc78a103541ee0.jpg",
+        },
+        {
+          id: 111,
+          name: "Short",
+          slug: "short",
+          language: "eng",
+          games_count: 58104,
+          image_background:
+            "https://media.rawg.io/media/games/b7b/b7b8381707152afc7d91f5d95de70e39.jpg",
+        },
+        {
+          id: 220,
+          name: "Experimental",
+          slug: "experimental",
+          language: "eng",
+          games_count: 9690,
+          image_background:
+            "https://media.rawg.io/media/screenshots/e0b/e0b7df921a951ec97fa4d7c595dac410.jpg",
+        },
+        {
+          id: 820,
+          name: "secrets",
+          slug: "secrets",
+          language: "eng",
+          games_count: 3400,
+          image_background:
+            "https://media.rawg.io/media/games/7f9/7f965ca1406c356249ec32b081a896f6.jpg",
+        },
+        {
+          id: 741,
+          name: "16-bit",
+          slug: "16-bit",
+          language: "eng",
+          games_count: 5502,
+          image_background:
+            "https://media.rawg.io/media/screenshots/f6a/f6a1d3c35be275ae1b81e115a3ddbb00.jpg",
+        },
+        {
+          id: 958,
+          name: "sprites",
+          slug: "sprites",
+          language: "eng",
+          games_count: 3109,
+          image_background:
+            "https://media.rawg.io/media/screenshots/31c/31ca0c8c502ea65db81ffc7f8abb9b95.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/847/84718763cccb98bedda6e096dc0f6282.jpg",
+        },
+        {
+          id: 1156256,
+          image:
+            "https://media.rawg.io/media/screenshots/847/84718763cccb98bedda6e096dc0f6282.jpg",
+        },
+      ],
+    },
+    {
+      id: 137972,
+      slug: "the-last-miner",
+      name: "The Last Miner",
+      released: "2017-07-31",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/104/104392bf7914643b99d8947cb5e8f20f.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 68,
+      updated: "2019-08-28T23:22:46",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2017-07-31",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2017-07-31",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 4,
+          name: "Action",
+          slug: "action",
+          games_count: 189249,
+          image_background:
+            "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129801,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 45,
+          name: "2D",
+          slug: "2d",
+          language: "eng",
+          games_count: 205153,
+          image_background:
+            "https://media.rawg.io/media/games/ffe/ffed87105b14f5beff72ff44a7793fd5.jpg",
+        },
+        {
+          id: 122,
+          name: "Pixel Graphics",
+          slug: "pixel-graphics",
+          language: "eng",
+          games_count: 98087,
+          image_background:
+            "https://media.rawg.io/media/screenshots/6fe/6fe228662a253cd929cc78a103541ee0.jpg",
+        },
+        {
+          id: 25,
+          name: "Space",
+          slug: "space",
+          language: "eng",
+          games_count: 43948,
+          image_background:
+            "https://media.rawg.io/media/games/daa/daaee07fcb40744d90cf8142f94a241f.jpg",
+        },
+        {
+          id: 196,
+          name: "Procedural Generation",
+          slug: "procedural-generation",
+          language: "eng",
+          games_count: 8685,
+          image_background:
+            "https://media.rawg.io/media/games/926/926928beb8a9f9b31cf202965aa4cbbc.jpg",
+        },
+        {
+          id: 112,
+          name: "Minimalist",
+          slug: "minimalist",
+          language: "eng",
+          games_count: 16953,
+          image_background:
+            "https://media.rawg.io/media/screenshots/b00/b00b7cc04dd09531b631ea4575696276.jpg",
+        },
+        {
+          id: 709,
+          name: "Ludum Dare 39",
+          slug: "ludum-dare-39",
+          language: "eng",
+          games_count: 1203,
+          image_background:
+            "https://media.rawg.io/media/screenshots/89a/89a3ff2bd6e5808c9d091c2482f0a699.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/104/104392bf7914643b99d8947cb5e8f20f.jpg",
+        },
+        {
+          id: 1156250,
+          image:
+            "https://media.rawg.io/media/screenshots/00c/00c850d929c4bb014e6ece00ed246ae4.jpg",
+        },
+        {
+          id: 1156251,
+          image:
+            "https://media.rawg.io/media/screenshots/361/3615979126ffecdea538c835d8d59ae9.jpg",
+        },
+        {
+          id: 1156252,
+          image:
+            "https://media.rawg.io/media/screenshots/4d0/4d0178c5df8b177e356f0649f9546306.jpg",
+        },
+        {
+          id: 1156253,
+          image:
+            "https://media.rawg.io/media/screenshots/104/104392bf7914643b99d8947cb5e8f20f.jpg",
+        },
+      ],
+    },
+    {
+      id: 137971,
+      slug: "coder-vs-bugs",
+      name: "Coder VS Bugs",
+      released: "2015-12-15",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/c99/c99a140ec57edb022064b1efd6b57a17.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 78,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2015-12-15",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 5,
+            name: "macOS",
+            slug: "macos",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 107129,
+            image_background:
+              "https://media.rawg.io/media/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
+          },
+          released_at: "2015-12-15",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 79614,
+            image_background:
+              "https://media.rawg.io/media/games/b54/b54598d1d5cc31899f4f0a7e3122a7b0.jpg",
+          },
+          released_at: "2015-12-15",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2015-12-15",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+        {
+          platform: {
+            id: 5,
+            name: "Apple Macintosh",
+            slug: "mac",
+          },
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+          },
+        },
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [],
+      stores: [
+        {
+          id: 129800,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 606,
+          name: "ldjam",
+          slug: "ldjam",
+          language: "eng",
+          games_count: 549,
+          image_background:
+            "https://media.rawg.io/media/screenshots/2d5/2d54e2a4d7c31c5afff461bd9653ae13.jpg",
+        },
+        {
+          id: 1391,
+          name: "Ludum Dare 32",
+          slug: "ludum-dare-32",
+          language: "eng",
+          games_count: 346,
+          image_background:
+            "https://media.rawg.io/media/screenshots/622/622603d730c33f306f7ab331e073e0cd.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/c99/c99a140ec57edb022064b1efd6b57a17.jpg",
+        },
+        {
+          id: 1156241,
+          image:
+            "https://media.rawg.io/media/screenshots/277/277211e84e840dd3e287521e1a9c6a43.jpg",
+        },
+        {
+          id: 1156242,
+          image:
+            "https://media.rawg.io/media/screenshots/b1b/b1bec4caaca9c5d7f420073415c0993e.jpg",
+        },
+        {
+          id: 1156243,
+          image:
+            "https://media.rawg.io/media/screenshots/ffe/ffe764a009d63f3d5214f5057d72568e.jpg",
+        },
+        {
+          id: 1156244,
+          image:
+            "https://media.rawg.io/media/screenshots/c99/c99a140ec57edb022064b1efd6b57a17.jpg",
+        },
+      ],
+    },
+    {
+      id: 137970,
+      slug: "unknown-gw1p",
+      name: "Unknown (Gw1p)",
+      released: "2016-08-12",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/05b/05b5f534b4398ba93e631cfe56c80912.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 48,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2016-08-12",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 4,
+          name: "Action",
+          slug: "action",
+          games_count: 189249,
+          image_background:
+            "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg",
+        },
+        {
+          id: 2,
+          name: "Shooter",
+          slug: "shooter",
+          games_count: 59591,
+          image_background:
+            "https://media.rawg.io/media/games/f87/f87457e8347484033cb34cde6101d08d.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129799,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 149,
+          name: "Third Person",
+          slug: "third-person",
+          language: "eng",
+          games_count: 14091,
+          image_background:
+            "https://media.rawg.io/media/games/63f/63f0e68688cad279ed38cde931dbfcdb.jpg",
+        },
+        {
+          id: 49,
+          name: "Difficult",
+          slug: "difficult",
+          language: "eng",
+          games_count: 14097,
+          image_background:
+            "https://media.rawg.io/media/games/7a4/7a45e4cdc5b07f316d49cf147b083b27.jpg",
+        },
+        {
+          id: 150,
+          name: "Third-Person Shooter",
+          slug: "third-person-shooter",
+          language: "eng",
+          games_count: 4026,
+          image_background:
+            "https://media.rawg.io/media/games/7ac/7aca7ccf0e70cd0974cb899ab9e5158e.jpg",
+        },
+        {
+          id: 111,
+          name: "Short",
+          slug: "short",
+          language: "eng",
+          games_count: 58104,
+          image_background:
+            "https://media.rawg.io/media/games/b7b/b7b8381707152afc7d91f5d95de70e39.jpg",
+        },
+        {
+          id: 571,
+          name: "3D",
+          slug: "3d",
+          language: "eng",
+          games_count: 91709,
+          image_background:
+            "https://media.rawg.io/media/games/d09/d096ad37b7f522e11c02848252213a9a.jpg",
+        },
+        {
+          id: 624,
+          name: "Monsters",
+          slug: "monsters",
+          language: "eng",
+          games_count: 9640,
+          image_background:
+            "https://media.rawg.io/media/games/974/974d08635981db7677630327ce1fe4bb.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/05b/05b5f534b4398ba93e631cfe56c80912.jpg",
+        },
+        {
+          id: 1156245,
+          image:
+            "https://media.rawg.io/media/screenshots/076/076d77a8691ca17fbf312809506991bb.jpg",
+        },
+        {
+          id: 1156246,
+          image:
+            "https://media.rawg.io/media/screenshots/3ba/3baa43c0b64f27620e685347e081353d.jpg",
+        },
+        {
+          id: 1156247,
+          image:
+            "https://media.rawg.io/media/screenshots/05b/05b5f534b4398ba93e631cfe56c80912.jpg",
+        },
+      ],
+    },
+    {
+      id: 137969,
+      slug: "jams-bend",
+      name: "JAMS BEND",
+      released: "2015-01-11",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/dd3/dd3180e625bcf36afec8b6b4d3fc2f23.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 11,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2015-01-11",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 83,
+          name: "Platformer",
+          slug: "platformer",
+          games_count: 100897,
+          image_background:
+            "https://media.rawg.io/media/games/718/71891d2484a592d871e91dc826707e1c.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129797,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/dd3/dd3180e625bcf36afec8b6b4d3fc2f23.jpg",
+        },
+        {
+          id: 1156226,
+          image:
+            "https://media.rawg.io/media/screenshots/dd3/dd3180e625bcf36afec8b6b4d3fc2f23.jpg",
+        },
+      ],
+    },
+    {
+      id: 137968,
+      slug: "ld36",
+      name: "LD36",
+      released: "2016-08-28",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/9a0/9a04861c0dd5c366240f45f9388f8193.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 23,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2016-08-28",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 5,
+            name: "macOS",
+            slug: "macos",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 107129,
+            image_background:
+              "https://media.rawg.io/media/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
+          },
+          released_at: "2016-08-28",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 79614,
+            image_background:
+              "https://media.rawg.io/media/games/b54/b54598d1d5cc31899f4f0a7e3122a7b0.jpg",
+          },
+          released_at: "2016-08-28",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2016-08-28",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+        {
+          platform: {
+            id: 5,
+            name: "Apple Macintosh",
+            slug: "mac",
+          },
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+          },
+        },
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 3,
+          name: "Adventure",
+          slug: "adventure",
+          games_count: 149311,
+          image_background:
+            "https://media.rawg.io/media/games/fd8/fd882c8267a44621a0de6f9cec77ae90.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129796,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 639,
+          name: "Roguelike",
+          slug: "roguelike",
+          language: "eng",
+          games_count: 14571,
+          image_background:
+            "https://media.rawg.io/media/games/5f4/5f4780690dbf04900cbac5f05b9305f3.jpg",
+        },
+        {
+          id: 4170,
+          name: "haxe",
+          slug: "haxe",
+          language: "eng",
+          games_count: 91,
+          image_background:
+            "https://media.rawg.io/media/screenshots/a10/a10499c02c99858d9cee25fa1b3b5d24.jpg",
+        },
+        {
+          id: 1349,
+          name: "Ludum Dare 36",
+          slug: "ludum-dare-36",
+          language: "eng",
+          games_count: 676,
+          image_background:
+            "https://media.rawg.io/media/screenshots/496/4968346fc9197ffcad5b185daf429155.jpg",
+        },
+        {
+          id: 1255,
+          name: "flixel",
+          slug: "flixel",
+          language: "eng",
+          games_count: 26,
+          image_background:
+            "https://media.rawg.io/media/screenshots/e6d/e6dfb4f148008a1639b49c2013dc93fa.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/9a0/9a04861c0dd5c366240f45f9388f8193.jpg",
+        },
+        {
+          id: 1156228,
+          image:
+            "https://media.rawg.io/media/screenshots/512/51268f4c1250f8c5ce42f65d5b1bb727.jpg",
+        },
+        {
+          id: 1156229,
+          image:
+            "https://media.rawg.io/media/screenshots/a02/a02af08500181d9679392b3162496637.jpg",
+        },
+        {
+          id: 1156230,
+          image:
+            "https://media.rawg.io/media/screenshots/9a0/9a04861c0dd5c366240f45f9388f8193.jpg",
+        },
+      ],
+    },
+    {
+      id: 137967,
+      slug: "er22",
+      name: "ER22",
+      released: "2014-03-30",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/719/71944509eb83fccf9637c80698c3b37a.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 17,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2014-03-30",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 4,
+          name: "Action",
+          slug: "action",
+          games_count: 189249,
+          image_background:
+            "https://media.rawg.io/media/games/310/3106b0e012271c5ffb16497b070be739.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129795,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/719/71944509eb83fccf9637c80698c3b37a.jpg",
+        },
+        {
+          id: 1156219,
+          image:
+            "https://media.rawg.io/media/screenshots/e9a/e9ad40ea6b68b6f09634155693a41415.jpg",
+        },
+        {
+          id: 1156220,
+          image:
+            "https://media.rawg.io/media/screenshots/f41/f41a0f01adb24f4d868d1f7e0c503a56.jpg",
+        },
+        {
+          id: 1156221,
+          image:
+            "https://media.rawg.io/media/screenshots/719/71944509eb83fccf9637c80698c3b37a.jpg",
+        },
+      ],
+    },
+    {
+      id: 137966,
+      slug: "steves-adventure-post-compo",
+      name: "Steve's Adventure - Post Compo",
+      released: "2015-04-25",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/239/239092c830df1341ad55f7595f260efb.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 6,
+      updated: "2019-08-28T23:22:46",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2015-04-25",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 5,
+            name: "macOS",
+            slug: "macos",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 107129,
+            image_background:
+              "https://media.rawg.io/media/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
+          },
+          released_at: "2015-04-25",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 79614,
+            image_background:
+              "https://media.rawg.io/media/games/b54/b54598d1d5cc31899f4f0a7e3122a7b0.jpg",
+          },
+          released_at: "2015-04-25",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+        {
+          platform: {
+            id: 5,
+            name: "Apple Macintosh",
+            slug: "mac",
+          },
+        },
+        {
+          platform: {
+            id: 6,
+            name: "Linux",
+            slug: "linux",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 83,
+          name: "Platformer",
+          slug: "platformer",
+          games_count: 100897,
+          image_background:
+            "https://media.rawg.io/media/games/718/71891d2484a592d871e91dc826707e1c.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129798,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 122,
+          name: "Pixel Graphics",
+          slug: "pixel-graphics",
+          language: "eng",
+          games_count: 98087,
+          image_background:
+            "https://media.rawg.io/media/screenshots/6fe/6fe228662a253cd929cc78a103541ee0.jpg",
+        },
+        {
+          id: 717,
+          name: "jumping",
+          slug: "jumping",
+          language: "eng",
+          games_count: 5846,
+          image_background:
+            "https://media.rawg.io/media/screenshots/848/848f15c8d0edef7cecc8bd74143372b7.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/239/239092c830df1341ad55f7595f260efb.jpg",
+        },
+        {
+          id: 1156227,
+          image:
+            "https://media.rawg.io/media/screenshots/239/239092c830df1341ad55f7595f260efb.jpg",
+        },
+      ],
+    },
+    {
+      id: 137964,
+      slug: "timmy",
+      name: "Timmy",
+      released: "2018-01-23",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/200/20062078d7a2dd1b5c2b46105ca3792e.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 96,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2018-01-23",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 2,
+          name: "Shooter",
+          slug: "shooter",
+          games_count: 59591,
+          image_background:
+            "https://media.rawg.io/media/games/f87/f87457e8347484033cb34cde6101d08d.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129791,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 4,
+          name: "Funny",
+          slug: "funny",
+          language: "eng",
+          games_count: 28017,
+          image_background:
+            "https://media.rawg.io/media/games/25c/25c4776ab5723d5d735d8bf617ca12d9.jpg",
+        },
+        {
+          id: 123,
+          name: "Comedy",
+          slug: "comedy",
+          language: "eng",
+          games_count: 14341,
+          image_background:
+            "https://media.rawg.io/media/games/2ba/2bac0e87cf45e5b508f227d281c9252a.jpg",
+        },
+        {
+          id: 148,
+          name: "Dark Humor",
+          slug: "dark-humor",
+          language: "eng",
+          games_count: 3598,
+          image_background:
+            "https://media.rawg.io/media/screenshots/f7e/f7e70957c14ead1fa187a616dfa83e09.jpg",
+        },
+        {
+          id: 258,
+          name: "Hand-drawn",
+          slug: "hand-drawn",
+          language: "eng",
+          games_count: 8828,
+          image_background:
+            "https://media.rawg.io/media/games/b6b/b6b20bfc4b34e312dbc8aac53c95a348.jpg",
+        },
+        {
+          id: 51,
+          name: "Destruction",
+          slug: "destruction",
+          language: "eng",
+          games_count: 3878,
+          image_background:
+            "https://media.rawg.io/media/games/d3e/d3e2a3bc62a62bc9b70d6ebe0f54f040.jpg",
+        },
+        {
+          id: 252,
+          name: "Mouse only",
+          slug: "mouse-only",
+          language: "eng",
+          games_count: 5131,
+          image_background:
+            "https://media.rawg.io/media/screenshots/f75/f75aabb4cf9d6897b428356871d51566.jpg",
+        },
+        {
+          id: 597,
+          name: "artgame",
+          slug: "artgame",
+          language: "eng",
+          games_count: 5565,
+          image_background:
+            "https://media.rawg.io/media/screenshots/f31/f31604b64e379e2a3a70ff3e38d032fe.jpg",
+        },
+        {
+          id: 926,
+          name: "one-button",
+          slug: "one-button",
+          language: "eng",
+          games_count: 2273,
+          image_background:
+            "https://media.rawg.io/media/screenshots/2da/2da897e34b0e41711f3158a45b6511df.jpg",
+        },
+        {
+          id: 3601,
+          name: "moral-choice",
+          slug: "moral-choice",
+          language: "eng",
+          games_count: 3,
+          image_background:
+            "https://media.rawg.io/media/screenshots/200/20062078d7a2dd1b5c2b46105ca3792e.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/200/20062078d7a2dd1b5c2b46105ca3792e.jpg",
+        },
+        {
+          id: 1156232,
+          image:
+            "https://media.rawg.io/media/screenshots/af6/af6e0294ae5ad765317140d0764949fa.jpg",
+        },
+        {
+          id: 1156235,
+          image:
+            "https://media.rawg.io/media/screenshots/048/048ed45ea4d18c34a543cc4b0cf0e146.jpg",
+        },
+        {
+          id: 1156237,
+          image:
+            "https://media.rawg.io/media/screenshots/24e/24e413b136099de0ee38b3ca9f602e04.jpg",
+        },
+        {
+          id: 1156239,
+          image:
+            "https://media.rawg.io/media/screenshots/200/20062078d7a2dd1b5c2b46105ca3792e.jpg",
+        },
+      ],
+    },
+    {
+      id: 137963,
+      slug: "electron-black-cube-games",
+      name: "Electron (Black Cube Games)",
+      released: "2018-04-18",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/cca/cca57dd41ba60e1cce63dbf00ed83951.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 66,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 21,
+            name: "Android",
+            slug: "android",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 52468,
+            image_background:
+              "https://media.rawg.io/media/games/a91/a911f0a91991469e398fa70091507a5b.jpg",
+          },
+          released_at: "2018-04-18",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 8,
+            name: "Android",
+            slug: "android",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 7,
+          name: "Puzzle",
+          slug: "puzzle",
+          games_count: 97352,
+          image_background:
+            "https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129794,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 45,
+          name: "2D",
+          slug: "2d",
+          language: "eng",
+          games_count: 205153,
+          image_background:
+            "https://media.rawg.io/media/games/ffe/ffed87105b14f5beff72ff44a7793fd5.jpg",
+        },
+        {
+          id: 25,
+          name: "Space",
+          slug: "space",
+          language: "eng",
+          games_count: 43948,
+          image_background:
+            "https://media.rawg.io/media/games/daa/daaee07fcb40744d90cf8142f94a241f.jpg",
+        },
+        {
+          id: 114,
+          name: "Physics",
+          slug: "physics",
+          language: "eng",
+          games_count: 21096,
+          image_background:
+            "https://media.rawg.io/media/games/74d/74dafeb9a442b87b9dd4a1d4a2faa37b.jpg",
+        },
+        {
+          id: 84,
+          name: "Abstract",
+          slug: "abstract",
+          language: "eng",
+          games_count: 7331,
+          image_background:
+            "https://media.rawg.io/media/screenshots/560/560f7bd45d2f8ce3deb42c97fd1d1f49.jpg",
+        },
+        {
+          id: 607,
+          name: "Unity",
+          slug: "unity",
+          language: "eng",
+          games_count: 70822,
+          image_background:
+            "https://media.rawg.io/media/screenshots/64e/64e4c4a09537f31ce87cd4b75e713042.jpg",
+        },
+        {
+          id: 1593,
+          name: "Gravity",
+          slug: "gravity",
+          language: "eng",
+          games_count: 3296,
+          image_background:
+            "https://media.rawg.io/media/screenshots/ce3/ce32109b5ccee88ad88443beee35a6a5.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/cca/cca57dd41ba60e1cce63dbf00ed83951.jpg",
+        },
+        {
+          id: 1156231,
+          image:
+            "https://media.rawg.io/media/screenshots/8b1/8b1b30a163008ab3a0ca3f39c4b493c2.jpg",
+        },
+        {
+          id: 1156233,
+          image:
+            "https://media.rawg.io/media/screenshots/2c7/2c7231f46ea9999f350a6bb4abc43ec5.jpg",
+        },
+        {
+          id: 1156234,
+          image:
+            "https://media.rawg.io/media/screenshots/8b2/8b2ccf1fb98f3f93756388dc314e9c95.jpg",
+        },
+        {
+          id: 1156236,
+          image:
+            "https://media.rawg.io/media/screenshots/ed5/ed5675c8b39e2a7a873e3fdc57c08687.jpg",
+        },
+        {
+          id: 1156238,
+          image:
+            "https://media.rawg.io/media/screenshots/64c/64c2940d86a9d7e10933f7f09e82614a.jpg",
+        },
+        {
+          id: 1156240,
+          image:
+            "https://media.rawg.io/media/screenshots/cca/cca57dd41ba60e1cce63dbf00ed83951.jpg",
+        },
+      ],
+    },
+    {
+      id: 137962,
+      slug: "prison-escape-a-text-adventure-2",
+      name: "Prison Escape: A Text Adventure",
+      released: "2016-11-28",
+      tba: false,
+      background_image: null,
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 0,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2016-11-28",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [],
+      stores: [
+        {
+          id: 129792,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 715,
+          name: "Text based",
+          slug: "text-based-2",
+          language: "eng",
+          games_count: 6961,
+          image_background:
+            "https://media.rawg.io/media/screenshots/2c9/2c99f6a2d11958cd83357422a6ce4bff.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [],
+    },
+    {
+      id: 137961,
+      slug: "disruption",
+      name: "Disruption",
+      released: "2018-03-24",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/c24/c24498cffeae560cff0690f3a78f8231.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 91,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 4,
+            name: "PC",
+            slug: "pc",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 554429,
+            image_background:
+              "https://media.rawg.io/media/games/b45/b45575f34285f2c4479c9a5f719d972e.jpg",
+          },
+          released_at: "2018-03-24",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 1,
+            name: "PC",
+            slug: "pc",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 2,
+          name: "Shooter",
+          slug: "shooter",
+          games_count: 59591,
+          image_background:
+            "https://media.rawg.io/media/games/f87/f87457e8347484033cb34cde6101d08d.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129790,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 32,
+          name: "Sci-fi",
+          slug: "sci-fi",
+          language: "eng",
+          games_count: 21466,
+          image_background:
+            "https://media.rawg.io/media/games/be0/be01c3d7d8795a45615da139322ca080.jpg",
+        },
+        {
+          id: 167,
+          name: "Futuristic",
+          slug: "futuristic",
+          language: "eng",
+          games_count: 6630,
+          image_background:
+            "https://media.rawg.io/media/games/e1f/e1ffbeb1bac25b19749ad285ca29e158.jpg",
+        },
+        {
+          id: 226,
+          name: "Cyberpunk",
+          slug: "cyberpunk",
+          language: "eng",
+          games_count: 5095,
+          image_background:
+            "https://media.rawg.io/media/screenshots/67e/67e5be6ad7a555248f50bd367e9a071c.jpg",
+        },
+        {
+          id: 197,
+          name: "Robots",
+          slug: "robots",
+          language: "eng",
+          games_count: 8737,
+          image_background:
+            "https://media.rawg.io/media/games/b74/b74b15a48ac7bc37fbb42ee4afcc0b91.jpg",
+        },
+        {
+          id: 177,
+          name: "Voxel",
+          slug: "voxel",
+          language: "eng",
+          games_count: 2609,
+          image_background:
+            "https://media.rawg.io/media/games/02f/02f775a806c6cd64c28d5aeca928dc76.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/c24/c24498cffeae560cff0690f3a78f8231.jpg",
+        },
+        {
+          id: 1156222,
+          image:
+            "https://media.rawg.io/media/screenshots/ecb/ecb5df9ecdc6e0d0fda10275fa437e8f.jpg",
+        },
+        {
+          id: 1156223,
+          image:
+            "https://media.rawg.io/media/screenshots/d35/d35d999e5476651579727085e1ae082c.jpg",
+        },
+        {
+          id: 1156224,
+          image:
+            "https://media.rawg.io/media/screenshots/c24/c24498cffeae560cff0690f3a78f8231.jpg",
+        },
+      ],
+    },
+    {
+      id: 137960,
+      slug: "any-persons-planet",
+      name: "Any Person's Planet",
+      released: "2017-12-31",
+      tba: false,
+      background_image:
+        "https://media.rawg.io/media/screenshots/407/407db33dbeb655f3c86af63a7d42a795.jpg",
+      rating: 0,
+      rating_top: 0,
+      ratings: [],
+      ratings_count: 0,
+      reviews_text_count: 0,
+      added: 0,
+      added_by_status: null,
+      metacritic: null,
+      playtime: 0,
+      suggestions_count: 9,
+      updated: "2019-01-09T12:41:06",
+      user_game: null,
+      reviews_count: 0,
+      community_rating: 0,
+      saturated_color: "0f0f0f",
+      dominant_color: "0f0f0f",
+      platforms: [
+        {
+          platform: {
+            id: 171,
+            name: "Web",
+            slug: "web",
+            image: null,
+            year_end: null,
+            year_start: null,
+            games_count: 260069,
+            image_background:
+              "https://media.rawg.io/media/screenshots/edd/edd31d4a79e7a25c1a58cb2700c40ba0.jpg",
+          },
+          released_at: "2017-12-31",
+          requirements_en: null,
+          requirements_ru: null,
+        },
+      ],
+      parent_platforms: [
+        {
+          platform: {
+            id: 14,
+            name: "Web",
+            slug: "web",
+          },
+        },
+      ],
+      genres: [
+        {
+          id: 5,
+          name: "RPG",
+          slug: "role-playing-games-rpg",
+          games_count: 60752,
+          image_background:
+            "https://media.rawg.io/media/games/c6b/c6bfece1daf8d06bc0a60632ac78e5bf.jpg",
+        },
+      ],
+      stores: [
+        {
+          id: 129789,
+          store: {
+            id: 9,
+            name: "itch.io",
+            slug: "itch",
+            domain: "itch.io",
+            games_count: 654164,
+            image_background:
+              "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+          },
+        },
+      ],
+      clip: null,
+      tags: [
+        {
+          id: 25,
+          name: "Space",
+          slug: "space",
+          language: "eng",
+          games_count: 43948,
+          image_background:
+            "https://media.rawg.io/media/games/daa/daaee07fcb40744d90cf8142f94a241f.jpg",
+        },
+        {
+          id: 172,
+          name: "Aliens",
+          slug: "aliens",
+          language: "eng",
+          games_count: 7391,
+          image_background:
+            "https://media.rawg.io/media/games/ae1/ae1518c3dc1e847344661905fd2a8d16.jpg",
+        },
+        {
+          id: 245,
+          name: "Trading",
+          slug: "trading",
+          language: "eng",
+          games_count: 1417,
+          image_background:
+            "https://media.rawg.io/media/screenshots/fa4/fa48cb5604f319e7ca2c8fe00ed92a1d_eYGbcOJ.jpg",
+        },
+        {
+          id: 11068,
+          name: "technology",
+          slug: "technology",
+          language: "eng",
+          games_count: 477,
+          image_background:
+            "https://media.rawg.io/media/screenshots/155/155b9fc0f245e82f0d2878814197b29c.jpg",
+        },
+        {
+          id: 716,
+          name: "goat",
+          slug: "goat",
+          language: "eng",
+          games_count: 327,
+          image_background:
+            "https://media.rawg.io/media/screenshots/a67/a670fd875a2b686846443b71e54559e6.jpg",
+        },
+        {
+          id: 2795,
+          name: "language",
+          slug: "language",
+          language: "eng",
+          games_count: 146,
+          image_background:
+            "https://media.rawg.io/media/screenshots/277/277e91c57b575f224afb3790631457b8.jpg",
+        },
+        {
+          id: 606,
+          name: "ldjam",
+          slug: "ldjam",
+          language: "eng",
+          games_count: 549,
+          image_background:
+            "https://media.rawg.io/media/screenshots/2d5/2d54e2a4d7c31c5afff461bd9653ae13.jpg",
+        },
+        {
+          id: 1181,
+          name: "lost",
+          slug: "lost",
+          language: "eng",
+          games_count: 110,
+          image_background:
+            "https://media.rawg.io/media/screenshots/5f1/5f1772abb0d0048e243a399275a189e6.jpg",
+        },
+      ],
+      esrb_rating: null,
+      short_screenshots: [
+        {
+          id: -1,
+          image:
+            "https://media.rawg.io/media/screenshots/407/407db33dbeb655f3c86af63a7d42a795.jpg",
+        },
+        {
+          id: 1156225,
+          image:
+            "https://media.rawg.io/media/screenshots/407/407db33dbeb655f3c86af63a7d42a795.jpg",
+        },
+      ],
+    },
+  ],
+  seo_title: "All Games",
+  seo_description: "",
+  seo_keywords: "",
+  seo_h1: "All Games",
+  noindex: false,
+  nofollow: false,
+  description: "",
+  filters: {
+    years: [
+      {
+        from: 2020,
+        to: 2025,
+        filter: "2020-01-01,2025-12-31",
+        decade: 2020,
+        years: [
+          {
+            year: 2025,
+            count: 12334,
+            nofollow: false,
+          },
+          {
+            year: 2024,
+            count: 17529,
+            nofollow: false,
+          },
+          {
+            year: 2023,
+            count: 61993,
+            nofollow: false,
+          },
+          {
+            year: 2022,
+            count: 168187,
+            nofollow: false,
+          },
+          {
+            year: 2021,
+            count: 158705,
+            nofollow: false,
+          },
+          {
+            year: 2020,
+            count: 121375,
+            nofollow: false,
+          },
+        ],
+        nofollow: true,
+        count: 540123,
+      },
+      {
+        from: 2010,
+        to: 2019,
+        filter: "2010-01-01,2019-12-31",
+        decade: 2010,
+        years: [
+          {
+            year: 2019,
+            count: 73698,
+            nofollow: false,
+          },
+          {
+            year: 2018,
+            count: 67949,
+            nofollow: false,
+          },
+          {
+            year: 2017,
+            count: 54587,
+            nofollow: true,
+          },
+          {
+            year: 2016,
+            count: 40248,
+            nofollow: true,
+          },
+          {
+            year: 2015,
+            count: 25900,
+            nofollow: true,
+          },
+          {
+            year: 2014,
+            count: 15360,
+            nofollow: true,
+          },
+          {
+            year: 2013,
+            count: 6347,
+            nofollow: true,
+          },
+          {
+            year: 2012,
+            count: 5393,
+            nofollow: true,
+          },
+          {
+            year: 2011,
+            count: 4330,
+            nofollow: true,
+          },
+          {
+            year: 2010,
+            count: 3902,
+            nofollow: true,
+          },
+        ],
+        nofollow: true,
+        count: 297714,
+      },
+      {
+        from: 2000,
+        to: 2009,
+        filter: "2000-01-01,2009-12-31",
+        decade: 2000,
+        years: [
+          {
+            year: 2009,
+            count: 3124,
+            nofollow: true,
+          },
+          {
+            year: 2008,
+            count: 2045,
+            nofollow: true,
+          },
+          {
+            year: 2007,
+            count: 1600,
+            nofollow: true,
+          },
+          {
+            year: 2006,
+            count: 1315,
+            nofollow: true,
+          },
+          {
+            year: 2005,
+            count: 1206,
+            nofollow: true,
+          },
+          {
+            year: 2004,
+            count: 1199,
+            nofollow: true,
+          },
+          {
+            year: 2003,
+            count: 1179,
+            nofollow: true,
+          },
+          {
+            year: 2002,
+            count: 1036,
+            nofollow: true,
+          },
+          {
+            year: 2001,
+            count: 1152,
+            nofollow: true,
+          },
+          {
+            year: 2000,
+            count: 1058,
+            nofollow: true,
+          },
+        ],
+        nofollow: true,
+        count: 14914,
+      },
+      {
+        from: 1990,
+        to: 1999,
+        filter: "1990-01-01,1999-12-31",
+        decade: 1990,
+        years: [
+          {
+            year: 1999,
+            count: 826,
+            nofollow: true,
+          },
+          {
+            year: 1998,
+            count: 756,
+            nofollow: true,
+          },
+          {
+            year: 1997,
+            count: 885,
+            nofollow: true,
+          },
+          {
+            year: 1996,
+            count: 797,
+            nofollow: true,
+          },
+          {
+            year: 1995,
+            count: 886,
+            nofollow: true,
+          },
+          {
+            year: 1994,
+            count: 851,
+            nofollow: true,
+          },
+          {
+            year: 1993,
+            count: 768,
+            nofollow: true,
+          },
+          {
+            year: 1992,
+            count: 684,
+            nofollow: true,
+          },
+          {
+            year: 1991,
+            count: 597,
+            nofollow: true,
+          },
+          {
+            year: 1990,
+            count: 555,
+            nofollow: true,
+          },
+        ],
+        nofollow: true,
+        count: 7605,
+      },
+      {
+        from: 1980,
+        to: 1989,
+        filter: "1980-01-01,1989-12-31",
+        decade: 1980,
+        years: [
+          {
+            year: 1989,
+            count: 449,
+            nofollow: true,
+          },
+          {
+            year: 1988,
+            count: 327,
+            nofollow: true,
+          },
+          {
+            year: 1987,
+            count: 351,
+            nofollow: true,
+          },
+          {
+            year: 1986,
+            count: 258,
+            nofollow: true,
+          },
+          {
+            year: 1985,
+            count: 230,
+            nofollow: true,
+          },
+          {
+            year: 1984,
+            count: 188,
+            nofollow: true,
+          },
+          {
+            year: 1983,
+            count: 211,
+            nofollow: true,
+          },
+          {
+            year: 1982,
+            count: 154,
+            nofollow: true,
+          },
+          {
+            year: 1981,
+            count: 67,
+            nofollow: true,
+          },
+          {
+            year: 1980,
+            count: 35,
+            nofollow: true,
+          },
+        ],
+        nofollow: true,
+        count: 2270,
+      },
+      {
+        from: 1970,
+        to: 1979,
+        filter: "1970-01-01,1979-12-31",
+        decade: 1970,
+        years: [
+          {
+            year: 1979,
+            count: 15,
+            nofollow: true,
+          },
+          {
+            year: 1978,
+            count: 17,
+            nofollow: true,
+          },
+          {
+            year: 1977,
+            count: 13,
+            nofollow: true,
+          },
+          {
+            year: 1976,
+            count: 7,
+            nofollow: true,
+          },
+          {
+            year: 1975,
+            count: 3,
+            nofollow: true,
+          },
+          {
+            year: 1974,
+            count: 2,
+            nofollow: true,
+          },
+          {
+            year: 1973,
+            count: 1,
+            nofollow: true,
+          },
+          {
+            year: 1972,
+            count: 2,
+            nofollow: true,
+          },
+          {
+            year: 1971,
+            count: 6,
+            nofollow: true,
+          },
+          {
+            year: 1970,
+            count: 1,
+            nofollow: true,
+          },
+        ],
+        nofollow: true,
+        count: 67,
+      },
+      {
+        from: 1960,
+        to: 1969,
+        filter: "1960-01-01,1969-12-31",
+        decade: 1960,
+        years: [
+          {
+            year: 1962,
+            count: 1,
+            nofollow: true,
+          },
+        ],
+        nofollow: true,
+        count: 1,
+      },
+      {
+        from: 1950,
+        to: 1959,
+        filter: "1950-01-01,1959-12-31",
+        decade: 1950,
+        years: [
+          {
+            year: 1958,
+            count: 1,
+            nofollow: true,
+          },
+          {
+            year: 1954,
+            count: 1,
+            nofollow: true,
+          },
+        ],
+        nofollow: true,
+        count: 2,
+      },
+    ],
+  },
+  nofollow_collections: ["stores"],
+};

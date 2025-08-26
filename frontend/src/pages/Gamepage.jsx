@@ -20,10 +20,11 @@ const Gamepage = () => {
   const reviewRef = useRef("");
   const [rating, setRating] = useState("");
   const [slide, setSlide] = useState(0);
+  const [gameName, setGameName] = useState("");
 
   const getGameDetail = async () => {
     const data = await fetchData(
-      "/api/games/" + rawgId,
+      "/api/game/" + rawgId,
       "GET",
       undefined,
       undefined
@@ -34,6 +35,9 @@ const Gamepage = () => {
     queryKey: ["gameDetail", rawgId],
     queryFn: getGameDetail,
   });
+  useEffect(() => {
+    if (queryGameDetail.isSuccess) setGameName(queryGameDetail.data.name);
+  }, [queryGameDetail.isSuccess]);
 
   const getGameTrailers = async () => {
     const data = await fetchData(
@@ -71,6 +75,7 @@ const Gamepage = () => {
         rating: rating,
         review: reviewRef.current.value,
         rawgId: rawgId,
+        gameName: gameName,
         userId: authCtx.userId,
       },
       authCtx.accessToken
@@ -112,6 +117,7 @@ const Gamepage = () => {
 
   return (
     <>
+      {gameName}
       {showAddGameToListModal && (
         <AddGameToListModal
           setShowAddGameToListModal={setShowAddGameToListModal}
@@ -199,10 +205,16 @@ const Gamepage = () => {
                     <div>
                       Esrb Rating: {queryGameDetail.data?.esrb_rating?.name}
                     </div>
-                    <div>Genres: {queryGameDetail.data?.genres[0].name}</div>
+                    <div>
+                      {" "}
+                      Genres:{" "}
+                      {queryGameDetail.data?.genres?.length > 0
+                        ? queryGameDetail.data.genres[0].name
+                        : "N/A"}
+                    </div>
                     <div>
                       Platforms:{" "}
-                      {queryGameDetail.data?.parent_platforms.map(
+                      {queryGameDetail.data?.parent_platforms?.map(
                         (item, index) => {
                           return (
                             <div
@@ -217,7 +229,7 @@ const Gamepage = () => {
                     </div>
                     <div>
                       Stores:{" "}
-                      {queryGameDetail.data?.stores.map((item, index) => {
+                      {queryGameDetail.data?.stores?.map((item, index) => {
                         return (
                           <div className="badge bg-secondary me-1" key={index}>
                             {item.store.name}
@@ -227,7 +239,7 @@ const Gamepage = () => {
                     </div>
                     <div>
                       Developers:{" "}
-                      {queryGameDetail.data?.developers.map((item, index) => {
+                      {queryGameDetail.data?.developers?.map((item, index) => {
                         return (
                           <div className="badge bg-secondary me-1" key={index}>
                             {item.name}
@@ -269,7 +281,7 @@ const Gamepage = () => {
                       onClick={nextSlide}
                     />
                     <span className={styles.indicators}>
-                      {queryGameScreenShots.data.results.map((_, idx) => {
+                      {queryGameScreenShots.data?.results?.map((_, idx) => {
                         return (
                           <button
                             className={

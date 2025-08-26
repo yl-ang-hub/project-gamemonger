@@ -8,6 +8,7 @@ const UserReviewsSchema = new mongoose.Schema(
     // put in authCtx.userId
     // userId: { type: String, required: true }, // store just id so easier to delete
     rawgId: { type: String, required: true },
+    gameName: { type: String, required: true },
     // rawgId: { type: mongoose.Schema.Types.ObjectId, ref: "Game" },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },

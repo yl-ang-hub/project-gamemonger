@@ -6,6 +6,7 @@ import AuthCtx from "../context/authContext";
 import DeleteListModal from "../components/DeleteListModal";
 import RenameListModal from "../components/RenameListModal";
 import AddListModal from "../components/AddListModal";
+import UserpageReviews from "../components/UserpageReviews";
 
 const Userpage = () => {
   const queryClient = useQueryClient();
@@ -75,9 +76,25 @@ const Userpage = () => {
     },
   });
 
+  const getUserReviews = async () => {
+    const userReviews = await fetchData(
+      "/api/userGameReviews",
+      "POST",
+      { userId: authCtx.userId },
+      undefined
+    );
+    return userReviews;
+  };
+  const queryUserReviews = useQuery({
+    queryKey: ["reviews", authCtx.userId],
+    queryFn: getUserReviews,
+  });
+
   return (
     <>
-      {showAddListModal && <AddListModal setShowAddListModal={setShowAddListModal} />}
+      {showAddListModal && (
+        <AddListModal setShowAddListModal={setShowAddListModal} />
+      )}
 
       {showRenameListModal && (
         <RenameListModal
@@ -106,7 +123,10 @@ const Userpage = () => {
           </div>
           <div>
             {queryUser.isSuccess && (
-              <img style={{ maxHeight: "200px" }} src={queryUser.data.picture} />
+              <img
+                style={{ maxHeight: "200px" }}
+                src={queryUser.data.picture}
+              />
             )}
           </div>
         </div>
@@ -120,7 +140,8 @@ const Userpage = () => {
             onChange={(event) => {
               setDisplayedListId(event.target.value);
               setDisplayedListName(event.target.selectedOptions[0].innerText);
-            }}>
+            }}
+          >
             {queryUserlists.data?.map((list) => {
               return (
                 <option value={list._id} key={list._id} listname={list.name}>
@@ -130,23 +151,29 @@ const Userpage = () => {
             })}
           </select>
 
-          <div className="card overflow-scroll px-2" style={{ height: "400px" }}>
+          <div
+            className="card overflow-scroll px-2"
+            style={{ height: "400px" }}
+          >
             {/* List Name & Options */}
             <div className="row">
               <h3 className="col">{displayedListName}</h3>
               <button
                 className="col-sm-2 btn btn-primary"
-                onClick={() => setShowAddListModal(true)}>
+                onClick={() => setShowAddListModal(true)}
+              >
                 Add List
               </button>
               <button
                 className="col-sm-2 btn btn-primary"
-                onClick={() => setShowRenameListModal(true)}>
+                onClick={() => setShowRenameListModal(true)}
+              >
                 Rename List
               </button>
               <button
                 className="col-sm-2 btn btn-warning"
-                onClick={() => setShowDeleteListModal(true)}>
+                onClick={() => setShowDeleteListModal(true)}
+              >
                 Delete List
               </button>
             </div>
@@ -164,7 +191,10 @@ const Userpage = () => {
                         <div className="col-sm-4" id="game-img">
                           {game.screenshots.map((img, idx) => (
                             <li key={idx}>
-                              <img src={img} style={{ maxHeight: "100%", maxWidth: "120%" }} />
+                              <img
+                                src={img}
+                                style={{ maxHeight: "100%", maxWidth: "120%" }}
+                              />
                             </li>
                           ))}
                         </div>
@@ -173,12 +203,17 @@ const Userpage = () => {
 
                         <div className="col-sm-7" id="game-desc">
                           <div className="row text-start">
-                            <span dangerouslySetInnerHTML={{ __html: game.description }} />
+                            <span
+                              dangerouslySetInnerHTML={{
+                                __html: game.description,
+                              }}
+                            />
                           </div>
                           <div className="row">
                             <button
                               className="col-sm-4 offset-sm-7 btn btn-primary mb-3"
-                              onClick={() => mutate.mutate(game._id)}>
+                              onClick={() => mutate.mutate(game._id)}
+                            >
                               Delete game from my list
                             </button>
                             <br />
@@ -198,6 +233,18 @@ const Userpage = () => {
 
         <div className="card mx-2 my-2" id="userComments">
           <h3>My Comments</h3>
+          {queryUserReviews.isSuccess &&
+            queryUserReviews.data.map((item) => {
+              return (
+                <UserpageReviews
+                  gameName={item.gameName}
+                  reviewId={item._id}
+                  review={item.review}
+                  rating={item.rating}
+                  key={item._id}
+                />
+              );
+            })}
         </div>
       </div>
     </>
