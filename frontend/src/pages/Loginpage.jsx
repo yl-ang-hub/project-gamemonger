@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { use } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
 import AuthCtx from "../context/authContext";
 
@@ -20,6 +20,7 @@ const Loginpage = (props) => {
     });
 
     try {
+      localStorage.setItem("refresh", res.refresh);
       authCtx.setAccessToken(res.access);
       const decoded = jwtDecode(res.access);
       if (decoded) {
@@ -40,6 +41,39 @@ const Loginpage = (props) => {
     enabled: false,
     retry: false,
   });
+
+  const refreshAccessToken = async () => {
+    console.log("running");
+    const res = await fetchData(`/auth/refresh`, "POST", {
+      refresh: localStorage.getItem("refresh"),
+    });
+    return res;
+  };
+
+  const refreshMutate = useMutation({
+    mutationFn: refreshAccessToken,
+    onSuccess: (data) => {
+      try {
+        console.log("running");
+        authCtx.setAccessToken(data.access);
+        const decoded = jwtDecode(data.access);
+        if (decoded) {
+          authCtx.setUsername(decoded.username);
+          authCtx.setUserId(decoded.id);
+        }
+        navigate("/user");
+      } catch (e) {
+        console.error(e.message);
+      }
+    },
+  });
+
+  useEffect(() => {
+    // Auto login for users with refresh token in localStorage
+    const refresh = localStorage.getItem("refresh");
+    console.log(refresh);
+    if (refresh && refresh !== "undefined") refreshMutate.mutate();
+  }, []);
 
   return (
     <div className="w-50 h-50 mx-auto">
@@ -84,7 +118,9 @@ const Loginpage = (props) => {
           <div className="col-sm-4" />
         </div>
 
-        <div className="card-body row text-center" style={{ marginTop: "-20px" }}>
+        <div
+          className="card-body row text-center"
+          style={{ marginTop: "-20px" }}>
           <Link to="/registration">Sign up</Link>
         </div>
       </div>

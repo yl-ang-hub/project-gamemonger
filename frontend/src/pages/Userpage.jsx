@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { use } from "react";
 import AuthCtx from "../context/authContext";
@@ -77,7 +77,9 @@ const Userpage = () => {
 
   return (
     <>
-      {showAddListModal && <AddListModal setShowAddListModal={setShowAddListModal} />}
+      {showAddListModal && (
+        <AddListModal setShowAddListModal={setShowAddListModal} />
+      )}
 
       {showRenameListModal && (
         <RenameListModal
@@ -106,7 +108,10 @@ const Userpage = () => {
           </div>
           <div>
             {queryUser.isSuccess && (
-              <img style={{ maxHeight: "200px" }} src={queryUser.data.picture} />
+              <img
+                style={{ maxHeight: "200px" }}
+                src={queryUser.data.picture}
+              />
             )}
           </div>
         </div>
@@ -130,7 +135,9 @@ const Userpage = () => {
             })}
           </select>
 
-          <div className="card overflow-scroll px-2" style={{ height: "400px" }}>
+          <div
+            className="card overflow-scroll px-2"
+            style={{ height: "400px" }}>
             {/* List Name & Options */}
             <div className="row">
               <h3 className="col">{displayedListName}</h3>
@@ -164,7 +171,10 @@ const Userpage = () => {
                         <div className="col-sm-4" id="game-img">
                           {game.screenshots.map((img, idx) => (
                             <li key={idx}>
-                              <img src={img} style={{ maxHeight: "100%", maxWidth: "120%" }} />
+                              <img
+                                src={img}
+                                style={{ maxHeight: "100%", maxWidth: "120%" }}
+                              />
                             </li>
                           ))}
                         </div>
@@ -173,7 +183,11 @@ const Userpage = () => {
 
                         <div className="col-sm-7" id="game-desc">
                           <div className="row text-start">
-                            <span dangerouslySetInnerHTML={{ __html: game.description }} />
+                            <span
+                              dangerouslySetInnerHTML={{
+                                __html: game.description,
+                              }}
+                            />
                           </div>
                           <div className="row">
                             <button
@@ -205,61 +219,3 @@ const Userpage = () => {
 };
 
 export default Userpage;
-
-// SAMPLE DATA RETURNED FROM FETCHLISTS
-const fetchListsData = [
-  {
-    name: "Wishlist",
-    games: [
-      {
-        rawgId: "fde1a3d2-a48e-4ebc-a304-86fbdfe11e28",
-        name: "Tetris",
-        description: "blocks",
-        screenshots: ["img1", "img2", "img3"],
-        _id: "68a14754384ddd44feda38cf",
-      },
-      {
-        rawgId: "a249b85f-fef7-4e2c-91f2-2f0cf37b5845",
-        name: "Rayearth",
-        description: "magic knights",
-        screenshots: ["img1", "img2", "img3"],
-        _id: "68a14761384ddd44feda38d6",
-      },
-    ],
-    _id: "68a0cc104bc0904a639c915b",
-  },
-  {
-    name: "don't sleep at night",
-    games: [
-      {
-        rawgId: "f88e99a6-d752-4bf9-a439-0bb36be9e489",
-        name: "Walking dead",
-        description: "kill the zombies!",
-        screenshots: ["img1", "img2", "zombiespit"],
-        _id: "68a14bfba0440b1bd16581c9",
-      },
-      {
-        rawgId: "e1776a48-13de-442f-8762-b28e505b369d",
-        name: "Resident Evil",
-        description: "who is she...",
-        screenshots: ["img1", "img2", "weirdzombies"],
-        _id: "68a14c25a0440b1bd16581d1",
-      },
-      {
-        rawgId: "3379d47b-1dce-4ba1-9888-4488eec4f8f6",
-        name: "Resident Evil 2",
-        description: "who is she...twin?",
-        screenshots: ["img1", "img2", "weirdzombies"],
-        _id: "68a14c30a0440b1bd16581da",
-      },
-      {
-        rawgId: "9f934dd5-4436-4bcf-9cee-3d5d57dadb3a",
-        name: "Resident Evil 3",
-        description: "omg...gore?",
-        screenshots: ["img1", "img2", "weirdzombies"],
-        _id: "68a14c38a0440b1bd16581e4",
-      },
-    ],
-    _id: "68a14bcca0440b1bd16581c2",
-  },
-];
