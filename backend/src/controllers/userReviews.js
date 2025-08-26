@@ -49,18 +49,3 @@ export const deleteOneGameReviewByReviewId = async (req, res) => {
       .send("an error has occured when deleting one game reviews by userId");
   }
 };
-
-export const seedReviews = async (req, res) => {
-  try {
-    await UserReviewModel.deleteMany({});
-    const seedingReviews = await UserReviewModel.create({
-      rating: 4,
-      review: "hello world",
-      rawgId: "3498",
-      userId: "",
-    });
-  } catch (error) {
-    console.error(error.message);
-    res.status(400).send("an error has occured when seeding");
-  }
-};
