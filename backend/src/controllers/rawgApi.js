@@ -94,3 +94,18 @@ export const getGameTrailers = async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 };
+
+export const getGameScreenShots = async (req, res) => {
+  try {
+    const data = await fetchData(
+      "/games/" + req.params.rawgId + "/screenshots",
+      "GET",
+      undefined,
+      undefined
+    );
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};

@@ -42,6 +42,7 @@ export const deleteOneGameReviewByReviewId = async (req, res) => {
     const deleteOneGameReview = await UserReviewModel.findByIdAndDelete(
       req.body.reviewId
     );
+    res.json({ status: "ok", msg: "Review delete successfully" });
   } catch (error) {
     console.error(error.message);
     res
