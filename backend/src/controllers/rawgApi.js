@@ -8,7 +8,10 @@ import {
 import Games from "../models/Games.js";
 
 export const getGames = async (req, res) => {
-  console.log("getGames");
+  console.log("[DEBUG] getGames called", {
+    url: req.originalUrl,
+    method: req.method,
+  });
   try {
     const data = await fetchData("/games", "GET", undefined, undefined);
 
@@ -19,14 +22,16 @@ export const getGames = async (req, res) => {
 };
 
 export const getGamesPaginated = async (req, res) => {
-  console.log(req.params.page);
+  console.log("Requested URL:", req.originalUrl);
+  console.log("[DEBUG] getGamesPaginated called", {
+    url: req.originalUrl,
+    method: req.method,
+    page: req.query.page,
+  });
   try {
-    const data = await fetchDataWithParams2(
-      "/games",
-      "GET",
-      undefined,
-      req.params.page
-    );
+    const data = await fetchDataWithParams2("/games", "GET", undefined, {
+      page: req.query.page,
+    });
 
     res.json(data);
   } catch (error) {
@@ -35,7 +40,11 @@ export const getGamesPaginated = async (req, res) => {
 };
 
 export const searchGames = async (req, res) => {
-  console.log(req.body.query);
+  console.log("[DEBUG] searchGames called", {
+    url: req.originalUrl,
+    method: req.method,
+    query: req.body.query,
+  });
   try {
     const data = await fetchDataWithParams(
       "/games",
@@ -43,6 +52,26 @@ export const searchGames = async (req, res) => {
       undefined,
       req.body.query
     );
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+export const searchGamesPaginated = async (req, res) => {
+  console.log("[DEBUG] searchGamesPaginated called", {
+    url: req.originalUrl,
+    method: req.method,
+    page: req.params.page,
+    query: req.params.query,
+  });
+
+  try {
+    const data = await fetchDataWithParams2("/games", "GET", undefined, {
+      page: req.query.page,
+      search: req.query.search,
+    });
 
     res.json(data);
   } catch (error) {

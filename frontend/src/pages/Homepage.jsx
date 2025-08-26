@@ -15,7 +15,8 @@ const Homepage = () => {
   const [pageCount, setPageCount] = useState(0); // Total number of pages
   const [currentPage, setCurrentPage] = useState(0); // Current page (0-indexed)
 
-  let curURI = `/api/games/${currentPage + 1}`;
+  const params = new URLSearchParams({ page: currentPage + 1 });
+  let curURI = `/api/games?${params.toString()}`;
   console.log(curURI);
   const itemsPerPage = 20; // Number of items per page
 
