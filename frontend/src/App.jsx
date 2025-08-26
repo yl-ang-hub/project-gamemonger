@@ -15,7 +15,7 @@ import CartPage from "./pages/CartPage";
 import { useMutation } from "@tanstack/react-query";
 import useFetch from "./hooks/useFetch";
 import { jwtDecode } from "jwt-decode";
-import CheckoutSuccess from "./components/CheckoutSuccess";
+// import CheckoutSuccess from "./components/CheckoutSuccess";
 import Logout from "./components/Logout";
 
 function App() {
@@ -70,7 +70,8 @@ function App() {
             setUserId,
             cart,
             setCart,
-          }}>
+          }}
+        >
           <NavBar />
           <Routes>
             <Route path="/" element={<Navigate to="/homepage" replace />} />
@@ -104,7 +105,7 @@ function App() {
                 </ProtectedRouter>
               }
             />
-            <Route path="/checkout/success" element={<CheckoutSuccess />} />
+            {/* <Route path="/checkout/success" element={<CheckoutSuccess />} /> */}
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </AuthCtx.Provider>

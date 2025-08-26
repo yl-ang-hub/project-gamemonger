@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Container, Row, Col } from "react-bootstrap";
 import chunk from "lodash/chunk";
 import Games from "../components/Games";
+import ReactPaginate from "react-paginate";
+import styles from "./Pagination.module.css";
 
 const SearchGames = () => {
   const fetchData = useFetch();
@@ -14,19 +16,8 @@ const SearchGames = () => {
   let canFetch = true;
   const { query } = useParams();
 
-  // const { query } = useParams();
-  // const doSearch = async (e) => {
-  //   console.log(nameRef.current.value);
-  //   const result = await fetchData(
-  //     "/api/games/search",
-  //     "POST",
-  //     {
-  //       query: nameRef.current.value,
-  //     },
-  //     undefined
-  //   );
-  //   setData(result);
-  // };
+  const [pageCount, setPageCount] = useState(0); // Total number of pages
+  const [currentPage, setCurrentPage] = useState(0); // Current page (0-indexed)
 
   const doSearch = async (e) => {
     console.log(nameRef.current.value);
