@@ -36,20 +36,15 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Games
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link className="nav-link" to="/homepage">
-                Home
+                All Games
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/gamepage">
                 Game
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link className="nav-link" to="/search">
                 Search Games

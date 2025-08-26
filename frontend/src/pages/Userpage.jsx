@@ -6,6 +6,7 @@ import AuthCtx from "../context/authContext";
 import DeleteListModal from "../components/DeleteListModal";
 import RenameListModal from "../components/RenameListModal";
 import AddListModal from "../components/AddListModal";
+import UserpageReviews from "../components/UserpageReviews";
 
 const Userpage = () => {
   const queryClient = useQueryClient();
@@ -73,6 +74,20 @@ const Userpage = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(["userlists"]);
     },
+  });
+
+  const getUserReviews = async () => {
+    const userReviews = await fetchData(
+      "/api/userGameReviews",
+      "POST",
+      { userId: authCtx.userId },
+      undefined
+    );
+    return userReviews;
+  };
+  const queryUserReviews = useQuery({
+    queryKey: ["reviews", authCtx.userId],
+    queryFn: getUserReviews,
   });
 
   return (
@@ -212,6 +227,18 @@ const Userpage = () => {
 
         <div className="card mx-2 my-2" id="userComments">
           <h3>My Comments</h3>
+          {queryUserReviews.isSuccess &&
+            queryUserReviews.data.map((item) => {
+              return (
+                <UserpageReviews
+                  gameName={item.gameName}
+                  reviewId={item._id}
+                  review={item.review}
+                  rating={item.rating}
+                  key={item._id}
+                />
+              );
+            })}
         </div>
       </div>
     </>

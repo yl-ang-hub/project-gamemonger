@@ -1,11 +1,32 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { fetchData, fetchDataWithParams } from "../middleware/fetchData.js";
+import {
+  fetchData,
+  fetchDataWithParams,
+  fetchDataWithParams2,
+} from "../middleware/fetchData.js";
 import Games from "../models/Games.js";
 
 export const getGames = async (req, res) => {
+  console.log("getGames");
   try {
     const data = await fetchData("/games", "GET", undefined, undefined);
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+export const getGamesPaginated = async (req, res) => {
+  console.log(req.params.page);
+  try {
+    const data = await fetchDataWithParams2(
+      "/games",
+      "GET",
+      undefined,
+      req.params.page
+    );
 
     res.json(data);
   } catch (error) {
@@ -16,7 +37,12 @@ export const getGames = async (req, res) => {
 export const searchGames = async (req, res) => {
   console.log(req.body.query);
   try {
-    const data = await fetchDataWithParams("/games", "GET", undefined, req.body.query);
+    const data = await fetchDataWithParams(
+      "/games",
+      "GET",
+      undefined,
+      req.body.query
+    );
 
     res.json(data);
   } catch (error) {
@@ -27,7 +53,12 @@ export const searchGames = async (req, res) => {
 export const getGameDetail = async (req, res) => {
   try {
     // Get data from rawg API
-    const data = await fetchData("/games/" + req.params.rawgId, "GET", undefined, undefined);
+    const data = await fetchData(
+      "/games/" + req.params.rawgId,
+      "GET",
+      undefined,
+      undefined
+    );
 
     // Get price from MongoDB
     const game = await Games.findOne({ rawgId: req.params.rawgId });
@@ -53,6 +84,21 @@ export const getGameTrailers = async (req, res) => {
   try {
     const data = await fetchData(
       "/games/" + req.params.rawgId + "/movies",
+      "GET",
+      undefined,
+      undefined
+    );
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+export const getGameScreenShots = async (req, res) => {
+  try {
+    const data = await fetchData(
+      "/games/" + req.params.rawgId + "/screenshots",
       "GET",
       undefined,
       undefined

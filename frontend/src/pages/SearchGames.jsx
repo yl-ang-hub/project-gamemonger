@@ -1,16 +1,32 @@
 import React, { useState, useRef, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { Container, Row, Col } from "react-bootstrap";
+import chunk from "lodash/chunk";
+import Games from "../components/Games";
 
 const SearchGames = () => {
   const fetchData = useFetch();
   const nameRef = useRef(null);
   const [data, setData] = useState("");
   const navigate = useNavigate();
-
+  let canFetch = true;
   const { query } = useParams();
 
-  console.log("query is", query);
+  // const { query } = useParams();
+  // const doSearch = async (e) => {
+  //   console.log(nameRef.current.value);
+  //   const result = await fetchData(
+  //     "/api/games/search",
+  //     "POST",
+  //     {
+  //       query: nameRef.current.value,
+  //     },
+  //     undefined
+  //   );
+  //   setData(result);
+  // };
 
   const doSearch = async (e) => {
     console.log(nameRef.current.value);
@@ -22,19 +38,28 @@ const SearchGames = () => {
       },
       undefined
     );
-    setData(result);
+    return result;
   };
 
   useEffect(() => {
     if (query && nameRef.current) {
       nameRef.current.value = query;
+
       doSearch();
     }
   }, [query]);
 
-  const handleLink = (e) => {
-    e.preventDefault();
-  };
+  if (!query || query == "") canFetch = false;
+
+  const search = useQuery({
+    queryKey: ["search"],
+    queryFn: doSearch,
+    enabled: canFetch,
+    retry: false, // true means it will try 3 times
+  });
+
+  const items = search.isSuccess ? search.data.results : [];
+  const chunkedItems = chunk(items, 3);
 
   return (
     <div>
@@ -45,11 +70,11 @@ const SearchGames = () => {
         placeholder="Search for a game..."
       />
 
-      <button onClick={() => doSearch()} className="col-md-3">
+      <button onClick={search.refetch} className="col-md-3">
         Search Games
       </button>
 
-      <div>
+      {/* <div>
         {data &&
           data !== "" &&
           data.results?.map((game, index) => {
@@ -59,7 +84,25 @@ const SearchGames = () => {
               </div>
             );
           })}
-      </div>
+      </div> */}
+
+      <Container>
+        {search.isLoading && <div>Loading...</div>}
+        {search.isSuccess &&
+          chunkedItems.map((chunk, chunkIndex) => (
+            <Row key={chunkIndex}>
+              {chunk.map((item) => (
+                <Col key={item.id} md={4}>
+                  <Games
+                    rawgId={item.id}
+                    name={item.name}
+                    background_image={item.background_image}
+                  />
+                </Col>
+              ))}
+            </Row>
+          ))}
+      </Container>
     </div>
   );
 };

@@ -7,6 +7,9 @@ import AuthCtx from "../context/authContext";
 import { use } from "react";
 import AddGameToListModal from "../components/AddGameToListModal";
 import GamePageReviews from "../components/GamePageReviews";
+import styles from "./Gamepage.module.css";
+// install npm i react-icons
+import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
 
 const Gamepage = () => {
   const authCtx = use(AuthCtx);
@@ -15,6 +18,9 @@ const Gamepage = () => {
   const queryClient = useQueryClient();
   const [showAddGameToListModal, setShowAddGameToListModal] = useState(false);
   const reviewRef = useRef("");
+  const [rating, setRating] = useState("");
+  const [slide, setSlide] = useState(0);
+  const [gameName, setGameName] = useState("");
 
   const getGameDetail = async () => {
     const data = await fetchData(
@@ -29,6 +35,9 @@ const Gamepage = () => {
     queryKey: ["gameDetail", rawgId],
     queryFn: getGameDetail,
   });
+  useEffect(() => {
+    if (queryGameDetail.isSuccess) setGameName(queryGameDetail.data.name);
+  }, [queryGameDetail.isSuccess]);
 
   const getGameTrailers = async () => {
     const data = await fetchData(
@@ -63,9 +72,10 @@ const Gamepage = () => {
       "/api/reviews",
       "POST",
       {
-        rating: "4",
+        rating: rating,
         review: reviewRef.current.value,
         rawgId: rawgId,
+        gameName: gameName,
         userId: authCtx.userId,
       },
       authCtx.accessToken
@@ -78,6 +88,32 @@ const Gamepage = () => {
       reviewRef.current.value = "";
     },
   });
+
+  const getGameScreenShots = async () => {
+    const data = await fetchData(
+      "/api/games/screenshots/" + rawgId,
+      "GET",
+      undefined,
+      undefined
+    );
+    return data;
+  };
+  const queryGameScreenShots = useQuery({
+    queryKey: ["gameScreenShots", rawgId],
+    queryFn: getGameScreenShots,
+  });
+
+  const nextSlide = () => {
+    setSlide((prev) =>
+      prev === queryGameScreenShots.data.results.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setSlide((prev) =>
+      prev === 0 ? queryGameScreenShots.data.results.length - 1 : prev - 1
+    );
+  };
 
   const handleAddToCart = () => {
     authCtx.setCart((prevState) => {
@@ -102,6 +138,7 @@ const Gamepage = () => {
 
   return (
     <>
+      {gameName}
       {showAddGameToListModal && (
         <AddGameToListModal
           setShowAddGameToListModal={setShowAddGameToListModal}
@@ -117,17 +154,52 @@ const Gamepage = () => {
               <div className=" d-flex">
                 <div className="container border border-info">
                   <br />
-                  <div className="border border-dark">
-                    {queryGameDetail.data.name}
-                  </div>
+                  <h1 className="border border-dark">
+                    {queryGameDetail.data?.name}
+                  </h1>
                   <img
                     className="img-fluid"
-                    alt={queryGameDetail.data.name}
-                    src={queryGameDetail.data.background_image}
+                    alt={queryGameDetail.data?.name}
+                    src={queryGameDetail.data?.background_image}
                   />
 
-                  <div className="border border-warning">
-                    List of Screenshots to click
+                  <div className={styles.carousel}>
+                    <BsArrowLeftCircleFill
+                      className={`${styles.arrow} ${styles.arrowLeft}`}
+                      onClick={prevSlide}
+                    />
+                    {queryGameScreenShots.isSuccess &&
+                      queryGameScreenShots.data.results.map((item, idx) => {
+                        return (
+                          <img
+                            src={item.image}
+                            alt={queryGameDetail.data?.name}
+                            key={idx}
+                            className={
+                              slide === idx ? styles.slide : styles.slideHidden
+                            }
+                          />
+                        );
+                      })}
+                    <BsArrowRightCircleFill
+                      className={`${styles.arrow} ${styles.arrowRight}`}
+                      onClick={nextSlide}
+                    />
+                    <span className={styles.indicators}>
+                      {queryGameScreenShots.isSuccess &&
+                        queryGameScreenShots.data.results.map((_, idx) => {
+                          return (
+                            <button
+                              className={
+                                slide === idx
+                                  ? styles.indicator
+                                  : `${styles.indicator} ${styles.indicatorInactive}`
+                              }
+                              key={idx}
+                              onClick={() => setSlide(idx)}></button>
+                          );
+                        })}
+                    </span>
                   </div>
                   <br />
                 </div>
@@ -135,12 +207,8 @@ const Gamepage = () => {
                   <br />
                   <div className="border border-dark">
                     <div className="border border-primary">
-                      Price: ${queryGameDetail.data.price}
-                      <button
-                        className="btn btn-primary"
-                        onClick={handleAddToCart}>
-                        Add to Cart
-                      </button>
+                      Price: $${queryGameDetail.data?.price}
+                      <button className="btn btn-primary">Add to Cart</button>
                     </div>
                     <div className="border border-secondary">
                       <button
@@ -151,15 +219,21 @@ const Gamepage = () => {
                     </div>
                   </div>
                   <div className="border border-warning">
-                    <div>Released Date: {queryGameDetail.data.released}</div>
-                    <div>Rating: {queryGameDetail.data.rating}/5</div>
+                    <div>Released Date: {queryGameDetail.data?.released}</div>
+                    <div>Rating: {queryGameDetail.data?.rating}/5</div>
                     <div>
-                      Esrb Rating: {queryGameDetail.data.esrb_rating.name}
+                      Esrb Rating: {queryGameDetail.data?.esrb_rating?.name}
                     </div>
-                    <div>Genres: {queryGameDetail.data.genres[0].name}</div>
+                    <div>
+                      {" "}
+                      Genres:{" "}
+                      {queryGameDetail.data?.genres?.length > 0
+                        ? queryGameDetail.data.genres[0].name
+                        : "N/A"}
+                    </div>
                     <div>
                       Platforms:{" "}
-                      {queryGameDetail.data.parent_platforms.map(
+                      {queryGameDetail.data?.parent_platforms?.map(
                         (item, index) => {
                           return (
                             <div
@@ -173,7 +247,7 @@ const Gamepage = () => {
                     </div>
                     <div>
                       Stores:{" "}
-                      {queryGameDetail.data.stores.map((item, index) => {
+                      {queryGameDetail.data?.stores?.map((item, index) => {
                         return (
                           <div className="badge bg-secondary me-1" key={index}>
                             {item.store.name}
@@ -183,7 +257,7 @@ const Gamepage = () => {
                     </div>
                     <div>
                       Developers:{" "}
-                      {queryGameDetail.data.developers.map((item, index) => {
+                      {queryGameDetail.data?.developers?.map((item, index) => {
                         return (
                           <div className="badge bg-secondary me-1" key={index}>
                             {item.name}
@@ -197,21 +271,50 @@ const Gamepage = () => {
               </div>
             )}
             <br />
-            {queryGameTrailers.isSuccess && (
-              <div className="container border border-info">
-                <br />
-                <video
-                  className="w-100"
-                  controls
-                  src={queryGameTrailers.data.results[0]?.data.max}
-                />
-                <div className="border border-warning">
-                  List of Video to click
-                </div>
-                <br />
-              </div>
-            )}
-            <br />
+
+            <div className="border border-warning">
+              {queryGameTrailers.isSuccess &&
+                Array.isArray(queryGameTrailers.data?.results) &&
+                queryGameTrailers.data.results.length > 0 && (
+                  <div className={styles.carousel}>
+                    <BsArrowLeftCircleFill
+                      className={`${styles.arrow} ${styles.arrowLeft}`}
+                      onClick={prevSlide}
+                    />
+                    {queryGameTrailers.data?.results.map((item, idx) => {
+                      return (
+                        <video
+                          controls
+                          src={item.data?.max}
+                          alt={queryGameDetail.data?.name}
+                          key={idx}
+                          className={
+                            slide === idx ? styles.slide : styles.slideHidden
+                          }
+                        />
+                      );
+                    })}
+                    <BsArrowRightCircleFill
+                      className={`${styles.arrow} ${styles.arrowRight}`}
+                      onClick={nextSlide}
+                    />
+                    <span className={styles.indicators}>
+                      {queryGameScreenShots.data?.results?.map((_, idx) => {
+                        return (
+                          <button
+                            className={
+                              slide === idx
+                                ? styles.indicator
+                                : `${styles.indicator} ${styles.indicatorInactive}`
+                            }
+                            key={idx}
+                            onClick={() => setSlide(idx)}></button>
+                        );
+                      })}
+                    </span>
+                  </div>
+                )}
+            </div>
           </div>
           <br />
           {queryGameDetail.isSuccess && (
@@ -221,10 +324,10 @@ const Gamepage = () => {
                 maxHeight: "300px",
                 borderRadius: "5px",
               }}>
-              <div> This is {queryGameDetail.data.name}.</div>
+              <div> This is {queryGameDetail.data?.name}.</div>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: queryGameDetail.data.description,
+                  __html: queryGameDetail.data?.description,
                 }}></div>
             </div>
           )}
@@ -234,6 +337,27 @@ const Gamepage = () => {
         <div className="container border border-primary">
           <br />
           <div className="container border border-danger">
+            <form>
+              <div>Rate this game:</div>
+              <fieldset
+                className={styles.rating}
+                onChange={(e) => setRating(e.target.value)}>
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label htmlFor="star5">★</label>
+
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label htmlFor="star4">★</label>
+
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label htmlFor="star3">★</label>
+
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label htmlFor="star2">★</label>
+
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label htmlFor="star1">★</label>
+              </fieldset>
+            </form>
             <input
               ref={reviewRef}
               className="col-sm-10"
@@ -245,13 +369,14 @@ const Gamepage = () => {
           <br />
           <div className="container border border-danger">
             {queryUserReviews.isSuccess &&
-              queryUserReviews.data.map((item) => {
+              queryUserReviews.data?.map((item) => {
                 return (
                   <GamePageReviews
                     key={item._id}
                     reviewId={item._id}
                     rawgId={item.rawgId}
                     review={item.review}
+                    rating={item.rating}
                     userId={item.userId}
                     username={item.userId.username}
                   />

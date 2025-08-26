@@ -19,12 +19,12 @@ const GamePageReviews = (props) => {
       authCtx.accessToken
     );
 
-    return "true";
+    return data;
   };
 
   const mutate = useMutation({
     mutationFn: deleteReview,
-    onError: () => {
+    onSuccess: () => {
       console.log(1);
       queryClient.invalidateQueries(["userReviews", props.rawgId]);
     },
@@ -35,6 +35,7 @@ const GamePageReviews = (props) => {
       <div className="container justify-content-between border border-dark">
         <div>{props.username}</div>
         <div className="border border-warning">{props.rawgId}</div>
+        <div className="border border-primary">Rating: {props.rating}</div>
         <div className="border border-info">{props.review}</div>
         <button onClick={mutate.mutate}>Delete</button>
         <br />
