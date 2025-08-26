@@ -95,7 +95,7 @@ export const getGameDetail = async (req, res) => {
       data.price = game.price;
     } else {
       // Arbitrarily create a price for the game and store in DB
-      const price = Math.floor(Math.random() * 10) * 10 + 9.99;
+      const price = Math.ceil(Math.random() * 10) * 10 - 0.01;
       await Games.create({
         rawgId: req.params.rawgId,
         price: price,
