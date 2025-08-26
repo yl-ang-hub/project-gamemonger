@@ -9,9 +9,12 @@ import chunk from "lodash/chunk";
 const Homepage = () => {
   const fetchData = useFetch();
   const queryClient = useQueryClient();
+  let curPage = 2;
 
+  let curURI = `/api/games/${curPage}`;
+  console.log(curURI);
   const getGames = async () => {
-    const data = await fetchData("/api/games", "GET", undefined, undefined);
+    const data = await fetchData(curURI, "GET", undefined, undefined);
     return data;
   };
   const query = useQuery({

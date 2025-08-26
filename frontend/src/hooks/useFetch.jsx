@@ -11,7 +11,7 @@ const useFetch = () => {
         },
         body: JSON.stringify(body),
       });
-
+      console.log("Ok");
       const data = await res.json();
 
       if (!res.ok) {
