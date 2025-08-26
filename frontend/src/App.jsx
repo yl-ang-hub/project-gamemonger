@@ -16,6 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import useFetch from "./hooks/useFetch";
 import { jwtDecode } from "jwt-decode";
 import CheckoutSuccess from "./components/CheckoutSuccess";
+import Logout from "./components/Logout";
 
 function App() {
   const fetchData = useFetch();
@@ -104,6 +105,7 @@ function App() {
               }
             />
             <Route path="/checkout/success" element={<CheckoutSuccess />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </AuthCtx.Provider>
       </Suspense>

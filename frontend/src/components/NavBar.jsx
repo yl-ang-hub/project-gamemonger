@@ -51,18 +51,25 @@ const NavBar = () => {
               </Link>
             </li>
             {isAuthenticated && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/user">
-                  User
-                </Link>
-              </li>
-            )}
-            {isAuthenticated && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/cart">
-                  Cart
-                </Link>
-              </li>
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/user">
+                    User
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/cart">
+                    Cart
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/logout">
+                    Logout
+                  </Link>
+                </li>
+              </>
             )}
             {!isAuthenticated && (
               <li className="nav-item">
