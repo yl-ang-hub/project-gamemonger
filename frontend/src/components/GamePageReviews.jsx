@@ -15,7 +15,7 @@ const GamePageReviews = (props) => {
     const data = await fetchData(
       "/api/reviews",
       "DELETE",
-      { reviewId: props.reviewId },
+      { reviewId: props.reviewId, userId: authCtx.userId },
       authCtx.accessToken
     );
 
@@ -32,6 +32,8 @@ const GamePageReviews = (props) => {
 
   return (
     <>
+      <div>AuthCtx.userId: {authCtx.userId}</div>
+      <div>props.userId: {JSON.stringify(props.userId)}</div>
       <div className="container justify-content-between border border-dark">
         <div>{props.username}</div>
         <div className="border border-warning">{props.rawgId}</div>

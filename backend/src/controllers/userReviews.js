@@ -50,10 +50,26 @@ export const getOneGameReviews = async (req, res) => {
   }
 };
 
+// export const deleteOneGameReviewByReviewId = async (req, res) => {
+//   try {
+//     const deleteOneGameReview = await UserReviewModel.findByIdAndDelete(
+//       req.body.reviewId,
+//       req.body.userId
+//     );
+//     res.json({ status: "ok", msg: "Review delete successfully" });
+//   } catch (error) {
+//     console.error(error.message);
+//     res
+//       .status(400)
+//       .send("an error has occured when deleting one game reviews by userId");
+//   }
+// };
+
 export const deleteOneGameReviewByReviewId = async (req, res) => {
   try {
-    const deleteOneGameReview = await UserReviewModel.findByIdAndDelete(
-      req.body.reviewId
+    const deleteOneGameReview = await UserReviewModel.findOneAndDelete(
+      req.body.reviewId,
+      req.body.userId
     );
     res.json({ status: "ok", msg: "Review delete successfully" });
   } catch (error) {
@@ -63,3 +79,36 @@ export const deleteOneGameReviewByReviewId = async (req, res) => {
       .send("an error has occured when deleting one game reviews by userId");
   }
 };
+
+// export const deleteOneGameReviewByReviewId = async (req, res) => {
+//   if (req.decoded.id === req.body.userId) {
+//     try {
+//       const deleteOneGameReview = await UserReviewModel.findByIdAndDelete(
+//         req.body.reviewId
+//       );
+//       res.json({ status: "ok", msg: "Review delete successfully" });
+//     } catch (error) {
+//       console.error(error.message);
+//       res
+//         .status(400)
+//         .send("an error has occured when deleting one game reviews by userId");
+//     }
+//   }
+// };
+
+// { //login by 68a5b57a096821ed58028e84, authCtx.userId= 68a5b57a096821ed58028e84, req.decodedid = 68a5b57a096821ed58028e84
+//       "_id": "68adc8cad750478911bb105a", //reviewId
+//       "rating": 5,
+//       "review": "try again",
+//       "rawgId": "3498",
+//       "gameName": "Grand Theft Auto V",
+//       "userId": {
+//           "_id": "68a5b57a096821ed58028e84", //userId this is reflecting as an object? or as an id? This is referencing.
+//           "username": "Shrek",
+//           "hash": "$2b$12$0PME6xsBUY88pIPl9grvB.rPmbc/Z1kgQuD679hXzLUS47mHzJT/i",
+//           "picture": "src/assets/images/userImg.jpg",
+//           "created_at": "2025-08-25T05:27:12.841Z",
+//           "__v": 0
+//       },
+//       "__v": 0
+//   },
