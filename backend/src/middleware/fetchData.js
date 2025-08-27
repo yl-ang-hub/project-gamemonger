@@ -1,7 +1,6 @@
 export const fetchData = async (endpoint, method, body) => {
   console.log("no params");
   const uri = `${process.env.RAWG_API_DATABASE}${endpoint}?key=${process.env.RAWG_API_KEY}`;
-  console.log("✅ FETCHING URL:", uri);
   const res = await fetch(uri, {
     method,
     headers: {
