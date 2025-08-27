@@ -29,7 +29,6 @@ export const createCheckoutSession = async (req, res) => {
       success_url: `http://localhost:5173/checkout/success`,
     });
 
-    // res.redirect(session.url);
     res.json(session);
   } catch (e) {
     res

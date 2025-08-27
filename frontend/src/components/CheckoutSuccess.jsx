@@ -2,40 +2,74 @@ import React, { useEffect, useRef } from "react";
 import { use } from "react";
 import AuthCtx from "../context/authContext";
 import useFetch from "../hooks/useFetch";
+import { jwtDecode } from "jwt-decode";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 const CheckoutSuccess = () => {
   const fetchData = useFetch();
   const authCtx = use(AuthCtx);
 
+  const refreshAccessToken = async () => {
+    const res = await fetchData(`/auth/refresh`, "POST", {
+      refresh: localStorage.getItem("refresh"),
+    });
+    try {
+      authCtx.setAccessToken(res.access);
+      const decoded = jwtDecode(res.access);
+      if (decoded) {
+        authCtx.setUsername(decoded.username);
+        authCtx.setUserId(decoded.id);
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+    console.log("got refresh mutation res ", res);
+    return res;
+  };
+
   const retrieveSession = async () => {
+    console.log(
+      "testing the auth before running retrieveSession ",
+      authCtx.accessToken
+    );
     const session = await fetchData(
       "/checkout",
       "POST",
       { sessionId: localStorage.getItem("sessionId") },
       authCtx.accessToken
     );
-
+    console.log("refetching checkout sess ", JSON.stringify(session));
     return session;
   };
 
-  const query = useQuery({
+  const refreshMutation = useMutation({
+    mutationFn: refreshAccessToken,
+  });
+
+  const queryCheckoutSession = useQuery({
     queryKey: ["session"],
     queryFn: retrieveSession,
+    enabled: !!authCtx.accessToken,
   });
 
   const savePurchase = async () => {
-    const res = await fetchData("/checkout/save", "PUT", {
-      userId: authCtx.userId,
-      checkoutSessionId: localStorage.getItem("sessionId"),
-      amount: query.data.amount_total,
-      items: query.data.line_items,
-    });
+    console.log("running savepurchase");
+    const res = await fetchData(
+      "/checkout/save",
+      "PUT",
+      {
+        userId: authCtx.userId,
+        checkoutSessionId: localStorage.getItem("sessionId"),
+        amount: queryCheckoutSession.data.amount_total,
+        items: queryCheckoutSession.data.line_items,
+      },
+      authCtx.accessToken
+    );
 
     return res;
   };
 
-  const mutate = useMutation({
+  const saveMutation = useMutation({
     mutationFn: savePurchase,
   });
 
@@ -43,10 +77,15 @@ const CheckoutSuccess = () => {
 
   // TODO: Change to save cart to DB
   useEffect(() => {
-    if (query.data && query.data?.status === "complete") {
-      mutate.mutate();
+    refreshMutation.mutate();
+    if (
+      queryCheckoutSession.data &&
+      queryCheckoutSession.data?.status === "complete"
+    ) {
+      console.log("hello, i am useEffect and query is success");
+      saveMutation.mutate();
     }
-  }, [query.data]);
+  }, [queryCheckoutSession.data]);
 
   return (
     <div
@@ -57,7 +96,8 @@ const CheckoutSuccess = () => {
         maxWidth: "70%",
       }}>
       <h3 className="text-center">
-        {query.isSuccess && query.data?.status === "complete"
+        {queryCheckoutSession.isSuccess &&
+        queryCheckoutSession.data?.status === "complete"
           ? "Purchase Success"
           : "Purchase Failed"}
       </h3>
@@ -69,8 +109,8 @@ const CheckoutSuccess = () => {
             <div className="col-sm-2">Quantity</div>
           </div>
 
-          {mutate.isSuccess &&
-            mutate.data?.items?.data?.map((item, idx) => (
+          {saveMutation.isSuccess &&
+            saveMutation.data?.items?.data?.map((item, idx) => (
               <div className="row" key={idx}>
                 <div className="col-sm-6">{item.description} </div>
                 <div className="col-sm-4">${item.amount_total / 100}</div>
@@ -81,7 +121,9 @@ const CheckoutSuccess = () => {
         <hr />
         <div className="row fw-bold">
           <div className="col-sm-6">Total</div>
-          <div className="col-sm-6">${query.data?.amount_total / 100}</div>
+          <div className="col-sm-6">
+            ${queryCheckoutSession.data?.amount_total / 100}
+          </div>
         </div>
       </div>
     </div>
