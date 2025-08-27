@@ -1,20 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "./ListModal.module.css";
 
 const OverLay = (props) => {
+  useEffect(() => {
+    setTimeout(() => {
+      props.setShowAddToCartModal(false);
+    }, 1000);
+  }, []);
+
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
-        <div className="text-center my-3">Item added to cart!</div>
-
-        <div className="row my-3">
-          <button
-            onClick={() => props.setShowAddToCartModal(false)}
-            className="col-md-3 btn btn-primary mx-auto">
-            Ok
-          </button>
-        </div>
+        <div className="text-center my-auto">Item added to cart!</div>
       </div>
     </div>
   );
