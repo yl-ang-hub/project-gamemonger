@@ -14,6 +14,7 @@ import CartAddModal from "../components/CartAddModal";
 
 const Gamepage = () => {
   const authCtx = use(AuthCtx);
+  const isAuthenticated = authCtx.accessToken.length > 0;
   const { rawgId } = useParams();
   const fetchData = useFetch();
   const queryClient = useQueryClient();
@@ -361,38 +362,41 @@ const Gamepage = () => {
           className="container"
           style={{ border: "2px solid #56b6c2", borderRadius: 10 }}>
           <br />
-          <div className="container">
-            <form>
-              <div>Rate this game:</div>
-              <fieldset
-                className={styles.rating}
-                onChange={(e) => setRating(e.target.value)}>
-                <input type="radio" id="star5" name="rating" value="5" />
-                <label htmlFor="star5">★</label>
+          {isAuthenticated && (
+            <div className="container">
+              <form>
+                <div>Rate this game:</div>
+                <fieldset
+                  className={styles.rating}
+                  onChange={(e) => setRating(e.target.value)}>
+                  <input type="radio" id="star5" name="rating" value="5" />
+                  <label htmlFor="star5">★</label>
 
-                <input type="radio" id="star4" name="rating" value="4" />
-                <label htmlFor="star4">★</label>
+                  <input type="radio" id="star4" name="rating" value="4" />
+                  <label htmlFor="star4">★</label>
 
-                <input type="radio" id="star3" name="rating" value="3" />
-                <label htmlFor="star3">★</label>
+                  <input type="radio" id="star3" name="rating" value="3" />
+                  <label htmlFor="star3">★</label>
 
-                <input type="radio" id="star2" name="rating" value="2" />
-                <label htmlFor="star2">★</label>
+                  <input type="radio" id="star2" name="rating" value="2" />
+                  <label htmlFor="star2">★</label>
 
-                <input type="radio" id="star1" name="rating" value="1" />
-                <label htmlFor="star1">★</label>
-              </fieldset>
-            </form>
-            <div className="d-flex justify-content-between align-items-center gap-2">
-              <input
-                ref={reviewRef}
-                className={`col-sm-10 ${styles.reviewInput}`}
-                placeholder="User's review"></input>
-              <button className={styles.reviewButton} onClick={mutate.mutate}>
-                Submit
-              </button>
+                  <input type="radio" id="star1" name="rating" value="1" />
+                  <label htmlFor="star1">★</label>
+                </fieldset>
+              </form>
+
+              <div className="d-flex justify-content-between align-items-center gap-2">
+                <input
+                  ref={reviewRef}
+                  className={`col-sm-10 ${styles.reviewInput}`}
+                  placeholder="User's review"></input>
+                <button className={styles.reviewButton} onClick={mutate.mutate}>
+                  Submit
+                </button>
+              </div>
             </div>
-          </div>
+          )}
           <br />
           <div className="container ">
             {queryUserReviews.isSuccess &&

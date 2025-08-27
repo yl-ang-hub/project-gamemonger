@@ -10,6 +10,7 @@ const GamePageReviews = (props) => {
   const fetchData = useFetch();
   const authCtx = use(AuthCtx);
   const queryClient = useQueryClient();
+  const isAuthenticated = authCtx.accessToken.length > 0;
 
   const deleteReview = async () => {
     const data = await fetchData(
@@ -33,8 +34,7 @@ const GamePageReviews = (props) => {
     <>
       <div
         className="container d-flex justify-content-between align-items-baseline"
-        style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
-      >
+        style={{ border: "2px solid #56b6c2", borderRadius: 10 }}>
         <div className="d-flex gap-3 align-items-baseline flex-grow-1">
           <div>{props.username}'s review:</div>
           <div>
@@ -45,8 +45,7 @@ const GamePageReviews = (props) => {
                 style={{
                   color: idx < props.rating ? "gold" : "#ccc",
                   fontSize: "1.5rem",
-                }}
-              >
+                }}>
                 ★
               </span>
             ))}
@@ -56,9 +55,11 @@ const GamePageReviews = (props) => {
             "<em>{props.review}</em>"
           </div>
         </div>
-        <button className={styles.reviewButton} onClick={mutate.mutate}>
-          <FaTrash />
-        </button>
+        {isAuthenticated && (
+          <button className={styles.reviewButton} onClick={mutate.mutate}>
+            <FaTrash />
+          </button>
+        )}
         <br />
       </div>
 
