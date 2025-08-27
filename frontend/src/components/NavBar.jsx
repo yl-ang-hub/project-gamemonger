@@ -24,7 +24,10 @@ const NavBar = () => {
         className="navbar navbar-expand-lg navbar-custom"
         style={{ border: "2px solid #56b6c2", borderRadius: 10 }}>
         <div className="container-fluid">
-          <a className="navbar-brand" style={{ color: "#56b6c2" }} href="#">
+          <a
+            className="navbar-brand"
+            style={{ color: "#56b6c2" }}
+            href="/homepage">
             Gamemonger
           </a>
           <button
