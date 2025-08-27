@@ -7,6 +7,7 @@ import DeleteListModal from "../components/DeleteListModal";
 import RenameListModal from "../components/RenameListModal";
 import AddListModal from "../components/AddListModal";
 import UserpageReviews from "../components/UserpageReviews";
+import UserpagePurchases from "../components/UserpagePurchases";
 
 const Userpage = () => {
   const queryClient = useQueryClient();
@@ -223,6 +224,7 @@ const Userpage = () => {
 
         <div className="card mx-2 my-2" id="userComments">
           <h3>Recent Purchases</h3>
+          <UserpagePurchases />
         </div>
 
         <div className="card mx-2 my-2" id="userComments">
