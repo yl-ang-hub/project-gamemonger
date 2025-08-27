@@ -16,7 +16,6 @@ function insertionSort(items) {
 export const getPurchases = async (req, res) => {
   try {
     const purchases = await Purchases.find({ userId: req.body.userId });
-    console.log("purchases is ", purchases);
 
     // Flatten all items into one array
     let results = [];

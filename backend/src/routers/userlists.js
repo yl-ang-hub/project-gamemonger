@@ -4,11 +4,6 @@ import { auth } from "../middleware/auth.js";
 
 const router = express.Router();
 
-// USERS MANAGEMENT
-// router.get("/users", userlists.getAllUsers);
-// router.put("/users", userlists.addUser);
-// router.delete("/users/:userId", userlists.deleteUser);
-
 // SINGLE USER
 router.post("/", auth, userlists.getListsForUser);
 router.put("/", auth, userlists.addList);

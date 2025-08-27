@@ -42,12 +42,3 @@ export const getAllUsers = async (req, res) => {
     res.status(400).json({ status: "error", msg: "cannot read from database" });
   }
 };
-
-// export const deleteUser = async (req, res) => {
-//   try {
-//     await Userlists.findOneAndDelete({ _id: req.params.userId });
-//     res.json({ status: "ok", msg: "user deleted" });
-//   } catch (error) {
-//     res.status(400).json({ status: "error", msg: "user not deleted" });
-//   }
-// };
