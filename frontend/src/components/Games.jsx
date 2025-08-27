@@ -1,9 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-// import { useQuery } from "@tanstack/react-query";
-// import { fetchGames } from "../services/rawgService.js";
-
 const Games = (props) => {
   const navigate = useNavigate();
   const handleClick = () => {
