@@ -1,0 +1,35 @@
+erDiagram
+    User ||--|{ Userlists : has
+    User ||--o{ Purchases : buys
+    User }o--o{ UserReviews : has
+    Purchases }o--|{ Games : has
+    User {
+        string username
+        string hash
+        string picture
+        Date created_at
+    }
+    Userlists {
+        string rawgId
+        string name
+        string description
+        string[] screenshots
+    }
+     UserReviews {
+        Number rating
+        string review
+        string rawgId
+        string gameName
+        string userID
+     }
+     Purchases{
+        ObjectId userID
+        string sessionId
+        Date purchased_date
+        Number amount
+        Games[] items
+     }
+     Games{
+        string rawgId
+        Number price
+     }

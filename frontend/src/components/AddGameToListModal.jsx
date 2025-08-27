@@ -43,16 +43,17 @@ const OverLay = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
-        <div className="text-center my-3">
+        <div className="container text-center my-3">
           {/* Dropdown selection of user's lists */}
-          <label htmlFor="userlists">Select your list -</label>
+          <label htmlFor="userlists">Select your list</label>
           <select
-            className="mx-2"
+            className={`mx-2 form-select ${styles.themedSelect}`}
             name="userlists"
             id="userlists"
             onChange={(event) => {
               setListId(event.target.value);
-            }}>
+            }}
+          >
             {userlists?.map((list) => {
               return (
                 <option value={list._id} key={list._id} listname={list.name}>
@@ -65,12 +66,16 @@ const OverLay = (props) => {
 
         <div className="row my-3">
           <div className="col-md-3"></div>
-          <button onClick={mutate.mutate} className="col-md-3 btn btn-primary mx-1">
+          <button
+            onClick={mutate.mutate}
+            className={`col-md-3 ${styles.Button} mx-1`}
+          >
             Add
           </button>
           <button
             onClick={() => props.setShowAddGameToListModal(false)}
-            className="col-md-3 btn btn-primary mx-1">
+            className={`col-md-3 ${styles.Button} mx-1`}
+          >
             Cancel
           </button>
           <div className="col-md-3"></div>

@@ -70,56 +70,60 @@ const Loginpage = (props) => {
   }, []);
 
   return (
-    <div className="w-50 h-50 mx-auto">
-      <div className="card">
-        <div className="card-title text-center mt-4 mb-4">
-          <h3>Login</h3>
-        </div>
+    <>
+      <br />
+      <div className="w-50 h-50 mx-auto">
+        <br />
+        <div className="card text-bg-dark">
+          <div className="card-title text-center mt-4 mb-4">
+            <h3>Login</h3>
+          </div>
 
-        <div className="card-body">
-          <label className="col-sm-2" htmlFor="username">
-            Username
-          </label>
-          <input
-            className="col-sm-10"
-            id="username"
-            value={usernameInput}
-            onChange={(event) => setUsernameInput(event.target.value)}
-          />
-          {auth.isError && JSON.stringify(auth.error)}
-          {/* // TODO: Display error messages */}
-        </div>
+          <div className="card-body">
+            <label className="col-sm-3" htmlFor="username">
+              Username
+            </label>
+            <input
+              className="col-sm-9"
+              id="username"
+              value={usernameInput}
+              onChange={(event) => setUsernameInput(event.target.value)}
+            />
+            {auth.isError && JSON.stringify(auth.error)}
+            {/* // TODO: Display error messages */}
+          </div>
 
-        <div className="card-body">
-          <label className="col-sm-2" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="col-sm-10"
-            type="password"
-            id="password"
-            value={passwordInput}
-            onChange={(event) => setPasswordInput(event.target.value)}
-          />
-          {/* // TODO: Display error messages */}
-        </div>
+          <div className="card-body">
+            <label className="col-sm-3" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="col-sm-9"
+              type="password"
+              id="password"
+              value={passwordInput}
+              onChange={(event) => setPasswordInput(event.target.value)}
+            />
+            {/* // TODO: Display error messages */}
+          </div>
 
-        <div className="card-body row">
-          <div className="col-sm-4" />
-          <button className="col-sm-4 btn btn-primary" onClick={auth.refetch}>
-            Login
-          </button>
-          <div className="col-sm-4" />
-        </div>
+          <div className="card-body row">
+            <div className="col-sm-4" />
+            <button className="col-sm-4 btn btn-primary" onClick={auth.refetch}>
+              Login
+            </button>
+            <div className="col-sm-4" />
+          </div>
 
-        <div
-          className="card-body row text-center"
-          style={{ marginTop: "-20px" }}
-        >
-          <Link to="/registration">Sign up</Link>
+          <div
+            className="card-body row text-center"
+            style={{ marginTop: "-20px" }}
+          >
+            <Link to="/registration">Sign up</Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
