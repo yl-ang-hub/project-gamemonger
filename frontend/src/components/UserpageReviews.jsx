@@ -31,7 +31,7 @@ const UserpageReviews = (props) => {
 
   return (
     <>
-      <div className="card border border-primary">
+      <div className="card">
         <div className="card-header text-bg-dark">{props.gameName}</div>
         <div className="card-body">
           {/* Rating and Delete Comment button */}
