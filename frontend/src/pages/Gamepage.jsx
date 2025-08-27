@@ -161,11 +161,13 @@ const Gamepage = () => {
                       <div style={{ fontSize: "2rem" }}>
                         {queryGameDetail.data?.name}
                       </div>
-                      <button
-                        className={styles.actionButton2}
-                        onClick={() => setShowAddGameToListModal(true)}>
-                        <FaHeart className="d-flex align-items-centers" />
-                      </button>
+                      {isAuthenticated && (
+                        <button
+                          className={styles.actionButton2}
+                          onClick={() => setShowAddGameToListModal(true)}>
+                          <FaHeart className="d-flex align-items-centers" />
+                        </button>
+                      )}
                     </div>
                     <img
                       className="img-fluid"
@@ -222,11 +224,13 @@ const Gamepage = () => {
                         <span style={{ color: "#e5c07b" }}>Price:</span> $
                         {queryGameDetail.data?.price}
                       </span>
-                      <button
-                        className={`d-flex align-items-center ${styles.actionButton}`}
-                        onClick={handleAddToCart}>
-                        <FaShoppingCart className="d-flex align-items-centers" />
-                      </button>
+                      {isAuthenticated && (
+                        <button
+                          className={`d-flex align-items-center ${styles.actionButton}`}
+                          onClick={handleAddToCart}>
+                          <FaShoppingCart className="d-flex align-items-centers" />
+                        </button>
+                      )}
                     </div>
 
                     <div className="container">
