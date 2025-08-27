@@ -2,7 +2,7 @@
 
 Gamemonger is a demo of a MERN stack game storefront. It pulls in game data from [RawG](https://rawg.io/), and allow users to register and login in order to leave reviews or to purchase games.
 
-> Disclaimer: This project is for demostration purposes only. The Stripe protocol used in this project is a sandbox and will not actually work as an actual storefront.
+> Disclaimer: This project is for demostration purposes only. The Stripe protocol used in this project is a sandbox and will not actually work as an real storefront.
 
 # Enviroment Variables
 
