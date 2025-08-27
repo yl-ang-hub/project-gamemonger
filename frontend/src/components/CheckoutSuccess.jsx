@@ -73,9 +73,6 @@ const CheckoutSuccess = () => {
     mutationFn: savePurchase,
   });
 
-  // TODO: retrieve cart from session and payment status
-
-  // TODO: Change to save cart to DB
   useEffect(() => {
     refreshMutation.mutate();
     if (
