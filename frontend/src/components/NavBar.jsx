@@ -102,7 +102,7 @@ const NavBar = () => {
               )}
             </ul>
 
-            <form className="d-flex" role="search">
+            <form className="d-flex ms-auto" role="search">
               <input
                 className={`form-control me-2 ${styles.searchInput}`}
                 type="search"

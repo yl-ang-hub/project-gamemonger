@@ -1,6 +1,7 @@
 :root {
   --bs-nav-link-color: #56b6c2;
   --bs-navbar-color: #56b6c2;
+  font-size: 105%;
 }
 
 .navbar-custom {
