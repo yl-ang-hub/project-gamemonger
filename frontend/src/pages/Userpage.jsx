@@ -128,7 +128,11 @@ const Userpage = () => {
           <div>
             {queryUser.isSuccess && (
               <img
-                style={{ maxHeight: "200px" }}
+                style={{
+                  width: "200px",
+                  height: "200px",
+                  objectFit: "cover",
+                }}
                 src={queryUser.data.picture}
               />
             )}
