@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useFetch from "../hooks/useFetch";
 import styles from "./UserpageReviews.module.css";
 import { FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const UserpageReviews = (props) => {
   const authCtx = use(AuthCtx);
@@ -31,7 +32,13 @@ const UserpageReviews = (props) => {
   return (
     <>
       <div className="card">
-        <div className="card-header text-bg-dark">{props.gameName}</div>
+        <div className="card-header text-bg-dark">
+          <Link
+            to={`/gamepage/${props.rawgId}`}
+            className="text-reset text-decoration-none">
+            {props.gameName}
+          </Link>
+        </div>
         <div className="card-body">
           {/* Rating and Delete Comment button */}
           <div className="row">

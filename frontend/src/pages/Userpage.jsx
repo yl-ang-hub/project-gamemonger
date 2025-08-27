@@ -11,6 +11,7 @@ import UserpagePurchases from "../components/UserpagePurchases";
 import { FaTrash } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import { BiRename } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Userpage = () => {
   const queryClient = useQueryClient();
@@ -120,6 +121,7 @@ const Userpage = () => {
         />
       )}
 
+      {/* Show user's name and picture */}
       <div className="mt-3 mb-3">
         <div className="mx-2 my-2" id="userProfile">
           <div>
@@ -139,6 +141,7 @@ const Userpage = () => {
           </div>
         </div>
 
+        {/* Dropdown option to select one user's list */}
         <div className="mx-2 my-3" id="userLists">
           <label htmlFor="userlists">Select your list -</label>
           <select
@@ -158,7 +161,7 @@ const Userpage = () => {
             })}
           </select>
 
-          {/* List Names and Add/Edit/Delete buttons */}
+          {/* List Name & Add/Edit/Delete buttons */}
           <div
             className="card text-bg-light px-2 py-2"
             style={{ height: "600px" }}>
@@ -199,64 +202,75 @@ const Userpage = () => {
                 displayedListId !== "" &&
                 getDisplayedListGames(queryUserlists?.data).map((game) => {
                   return (
-                    <div
-                      className="card text-bg-light text-center my-1"
-                      key={game._id}>
-                      <div className="card-header text-bg-dark fw-bold">
-                        {game.name}
-                      </div>
+                    <Link
+                      key={game._id}
+                      to={`/gamepage/${game.rawgId}`}
+                      className="text-reset text-decoration-none">
+                      <div className="card text-bg-light text-center my-1">
+                        <div className="card-header text-bg-dark fw-bold">
+                          {game.name}
+                        </div>
+                        <div className="row px-1 py-2">
+                          <div className="col-sm-4" id="game-img">
+                            {game.screenshots.map((img, idx) => (
+                              <li key={idx}>
+                                <img
+                                  src={img}
+                                  style={{
+                                    maxHeight: "100%",
+                                    maxWidth: "120%",
+                                  }}
+                                />
+                              </li>
+                            ))}
+                          </div>
 
-                      <div className="row px-1 py-2">
-                        <div className="col-sm-4" id="game-img">
-                          {game.screenshots.map((img, idx) => (
-                            <li key={idx}>
-                              <img
-                                src={img}
-                                style={{ maxHeight: "100%", maxWidth: "120%" }}
+                          <div className="col-sm-1"> </div>
+
+                          <div className="col-sm-7" id="game-desc">
+                            <div className="row text-start fs-6">
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: game.description,
+                                }}
                               />
-                            </li>
-                          ))}
-                        </div>
-
-                        <div className="col-sm-1"> </div>
-
-                        <div className="col-sm-7" id="game-desc">
-                          <div className="row text-start fs-6">
-                            <span
-                              dangerouslySetInnerHTML={{
-                                __html: game.description,
-                              }}
-                            />
-                          </div>
-                          <div className="row">
-                            <button
-                              className="col-sm-1 offset-sm-10 btn btn-outline-danger mb-3"
-                              style={{ height: "50px", width: "50px" }}
-                              onClick={() => mutate.mutate(game._id)}>
-                              <FaTrash />
-                            </button>
-                            <br />
+                            </div>
+                            <div className="row">
+                              <button
+                                className="col-sm-1 offset-sm-10 btn btn-outline-danger mb-3"
+                                style={{ height: "50px", width: "50px" }}
+                                onClick={(event) => {
+                                  event.preventDefault();
+                                  mutate.mutate(game._id);
+                                }}>
+                                <FaTrash />
+                              </button>
+                              <br />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
           </div>
         </div>
 
-        <div className="card mx-2 my-2 px-2 py-2" id="userComments">
+        {/* User's purchases */}
+        <div className="card mx-2 my-2 px-2 py-2">
           <h3 className="fw-bold fs-2">Recent Purchases</h3>
           <UserpagePurchases />
         </div>
 
+        {/* User's reviews */}
         <div className="card mx-2 my-2 px-2 py-2" id="userComments">
           <h3 className="fw-bold fs-2">My Comments</h3>
           {queryUserReviews.isSuccess &&
             queryUserReviews.data.map((item) => {
               return (
                 <UserpageReviews
+                  rawgId={item.rawgId}
                   gameName={item.gameName}
                   reviewId={item._id}
                   review={item.review}
