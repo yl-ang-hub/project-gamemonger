@@ -18,13 +18,13 @@ export const seedUsers = async (req, res) => {
       {
         _id: "68a5b57a096821ed58028e84",
         username: "Shrek",
-        picture: "src/assets/images/userImg.jpg",
+        picture: "src/assets/images/shrek.jpg",
         hash,
       },
       {
         _id: "68a5b5db741c656f05f7e6dc",
         username: "Goofy",
-        picture: "src/assets/images/userImg.jpg",
+        picture: "src/assets/images/goofy.png",
         hash,
       },
     ]);
