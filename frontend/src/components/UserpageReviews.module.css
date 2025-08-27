@@ -1,0 +1,24 @@
+.rating {
+  direction: rtl; /* reverse order so CSS can cascade leftward */
+  unicode-bidi: bidi-override;
+  display: inline-flex;
+}
+
+.rating input {
+  display: none; /* hide radios */
+}
+
+.rating label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label {
+  color: gold;
+}
+
+/* .rating label:hover,
+.rating label:hover ~ label {
+  color: gold;
+} */
