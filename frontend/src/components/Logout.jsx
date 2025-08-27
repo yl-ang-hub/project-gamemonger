@@ -13,6 +13,8 @@ const Logout = () => {
     authCtx.setUserId("");
     authCtx.setUsername("");
     navigate("/homepage");
+    // to empty all states and contexts for next user
+    window.location.reload(true);
   }, []);
 
   return <></>;
