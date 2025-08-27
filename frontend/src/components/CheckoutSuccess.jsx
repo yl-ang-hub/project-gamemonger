@@ -9,18 +9,13 @@ const CheckoutSuccess = () => {
   const authCtx = use(AuthCtx);
 
   const retrieveSession = async () => {
-    console.log("running retrieveSession");
-    console.log(
-      "running retrieveSession and sessionId in localStorage is ",
-      localStorage.getItem("sessionId")
-    );
     const session = await fetchData(
       "/checkout",
       "POST",
       { sessionId: localStorage.getItem("sessionId") },
       authCtx.accessToken
     );
-    console.log("session is ", session);
+
     return session;
   };
 
@@ -30,17 +25,13 @@ const CheckoutSuccess = () => {
   });
 
   const savePurchase = async () => {
-    console.log(
-      "running savePurchase and sessionId in localStorage is ",
-      localStorage.getItem("sessionId")
-    );
     const res = await fetchData("/checkout/save", "PUT", {
       userId: authCtx.userId,
       checkoutSessionId: localStorage.getItem("sessionId"),
       amount: query.data.amount_total,
       items: query.data.line_items,
     });
-    console.log(JSON.stringify(res));
+
     return res;
   };
 

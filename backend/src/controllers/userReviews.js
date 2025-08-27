@@ -21,7 +21,6 @@ export const getAllReviews = async (req, res) => {
     const allReviews = await UserReviewModel.find().populate("userId");
     res.json(allReviews);
   } catch (error) {
-    console.error(error.message);
     res.status(400).send("an error has occured when getting all reviews");
   }
 };
@@ -33,7 +32,6 @@ export const getOneUserReviews = async (req, res) => {
     }).populate("userId");
     return res.json(oneUserReviews);
   } catch (error) {
-    console.error(error.message);
     res.status(400).send("an error has occured when getting one user reviews");
   }
 };
@@ -45,7 +43,6 @@ export const getOneGameReviews = async (req, res) => {
     }).populate("userId");
     return res.json(oneGameReviews);
   } catch (error) {
-    console.error(error.message);
     res.status(400).send("an error has occured when getting one game reviews");
   }
 };
@@ -56,10 +53,8 @@ export const deleteOneGameReviewByReviewId = async (req, res) => {
       _id: req.body.reviewId, // this is looking at reviewId or {reviewId: reviewId}?
       userId: req.body.userId,
     });
-    console.log(deleteOneGameReview);
     res.json({ status: "ok", msg: "Review delete successfully" });
   } catch (error) {
-    console.error(error.message);
     res
       .status(400)
       .send("an error has occured when deleting one game reviews by userId");

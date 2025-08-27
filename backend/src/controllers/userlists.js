@@ -5,7 +5,6 @@ export const getListsForUser = async (req, res) => {
     const listsOfUser = await Userlists.findOne({ userId: req.body.userId });
     res.json(listsOfUser?.lists);
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({ status: "error", msg: "cannot read from database" });
   }
 };
@@ -21,7 +20,6 @@ export const addList = async (req, res) => {
     await user.save();
     res.json({ status: "ok", msg: "list saved", details: user });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({ status: "error", msg: "list not created" });
   }
 };
@@ -34,7 +32,6 @@ export const renameList = async (req, res) => {
     await user.save();
     res.json({ status: "ok", msg: "list renamed", details: list });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({ status: "error", msg: "unable to rename list" });
   }
 };
@@ -48,7 +45,6 @@ export const deleteList = async (req, res) => {
     await user.save();
     res.json({ status: "ok", msg: "list delete", user });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({ status: "error", msg: "unable to delete list" });
   }
 };
@@ -63,12 +59,10 @@ export const addGame = async (req, res) => {
     };
     const user = await Userlists.findOne({ userId: req.body.userId });
     const list = user.lists.filter((list) => list._id == req.body.listId)[0];
-    console.log(list);
     list.games.push(newGame);
     await user.save();
     res.json({ status: "ok", msg: "game saved", details: list });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({ status: "error", msg: "Game not added" });
   }
 };
@@ -82,7 +76,6 @@ export const deleteGame = async (req, res) => {
     await user.save();
     res.json({ status: "ok", msg: "game deleted", details: list });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({ status: "error", msg: "Game not deleted" });
   }
 };
@@ -93,7 +86,6 @@ export const seedUsersListsGames = async (req, res) => {
     const response = await Userlists.create(usersAndUserlistsSeedData);
     res.json({ status: "ok", msg: "Seeding is successful", details: response });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({ status: "error", msg: "Seeding failed" });
   }
 };
@@ -104,8 +96,9 @@ export const getAllUsersAndList = async (req, res) => {
     const response = await Userlists.find();
     res.json({ status: "ok", msg: "successful", details: response });
   } catch (error) {
-    console.error(error.message);
-    res.status(400).json({ status: "error", msg: "Reading from database failed" });
+    res
+      .status(400)
+      .json({ status: "error", msg: "Reading from database failed" });
   }
 };
 

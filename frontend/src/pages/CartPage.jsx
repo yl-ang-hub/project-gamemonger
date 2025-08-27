@@ -11,14 +11,12 @@ const CartPage = () => {
   const navigate = useNavigate();
 
   const checkoutSession = async () => {
-    console.log("running checkoutSession fn");
     const session = await fetchData(
       "/checkout",
       "PUT",
       { cart: authCtx.cart },
       authCtx.accessToken
     );
-    console.log(JSON.stringify(session));
     return session;
   };
 

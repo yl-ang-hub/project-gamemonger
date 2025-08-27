@@ -10,8 +10,6 @@ const UserpageReviews = (props) => {
   const fetchData = useFetch();
 
   const deleteReview = async () => {
-    console.log("deleteReview");
-    console.log(authCtx.userId);
     const data = await fetchData(
       "/api/reviews",
       "DELETE",

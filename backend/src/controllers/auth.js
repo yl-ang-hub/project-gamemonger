@@ -7,7 +7,7 @@ import Userlists from "../models/Userlists.js";
 export const register = async (req, res) => {
   try {
     const duplicate = await Users.findOne({ username: req.body.username });
-    console.log(duplicate);
+
     if (duplicate) {
       return res.status(400).json("username has been used");
     }
@@ -18,7 +18,7 @@ export const register = async (req, res) => {
       username: req.body.username,
       hash,
     });
-    console.log(JSON.stringify(newUser));
+
     // Create default wishlist for new user
     await Userlists.create({
       userId: newUser._id,
@@ -26,7 +26,6 @@ export const register = async (req, res) => {
 
     res.json({ status: "ok", msg: "user registered" });
   } catch (e) {
-    console.error(e.message);
     res.status(400).json({ status: "error", msg: "user cannot be registered" });
   }
 };
@@ -58,7 +57,6 @@ export const login = async (req, res) => {
 
     res.json({ access, refresh });
   } catch (e) {
-    console.error(e.message);
     res.status(401).json({ status: "error", msg: "login failed" });
   }
 };
@@ -85,7 +83,6 @@ export const refresh = async (req, res) => {
 
     return res.json({ access });
   } catch (e) {
-    console.error(e.message);
     return res.status(401).json({ status: "error", msg: "unauthorised" });
   }
 };

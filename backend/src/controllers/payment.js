@@ -7,9 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SANDBOX_SECRET_KEY);
 
 export const createCheckoutSession = async (req, res) => {
   try {
-    console.log("running backend createCheckoutSession");
     const cart = req.body.cart;
-    console.log(cart);
+
     const lineItems = cart.map((item) => {
       return {
         price_data: {
@@ -22,7 +21,6 @@ export const createCheckoutSession = async (req, res) => {
         quantity: item.quantity,
       };
     });
-    console.log(lineItems);
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
@@ -31,13 +29,9 @@ export const createCheckoutSession = async (req, res) => {
       success_url: `http://localhost:5173/checkout/success`,
     });
 
-    console.log("gotten response from stripe");
-    console.log(JSON.stringify(session));
-
     // res.redirect(session.url);
     res.json(session);
   } catch (e) {
-    console.error(e.message);
     res
       .status(500)
       .json({ status: "error", msg: "error creating checkout session" });
@@ -47,10 +41,8 @@ export const createCheckoutSession = async (req, res) => {
 export const retrieveCheckoutSession = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(req.body.sessionId);
-    console.log("outcome of retrieveCheckoutSession", session);
     res.json(session);
   } catch (e) {
-    console.error(e.message);
     res
       .status(500)
       .json({ status: "error", msg: "error retrieving checkout session" });
@@ -63,7 +55,6 @@ export const saveSuccessfulPurchase = async (req, res) => {
       req.body.checkoutSessionId,
       { limit: 100 }
     );
-    console.log("sessionLineItems from stripe", sessionLineItems);
 
     const items = sessionLineItems.data.map((item) => {
       return {
@@ -73,7 +64,6 @@ export const saveSuccessfulPurchase = async (req, res) => {
         quantity: item.quantity,
       };
     });
-    console.log(JSON.stringify(items));
 
     // New purchase record
     const settledOrder = {
@@ -88,7 +78,6 @@ export const saveSuccessfulPurchase = async (req, res) => {
       sessionId: req.body.checkoutSessionId,
     });
     if (order) {
-      console.log("found existing order in db");
       await Purchases.findOneAndUpdate(
         { sessionId: req.body.checkoutSessionId },
         settledOrder
@@ -104,7 +93,6 @@ export const saveSuccessfulPurchase = async (req, res) => {
       items: sessionLineItems,
     });
   } catch (e) {
-    console.error(e.message);
     res
       .status(400)
       .json({ status: "error", msg: "error saving purchase to DB" });
