@@ -47,7 +47,6 @@ const Registration = () => {
             />
 
             <div>{register.isError && JSON.stringify(register.error)}</div>
-            {/* // TODO: Display error messages */}
           </div>
 
           <div className="card-body">
@@ -61,7 +60,6 @@ const Registration = () => {
               value={passwordInput}
               onChange={(event) => setPasswordInput(event.target.value)}
             />
-            {/* // TODO: Display error messages */}
           </div>
 
           <div className="card-body row">

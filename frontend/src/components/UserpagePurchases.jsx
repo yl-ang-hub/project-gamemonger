@@ -10,14 +10,12 @@ const UserpagePurchases = (props) => {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      console.log("Running");
       const purchases = fetchData(
         "/purchases",
         "POST",
         { userId: authCtx.userId },
         authCtx.accessToken
       );
-      console.log(JSON.stringify(purchases));
       return purchases;
     },
   });
@@ -45,7 +43,6 @@ const UserpagePurchases = (props) => {
           <div className="card-body">
             <div>Cost: ${item.cost}</div>
             <div>Purchased on: {getFormattedDate(item.purchased_date)}</div>
-            {/* <div>{item.quantity}</div> */}
           </div>
         </div>
       ))}

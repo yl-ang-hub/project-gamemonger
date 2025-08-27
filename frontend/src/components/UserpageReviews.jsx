@@ -12,7 +12,6 @@ const UserpageReviews = (props) => {
   const fetchData = useFetch();
 
   const deleteReview = async () => {
-    console.log(1);
     const data = await fetchData(
       "/api/review",
       "DELETE",
@@ -95,8 +94,7 @@ const UserpageReviews = (props) => {
               style={{ height: "50px", width: "50px" }}
               onClick={mutate.mutate}
               data-toggle="tooltip"
-              title="Delete my comment"
-            >
+              title="Delete my comment">
               <FaTrash />
             </button>
           </div>

@@ -41,15 +41,12 @@ const Loginpage = (props) => {
     retry: false,
   });
 
-  const refreshAccessToken = async () => {
-    const res = await fetchData(`/auth/refresh`, "POST", {
-      refresh: localStorage.getItem("refresh"),
-    });
-    return res;
-  };
-
-  const refreshMutate = useMutation({
-    mutationFn: refreshAccessToken,
+  const refreshAccessTokenMutation = useMutation({
+    mutationFn: async () => {
+      return await fetchData(`/auth/refresh`, "POST", {
+        refresh: localStorage.getItem("refresh"),
+      });
+    },
     onSuccess: (data) => {
       try {
         authCtx.setAccessToken(data.access);
@@ -59,14 +56,16 @@ const Loginpage = (props) => {
           authCtx.setUserId(decoded.id);
         }
         navigate("/user");
-      } catch (e) {}
+      } catch (e) {
+        console.error(e.message);
+      }
     },
   });
 
   useEffect(() => {
     // Auto login for users with refresh token in localStorage
     const refresh = localStorage.getItem("refresh");
-    if (refresh && refresh !== "undefined") refreshMutate.mutate();
+    if (refresh && refresh !== "undefined") refreshAccessTokenMutation.mutate();
   }, []);
 
   return (
@@ -90,7 +89,6 @@ const Loginpage = (props) => {
               onChange={(event) => setUsernameInput(event.target.value)}
             />
             {auth.isError && JSON.stringify(auth.error)}
-            {/* // TODO: Display error messages */}
           </div>
 
           <div className="card-body">
@@ -104,7 +102,6 @@ const Loginpage = (props) => {
               value={passwordInput}
               onChange={(event) => setPasswordInput(event.target.value)}
             />
-            {/* // TODO: Display error messages */}
           </div>
 
           <div className="card-body row">
@@ -117,8 +114,7 @@ const Loginpage = (props) => {
 
           <div
             className="card-body row text-center"
-            style={{ marginTop: "-20px" }}
-          >
+            style={{ marginTop: "-20px" }}>
             <Link to="/registration">Sign up</Link>
           </div>
         </div>

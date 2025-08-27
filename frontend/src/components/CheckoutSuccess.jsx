@@ -21,24 +21,20 @@ const CheckoutSuccess = () => {
         authCtx.setUserId(decoded.id);
       }
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     }
-    console.log("got refresh mutation res ", res);
+
     return res;
   };
 
   const retrieveSession = async () => {
-    console.log(
-      "testing the auth before running retrieveSession ",
-      authCtx.accessToken
-    );
     const session = await fetchData(
       "/checkout",
       "POST",
       { sessionId: localStorage.getItem("sessionId") },
       authCtx.accessToken
     );
-    console.log("refetching checkout sess ", JSON.stringify(session));
+
     return session;
   };
 
@@ -53,7 +49,6 @@ const CheckoutSuccess = () => {
   });
 
   const savePurchase = async () => {
-    console.log("running savepurchase");
     const res = await fetchData(
       "/checkout/save",
       "PUT",
@@ -79,7 +74,6 @@ const CheckoutSuccess = () => {
       queryCheckoutSession.data &&
       queryCheckoutSession.data?.status === "complete"
     ) {
-      console.log("hello, i am useEffect and query is success");
       saveMutation.mutate();
     }
   }, [queryCheckoutSession.data]);

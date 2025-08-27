@@ -52,11 +52,10 @@ const Homepage = () => {
             maxHeight: "600px",
             border: "2px solid #56b6c2",
             borderRadius: 10,
-          }}
-        >
+          }}>
           {query.isSuccess &&
             chunkedItems.map((chunk, chunkIndex) => (
-              <Row key={chunkIndex}>
+              <Row className="my-3" key={chunkIndex}>
                 {chunk.map((item) => (
                   <Col key={item.id} md={4}>
                     <Games

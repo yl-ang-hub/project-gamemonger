@@ -83,8 +83,7 @@ const SearchGames = () => {
           setCurrentPage(0);
         }}
         className={`col-md-3 ${css.Button}`}
-        style={{ display: "none" }}
-      >
+        style={{ display: "none" }}>
         Search Games
       </button>
 
@@ -97,11 +96,10 @@ const SearchGames = () => {
             maxHeight: "600px",
             border: "2px solid #56b6c2",
             borderRadius: 10,
-          }}
-        >
+          }}>
           {search.isSuccess &&
             chunkedItems.map((chunk, chunkIndex) => (
-              <Row key={chunkIndex}>
+              <Row className="my-3" key={chunkIndex}>
                 {chunk.map((item) => (
                   <Col key={item.id} md={4}>
                     <Games
