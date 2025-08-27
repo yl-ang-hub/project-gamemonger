@@ -23,30 +23,34 @@ const NavBar = () => {
       <br />
       <nav
         className="navbar navbar-expand-lg navbar-custom"
-        style={{ border: "2px solid #56b6c2", borderRadius: 10 }}>
+        style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" style={{ color: "#56b6c2" }} href="#">
             Gamemonger
           </a>
           <button
-            className={`navbar-toggler ${styles.toggleButton}`}
+            className={`navbar-toggler ${styles.toggleButton} `}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
-            aria-label="Toggle navigation">
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
             className="collapse navbar-collapse navbar-customs"
-            id="navbarNav">
-            <ul className="navbar-nav" style={{ color: "#56b6c2" }}>
+            id="navbarNav"
+          >
+            <ul className="navbar-nav me-auto" style={{ color: "#56b6c2" }}>
               <li className="nav-item">
                 <Link
                   className="nav-link"
                   style={{ color: "#56b6c2" }}
-                  to="/homepage">
+                  to="/homepage"
+                >
                   All Games
                 </Link>
               </li>
@@ -59,7 +63,8 @@ const NavBar = () => {
                 <Link
                   className="nav-link"
                   style={{ color: "#56b6c2" }}
-                  to="/search">
+                  to="/search"
+                >
                   Search Games
                 </Link>
               </li>
@@ -69,7 +74,8 @@ const NavBar = () => {
                     <Link
                       className="nav-link"
                       style={{ color: "#56b6c2" }}
-                      to="/user">
+                      to="/user"
+                    >
                       User
                     </Link>
                   </li>
@@ -78,7 +84,8 @@ const NavBar = () => {
                     <Link
                       className="nav-link"
                       style={{ color: "#56b6c2" }}
-                      to="/cart">
+                      to="/cart"
+                    >
                       Cart
                     </Link>
                   </li>
@@ -87,7 +94,8 @@ const NavBar = () => {
                     <Link
                       className="nav-link"
                       style={{ color: "#56b6c2" }}
-                      to="/logout">
+                      to="/logout"
+                    >
                       Logout
                     </Link>
                   </li>
@@ -95,7 +103,11 @@ const NavBar = () => {
               )}
               {!isAuthenticated && (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">
+                  <Link
+                    className="nav-link"
+                    style={{ color: "#56b6c2" }}
+                    to="/login"
+                  >
                     Login
                   </Link>
                 </li>
@@ -115,7 +127,8 @@ const NavBar = () => {
                 className={`btn ${styles.searchButton}`}
                 type="submit"
                 onClick={doSearch}
-                style={{ color: "#56b6c2" }}>
+                style={{ color: "#56b6c2" }}
+              >
                 Search
               </button>
             </form>

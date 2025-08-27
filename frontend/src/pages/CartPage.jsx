@@ -4,6 +4,7 @@ import { use } from "react";
 import { useMutation } from "@tanstack/react-query";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import styles from "../components/ListModal.module.css";
 
 const CartPage = () => {
   const fetchData = useFetch();
@@ -29,19 +30,29 @@ const CartPage = () => {
   });
 
   return (
-    <div className="card" style={{ maxWidth: "34%" }}>
-      <h3>Your Cart</h3>
-      <ul>
-        {authCtx.cart.map((item, index) => (
-          <li key={index}>
-            {item.name} – ${item.price} × {item.quantity}
-          </li>
-        ))}
-      </ul>
-      <button type="submit" onClick={mutate.mutate}>
-        Check out
-      </button>
-    </div>
+    <>
+      <br />
+      <div
+        className="card"
+        style={{
+          backgroundColor: "#282c34",
+          color: "#e5c07b",
+          maxWidth: "34%",
+        }}
+      >
+        <h3>Your Cart</h3>
+        <ul>
+          {authCtx.cart.map((item, index) => (
+            <li key={index}>
+              {item.name} – ${item.price} × {item.quantity}
+            </li>
+          ))}
+        </ul>
+        <button className={styles.Button} type="submit" onClick={mutate.mutate}>
+          Check out
+        </button>
+      </div>
+    </>
   );
 };
 

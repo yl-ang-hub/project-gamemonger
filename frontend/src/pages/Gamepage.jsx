@@ -10,6 +10,7 @@ import GamePageReviews from "../components/GamePageReviews";
 import styles from "./Gamepage.module.css";
 // install npm i react-icons
 import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
 
 const Gamepage = () => {
   const authCtx = use(AuthCtx);
@@ -139,139 +140,165 @@ const Gamepage = () => {
 
       <div className="container border border-dark">
         <div>
-          <div className="container border border-primary">
-            <br />
-            {queryGameDetail.isSuccess && (
-              <div className=" d-flex">
-                <div className="container border border-info">
-                  <br />
-                  <h1 className="border border-dark">
-                    {queryGameDetail.data?.name}
-                  </h1>
-                  <img
-                    className="img-fluid"
-                    alt={queryGameDetail.data?.name}
-                    src={queryGameDetail.data?.background_image}
-                  />
-
-                  <div className={styles.carousel}>
-                    <BsArrowLeftCircleFill
-                      className={`${styles.arrow} ${styles.arrowLeft}`}
-                      onClick={prevSlide}
-                    />
-                    {queryGameScreenShots.isSuccess &&
-                      queryGameScreenShots.data.results.map((item, idx) => {
-                        return (
-                          <img
-                            src={item.image}
-                            alt={queryGameDetail.data?.name}
-                            key={idx}
-                            className={
-                              slide === idx ? styles.slide : styles.slideHidden
-                            }
-                          />
-                        );
-                      })}
-                    <BsArrowRightCircleFill
-                      className={`${styles.arrow} ${styles.arrowRight}`}
-                      onClick={nextSlide}
-                    />
-                    <span className={styles.indicators}>
-                      {queryGameScreenShots.isSuccess &&
-                        queryGameScreenShots.data.results.map((_, idx) => {
-                          return (
-                            <button
-                              className={
-                                slide === idx
-                                  ? styles.indicator
-                                  : `${styles.indicator} ${styles.indicatorInactive}`
-                              }
-                              key={idx}
-                              onClick={() => setSlide(idx)}
-                            ></button>
-                          );
-                        })}
-                    </span>
-                  </div>
-                  <br />
-                </div>
-                <div className="container border border-danger">
-                  <br />
-                  <div className="border border-dark">
-                    <div className="border border-primary">
-                      Price: $${queryGameDetail.data?.price}
+          <br />
+          <div
+            className="container"
+            style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
+          >
+            <div className="container">
+              <br />
+              {queryGameDetail.isSuccess && (
+                <div className=" d-flex">
+                  <div className="container">
+                    <br />
+                    <div className="d-flex justify-content-between align-items-center">
+                      <div style={{ fontSize: "2rem" }}>
+                        {queryGameDetail.data?.name}
+                      </div>
                       <button
-                        className="btn btn-primary"
-                        onClick={handleAddToCart}
-                      >
-                        Add to Cart
-                      </button>
-                    </div>
-                    <div className="border border-secondary">
-                      <button
-                        className="btn btn-primary"
+                        className={styles.actionButton2}
                         onClick={() => setShowAddGameToListModal(true)}
                       >
-                        Add to my list
+                        <FaHeart className="d-flex align-items-centers" />
                       </button>
                     </div>
+                    <img
+                      className="img-fluid"
+                      alt={queryGameDetail.data?.name}
+                      src={queryGameDetail.data?.background_image}
+                    />
+
+                    <div className={styles.carousel}>
+                      <BsArrowLeftCircleFill
+                        className={`${styles.arrow} ${styles.arrowLeft}`}
+                        onClick={prevSlide}
+                      />
+                      {queryGameScreenShots.isSuccess &&
+                        queryGameScreenShots.data.results.map((item, idx) => {
+                          return (
+                            <img
+                              src={item.image}
+                              alt={queryGameDetail.data?.name}
+                              key={idx}
+                              className={
+                                slide === idx
+                                  ? styles.slide
+                                  : styles.slideHidden
+                              }
+                            />
+                          );
+                        })}
+                      <BsArrowRightCircleFill
+                        className={`${styles.arrow} ${styles.arrowRight}`}
+                        onClick={nextSlide}
+                      />
+                      <span className={styles.indicators}>
+                        {queryGameScreenShots.isSuccess &&
+                          queryGameScreenShots.data.results.map((_, idx) => {
+                            return (
+                              <button
+                                className={
+                                  slide === idx
+                                    ? styles.indicator
+                                    : `${styles.indicator} ${styles.indicatorInactive}`
+                                }
+                                key={idx}
+                                onClick={() => setSlide(idx)}
+                              ></button>
+                            );
+                          })}
+                      </span>
+                    </div>
+                    <br />
                   </div>
-                  <div className="border border-warning">
-                    <div>Released Date: {queryGameDetail.data?.released}</div>
-                    <div>Rating: {queryGameDetail.data?.rating}/5</div>
-                    <div>
-                      Esrb Rating: {queryGameDetail.data?.esrb_rating?.name}
+                  <div
+                    className="p-2"
+                    // style={{ border: "1px solid #e5c07b", borderRadius: 10 }}
+                  >
+                    <br />
+
+                    <div className="container d-flex justify-content-between align-items-center">
+                      <span>
+                        <span style={{ color: "#e5c07b" }}>Price:</span> $
+                        {queryGameDetail.data?.price}
+                      </span>
+                      <button
+                        className={`d-flex align-items-center ${styles.actionButton}`}
+                        onClick={handleAddToCart}
+                      >
+                        <FaShoppingCart className="d-flex align-items-centers" />
+                      </button>
                     </div>
-                    <div>
-                      {" "}
-                      Genres:{" "}
-                      {queryGameDetail.data?.genres?.length > 0
-                        ? queryGameDetail.data.genres[0].name
-                        : "N/A"}
-                    </div>
-                    <div>
-                      Platforms:{" "}
-                      {queryGameDetail.data?.parent_platforms?.map(
-                        (item, index) => {
+
+                    <div className="container">
+                      <div>
+                        <span style={{ color: "#e5c07b" }}>Released Date:</span>{" "}
+                        {queryGameDetail.data?.released}
+                      </div>
+                      <div>
+                        <span style={{ color: "#e5c07b" }}>Rating: </span>
+                        {queryGameDetail.data?.rating}/5
+                      </div>
+                      <div>
+                        <span style={{ color: "#e5c07b" }}>Esrb Rating: </span>
+                        {queryGameDetail.data?.esrb_rating?.name}
+                      </div>
+                      <div>
+                        <span style={{ color: "#e5c07b" }}>Genres: </span>
+                        {queryGameDetail.data?.genres?.length > 0
+                          ? queryGameDetail.data.genres[0].name
+                          : "N/A"}
+                      </div>
+                      <div>
+                        <span style={{ color: "#e5c07b" }}>Platforms: </span>
+                        {queryGameDetail.data?.parent_platforms?.map(
+                          (item, index) => {
+                            return (
+                              <div
+                                className="badge bg-secondary me-1"
+                                key={index}
+                              >
+                                {item.platform.name}
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                      <div>
+                        <span style={{ color: "#e5c07b" }}>Stores: </span>
+                        {queryGameDetail.data?.stores?.map((item, index) => {
                           return (
                             <div
                               className="badge bg-secondary me-1"
                               key={index}
                             >
-                              {item.platform.name}
+                              {item.store.name}
                             </div>
                           );
-                        }
-                      )}
+                        })}
+                      </div>
+                      <div>
+                        <span style={{ color: "#e5c07b" }}>Developers: </span>
+                        {queryGameDetail.data?.developers?.map(
+                          (item, index) => {
+                            return (
+                              <div
+                                className="badge bg-secondary me-1"
+                                key={index}
+                              >
+                                {item.name}
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      Stores:{" "}
-                      {queryGameDetail.data?.stores?.map((item, index) => {
-                        return (
-                          <div className="badge bg-secondary me-1" key={index}>
-                            {item.store.name}
-                          </div>
-                        );
-                      })}
-                    </div>
-                    <div>
-                      Developers:{" "}
-                      {queryGameDetail.data?.developers?.map((item, index) => {
-                        return (
-                          <div className="badge bg-secondary me-1" key={index}>
-                            {item.name}
-                          </div>
-                        );
-                      })}
-                    </div>
+                    <br />
                   </div>
-                  <br />
                 </div>
-              </div>
-            )}
-            <br />
-
-            <div className="border border-warning">
+              )}
+            </div>
+            <div className="container" style={{ borderRadius: 10 }}>
               {queryGameTrailers.isSuccess &&
                 Array.isArray(queryGameTrailers.data?.results) &&
                 queryGameTrailers.data.results.length > 0 && (
@@ -315,14 +342,16 @@ const Gamepage = () => {
                   </div>
                 )}
             </div>
+            <br />
           </div>
           <br />
           {queryGameDetail.isSuccess && (
             <div
-              className={`container d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white border border-danger`}
+              className={`container d-flex flex-wrap gap-2 p-2 overflow-auto ${styles.scrollWhite}`}
               style={{
                 maxHeight: "300px",
-                borderRadius: "5px",
+                border: "2px solid #56b6c2",
+                borderRadius: 10,
               }}
             >
               <div> This is {queryGameDetail.data?.name}.</div>
@@ -336,9 +365,12 @@ const Gamepage = () => {
         </div>
 
         <br />
-        <div className="container border border-primary">
+        <div
+          className="container"
+          style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
+        >
           <br />
-          <div className="container border border-danger">
+          <div className="container">
             <form>
               <div>Rate this game:</div>
               <fieldset
@@ -361,17 +393,19 @@ const Gamepage = () => {
                 <label htmlFor="star1">★</label>
               </fieldset>
             </form>
-            <input
-              ref={reviewRef}
-              className="col-sm-10"
-              placeholder="User's review"
-            ></input>
-            <button className="btn btn-primary" onClick={mutate.mutate}>
-              Submit
-            </button>
+            <div className="d-flex justify-content-between align-items-center gap-2">
+              <input
+                ref={reviewRef}
+                className={`col-sm-10 ${styles.reviewInput}`}
+                placeholder="User's review"
+              ></input>
+              <button className={styles.reviewButton} onClick={mutate.mutate}>
+                Submit
+              </button>
+            </div>
           </div>
           <br />
-          <div className="container border border-danger">
+          <div className="container ">
             {queryUserReviews.isSuccess &&
               queryUserReviews.data?.map((item) => {
                 return (

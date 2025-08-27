@@ -4,7 +4,7 @@
   padding: 0;
   justify-content: center;
   gap: 8px; /* space between page numbers */
-  margin-top: 32px; /* add space above pagination */
+  margin-top: 32px;
 }
 
 .pagination li {
@@ -12,16 +12,48 @@
 }
 
 .pagination li a {
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  color: #007bff;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  border: 2px solid #56b6c2; /* same as reviewButton */
+  color: #56b6c2 !important;
+  background-color: transparent;
+  transition: all 0.3s ease;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.pagination li a:hover,
+.pagination li a:focus {
+  color: white !important;
+  background-color: #56b6c2 !important;
+  border-color: #56b6c2 !important;
+  box-shadow: none !important;
 }
 
 .pagination li.active a {
-  background-color: #007bff;
-  color: white;
-  border: 1px solid #007bff;
+  color: white !important;
+  background-color: #56b6c2 !important;
+  border: 2px solid #56b6c2 !important;
+}
+
+.scrollWhite {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #56b6c2 transparent; /* thumb + track */
+}
+
+/* Chrome, Edge, Safari */
+.scrollWhite::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollWhite::-webkit-scrollbar-track {
+  background: transparent; /* scrollbar track */
+}
+
+.scrollWhite::-webkit-scrollbar-thumb {
+  background-color: #56b6c2; /* scrollbar thumb */
+  border-radius: 10px;
 }

@@ -3,6 +3,8 @@ import useFetch from "../hooks/useFetch";
 import { use } from "react";
 import AuthCtx from "../context/authContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import styles from "./GamePageReviews.module.css";
+import { FaTrash } from "react-icons/fa";
 
 const GamePageReviews = (props) => {
   const fetchData = useFetch();
@@ -29,14 +31,38 @@ const GamePageReviews = (props) => {
 
   return (
     <>
-      <div className="container justify-content-between border border-dark">
-        <div>{props.username}</div>
-        <div className="border border-warning">{props.rawgId}</div>
-        <div className="border border-primary">Rating: {props.rating}</div>
-        <div className="border border-info">{props.review}</div>
-        <button onClick={mutate.mutate}>Delete</button>
+      <div
+        className="container d-flex justify-content-between align-items-baseline"
+        style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
+      >
+        <div className="d-flex gap-3 align-items-baseline flex-grow-1">
+          <div>{props.username}'s review:</div>
+          <div>
+            Rating:{" "}
+            {[...Array(5)].map((_, idx) => (
+              <span
+                key={idx}
+                style={{
+                  color: idx < props.rating ? "gold" : "#ccc",
+                  fontSize: "1.5rem",
+                }}
+              >
+                ★
+              </span>
+            ))}
+          </div>
+
+          <div>
+            "<em>{props.review}</em>"
+          </div>
+        </div>
+        <button className={styles.reviewButton} onClick={mutate.mutate}>
+          <FaTrash />
+        </button>
         <br />
       </div>
+
+      <br />
     </>
   );
 };
