@@ -49,21 +49,41 @@ const CheckoutSuccess = () => {
   }, [query.data]);
 
   return (
-    <div>
-      <h3>
+    <div
+      className="card mx-auto border-0 mt-5"
+      style={{
+        backgroundColor: "#282c34",
+        color: "#e5c07b",
+        maxWidth: "70%",
+      }}>
+      <h3 className="text-center">
         {query.isSuccess && query.data?.status === "complete"
           ? "Purchase Success"
           : "Purchase Failed"}
       </h3>
-      <ul className="list-unstyled">
-        {mutate.isSuccess &&
-          mutate.data?.items?.data?.map((item, index) => (
-            <li key={index}>
-              {item.description} – ${item.amount_total / 100} × {item.quantity}
-            </li>
-          ))}
-        <li className="fw-bold">Total - ${query.data?.amount_total / 100}</li>
-      </ul>
+      <div>
+        <div className="my-4 align-items-center">
+          <div className="row mb-4">
+            <div className="col-sm-6">Game</div>
+            <div className="col-sm-4">Price</div>
+            <div className="col-sm-2">Quantity</div>
+          </div>
+
+          {mutate.isSuccess &&
+            mutate.data?.items?.data?.map((item, idx) => (
+              <div className="row" key={idx}>
+                <div className="col-sm-6">{item.description} </div>
+                <div className="col-sm-4">${item.amount_total / 100}</div>
+                <div className="col-sm-2">{item.quantity}</div>
+              </div>
+            ))}
+        </div>
+        <hr />
+        <div className="row fw-bold">
+          <div className="col-sm-6">Total</div>
+          <div className="col-sm-6">${query.data?.amount_total / 100}</div>
+        </div>
+      </div>
     </div>
   );
 };
