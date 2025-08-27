@@ -38,3 +38,19 @@
   background-color: #56b6c2 !important;
   border-color: #56b6c2 !important;
 }
+
+.toggleButton {
+  border: 2px solid #56b6c2 !important;
+  color: #56b6c2 !important;
+  background-color: transparent !important;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.toggleButton:hover,
+.toggleButton:focus,
+.toggleButton:active {
+  background-color: #56b6c2 !important;
+  color: white !important;
+  border-color: #56b6c2 !important;
+}

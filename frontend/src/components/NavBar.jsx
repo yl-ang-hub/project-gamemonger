@@ -30,7 +30,7 @@ const NavBar = () => {
             Gamemonger
           </a>
           <button
-            className="navbar-toggler"
+            className={`navbar-toggler ${styles.toggleButton}`}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
