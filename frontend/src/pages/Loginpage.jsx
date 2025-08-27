@@ -29,7 +29,6 @@ const Loginpage = (props) => {
       }
       navigate("/user");
     } catch (e) {
-      console.error(e.message);
       throw "A login error has occurred";
     }
     return true;
@@ -43,7 +42,6 @@ const Loginpage = (props) => {
   });
 
   const refreshAccessToken = async () => {
-    console.log("running");
     const res = await fetchData(`/auth/refresh`, "POST", {
       refresh: localStorage.getItem("refresh"),
     });
@@ -54,7 +52,6 @@ const Loginpage = (props) => {
     mutationFn: refreshAccessToken,
     onSuccess: (data) => {
       try {
-        console.log("running");
         authCtx.setAccessToken(data.access);
         const decoded = jwtDecode(data.access);
         if (decoded) {
@@ -62,16 +59,13 @@ const Loginpage = (props) => {
           authCtx.setUserId(decoded.id);
         }
         navigate("/user");
-      } catch (e) {
-        console.error(e.message);
-      }
+      } catch (e) {}
     },
   });
 
   useEffect(() => {
     // Auto login for users with refresh token in localStorage
     const refresh = localStorage.getItem("refresh");
-    console.log(refresh);
     if (refresh && refresh !== "undefined") refreshMutate.mutate();
   }, []);
 
@@ -120,7 +114,8 @@ const Loginpage = (props) => {
 
         <div
           className="card-body row text-center"
-          style={{ marginTop: "-20px" }}>
+          style={{ marginTop: "-20px" }}
+        >
           <Link to="/registration">Sign up</Link>
         </div>
       </div>

@@ -8,10 +8,6 @@ import {
 import Games from "../models/Games.js";
 
 export const getGames = async (req, res) => {
-  console.log("[DEBUG] getGames called", {
-    url: req.originalUrl,
-    method: req.method,
-  });
   try {
     const data = await fetchData("/games", "GET", undefined, undefined);
 
@@ -22,12 +18,6 @@ export const getGames = async (req, res) => {
 };
 
 export const getGamesPaginated = async (req, res) => {
-  console.log("Requested URL:", req.originalUrl);
-  console.log("[DEBUG] getGamesPaginated called", {
-    url: req.originalUrl,
-    method: req.method,
-    page: req.query.page,
-  });
   try {
     const data = await fetchDataWithParams2("/games", "GET", undefined, {
       page: req.query.page,
@@ -40,11 +30,6 @@ export const getGamesPaginated = async (req, res) => {
 };
 
 export const searchGames = async (req, res) => {
-  console.log("[DEBUG] searchGames called", {
-    url: req.originalUrl,
-    method: req.method,
-    query: req.body.query,
-  });
   try {
     const data = await fetchDataWithParams(
       "/games",
@@ -60,13 +45,6 @@ export const searchGames = async (req, res) => {
 };
 
 export const searchGamesPaginated = async (req, res) => {
-  console.log("[DEBUG] searchGamesPaginated called", {
-    url: req.originalUrl,
-    method: req.method,
-    page: req.params.page,
-    query: req.params.query,
-  });
-
   try {
     const data = await fetchDataWithParams2("/games", "GET", undefined, {
       page: req.query.page,

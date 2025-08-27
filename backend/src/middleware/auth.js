@@ -11,11 +11,9 @@ export const auth = (req, res, next) => {
       if (decoded) req.decoded = decoded;
       next();
     } catch (e) {
-      console.error(e.message);
       return res.status(401).json({ status: "error", msg: "unauthorised" });
     }
   } else {
-    console.error("missing token");
     return res.status(403).json({ status: "error", msg: "missing token" });
   }
 };

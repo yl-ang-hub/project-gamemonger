@@ -26,7 +26,6 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const refreshAccessToken = async () => {
-    console.log("running");
     const res = await fetchData(`/auth/refresh`, "POST", {
       refresh: localStorage.getItem("refresh"),
     });
@@ -37,23 +36,20 @@ function App() {
     mutationFn: refreshAccessToken,
     onSuccess: (data) => {
       try {
-        console.log("running");
         setAccessToken(data.access);
         const decoded = jwtDecode(data.access);
         if (decoded) {
           setUsername(decoded.username);
           setUserId(decoded.id);
         }
-      } catch (e) {
-        console.error(e.message);
-      }
+      } catch (e) {}
     },
   });
 
   useEffect(() => {
     // Auto login for users with refresh token in localStorage
     const refresh = localStorage.getItem("refresh");
-    console.log(refresh);
+
     if (refresh && refresh !== "undefined") refreshMutate.mutate();
   }, []);
 
@@ -70,7 +66,8 @@ function App() {
             setUserId,
             cart,
             setCart,
-          }}>
+          }}
+        >
           <NavBar />
           <Routes>
             <Route path="/" element={<Navigate to="/homepage" replace />} />

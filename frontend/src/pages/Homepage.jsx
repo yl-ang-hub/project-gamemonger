@@ -17,7 +17,7 @@ const Homepage = () => {
 
   const params = new URLSearchParams({ page: currentPage + 1 });
   let curURI = `/api/games?${params.toString()}`;
-  console.log(curURI);
+
   const itemsPerPage = 20; // Number of items per page
 
   const getGames = async () => {

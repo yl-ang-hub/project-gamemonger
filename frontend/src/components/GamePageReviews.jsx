@@ -10,8 +10,6 @@ const GamePageReviews = (props) => {
   const queryClient = useQueryClient();
 
   const deleteReview = async () => {
-    console.log("deleteReview");
-    console.log(props.rawgId);
     const data = await fetchData(
       "/api/reviews",
       "DELETE",
@@ -25,7 +23,6 @@ const GamePageReviews = (props) => {
   const mutate = useMutation({
     mutationFn: deleteReview,
     onSuccess: () => {
-      console.log(1);
       queryClient.invalidateQueries(["userReviews", props.rawgId]);
     },
   });
