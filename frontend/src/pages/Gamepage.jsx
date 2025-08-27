@@ -8,9 +8,9 @@ import { use } from "react";
 import AddGameToListModal from "../components/AddGameToListModal";
 import GamePageReviews from "../components/GamePageReviews";
 import styles from "./Gamepage.module.css";
-// install npm i react-icons
 import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from "react-icons/bs";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import CartAddModal from "../components/CartAddModal";
 
 const Gamepage = () => {
   const authCtx = use(AuthCtx);
@@ -18,6 +18,7 @@ const Gamepage = () => {
   const fetchData = useFetch();
   const queryClient = useQueryClient();
   const [showAddGameToListModal, setShowAddGameToListModal] = useState(false);
+  const [showAddToCartModal, setShowAddToCartModal] = useState(false);
   const reviewRef = useRef("");
   const [rating, setRating] = useState("");
   const [slide, setSlide] = useState(0);
@@ -127,6 +128,7 @@ const Gamepage = () => {
       });
       return newCart;
     });
+    setShowAddToCartModal(true);
   };
 
   return (
@@ -138,13 +140,16 @@ const Gamepage = () => {
         />
       )}
 
+      {showAddToCartModal && (
+        <CartAddModal setShowAddToCartModal={setShowAddToCartModal} />
+      )}
+
       <div className="container border border-dark">
         <div>
           <br />
           <div
             className="container"
-            style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
-          >
+            style={{ border: "2px solid #56b6c2", borderRadius: 10 }}>
             <div className="container">
               <br />
               {queryGameDetail.isSuccess && (
@@ -157,8 +162,7 @@ const Gamepage = () => {
                       </div>
                       <button
                         className={styles.actionButton2}
-                        onClick={() => setShowAddGameToListModal(true)}
-                      >
+                        onClick={() => setShowAddGameToListModal(true)}>
                         <FaHeart className="d-flex align-items-centers" />
                       </button>
                     </div>
@@ -203,8 +207,7 @@ const Gamepage = () => {
                                     : `${styles.indicator} ${styles.indicatorInactive}`
                                 }
                                 key={idx}
-                                onClick={() => setSlide(idx)}
-                              ></button>
+                                onClick={() => setSlide(idx)}></button>
                             );
                           })}
                       </span>
@@ -224,8 +227,7 @@ const Gamepage = () => {
                       </span>
                       <button
                         className={`d-flex align-items-center ${styles.actionButton}`}
-                        onClick={handleAddToCart}
-                      >
+                        onClick={handleAddToCart}>
                         <FaShoppingCart className="d-flex align-items-centers" />
                       </button>
                     </div>
@@ -256,8 +258,7 @@ const Gamepage = () => {
                             return (
                               <div
                                 className="badge bg-secondary me-1"
-                                key={index}
-                              >
+                                key={index}>
                                 {item.platform.name}
                               </div>
                             );
@@ -270,8 +271,7 @@ const Gamepage = () => {
                           return (
                             <div
                               className="badge bg-secondary me-1"
-                              key={index}
-                            >
+                              key={index}>
                               {item.store.name}
                             </div>
                           );
@@ -284,8 +284,7 @@ const Gamepage = () => {
                             return (
                               <div
                                 className="badge bg-secondary me-1"
-                                key={index}
-                              >
+                                key={index}>
                                 {item.name}
                               </div>
                             );
@@ -334,8 +333,7 @@ const Gamepage = () => {
                                 : `${styles.indicator} ${styles.indicatorInactive}`
                             }
                             key={idx}
-                            onClick={() => setSlide(idx)}
-                          ></button>
+                            onClick={() => setSlide(idx)}></button>
                         );
                       })}
                     </span>
@@ -352,14 +350,12 @@ const Gamepage = () => {
                 maxHeight: "300px",
                 border: "2px solid #56b6c2",
                 borderRadius: 10,
-              }}
-            >
+              }}>
               <div> This is {queryGameDetail.data?.name}.</div>
               <div
                 dangerouslySetInnerHTML={{
                   __html: queryGameDetail.data?.description,
-                }}
-              ></div>
+                }}></div>
             </div>
           )}
         </div>
@@ -367,16 +363,14 @@ const Gamepage = () => {
         <br />
         <div
           className="container"
-          style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
-        >
+          style={{ border: "2px solid #56b6c2", borderRadius: 10 }}>
           <br />
           <div className="container">
             <form>
               <div>Rate this game:</div>
               <fieldset
                 className={styles.rating}
-                onChange={(e) => setRating(e.target.value)}
-              >
+                onChange={(e) => setRating(e.target.value)}>
                 <input type="radio" id="star5" name="rating" value="5" />
                 <label htmlFor="star5">★</label>
 
@@ -397,8 +391,7 @@ const Gamepage = () => {
               <input
                 ref={reviewRef}
                 className={`col-sm-10 ${styles.reviewInput}`}
-                placeholder="User's review"
-              ></input>
+                placeholder="User's review"></input>
               <button className={styles.reviewButton} onClick={mutate.mutate}>
                 Submit
               </button>
