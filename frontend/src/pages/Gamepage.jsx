@@ -214,12 +214,8 @@ const Gamepage = () => {
                     </div>
                     <br />
                   </div>
-                  <div
-                    className="p-2"
-                    // style={{ border: "1px solid #e5c07b", borderRadius: 10 }}
-                  >
+                  <div className="p-2">
                     <br />
-
                     <div className="container d-flex justify-content-between align-items-center">
                       <span>
                         <span style={{ color: "#e5c07b" }}>Price:</span> $
