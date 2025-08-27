@@ -29,8 +29,6 @@ const GamePageReviews = (props) => {
 
   return (
     <>
-      <div>AuthCtx.userId: {authCtx.userId}</div>
-      <div>props.userId: {JSON.stringify(props.userId)}</div>
       <div className="container justify-content-between border border-dark">
         <div>{props.username}</div>
         <div className="border border-warning">{props.rawgId}</div>

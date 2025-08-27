@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { use, useRef } from "react";
 import AuthCtx from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import styles from "./NavBar.module.css";
 
 const NavBar = () => {
   const authCtx = use(AuthCtx);
@@ -18,85 +19,118 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Gamemonger
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/homepage">
-                All Games
-              </Link>
-            </li>
-            {/* <li className="nav-item">
+    <>
+      <br />
+      <nav
+        className="navbar navbar-expand-lg navbar-custom"
+        style={{ border: "2px solid #56b6c2", borderRadius: 10 }}
+      >
+        <div className="container-fluid ">
+          <a className="navbar-brand" style={{ color: "#56b6c2" }} href="#">
+            Gamemonger
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse navbar-customs"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav" style={{ color: "#56b6c2" }}>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  style={{ color: "#56b6c2" }}
+                  to="/homepage"
+                >
+                  All Games
+                </Link>
+              </li>
+              {/* <li className="nav-item">
               <Link className="nav-link" to="/gamepage">
                 Game
               </Link>
             </li> */}
-            <li className="nav-item">
-              <Link className="nav-link" to="/search">
-                Search Games
-              </Link>
-            </li>
-            {isAuthenticated && (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/user">
-                    User
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/cart">
-                    Cart
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link className="nav-link" to="/logout">
-                    Logout
-                  </Link>
-                </li>
-              </>
-            )}
-            {!isAuthenticated && (
               <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
+                <Link
+                  className="nav-link"
+                  style={{ color: "#56b6c2" }}
+                  to="/search"
+                >
+                  Search Games
                 </Link>
               </li>
-            )}
-          </ul>{" "}
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              ref={nameRef}
-            />
-            <button
-              className="btn btn-outline-success"
-              type="submit"
-              onClick={doSearch}>
-              Search
-            </button>
-          </form>
+              {isAuthenticated && (
+                <>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      style={{ color: "#56b6c2" }}
+                      to="/user"
+                    >
+                      User
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      style={{ color: "#56b6c2" }}
+                      to="/cart"
+                    >
+                      Cart
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      style={{ color: "#56b6c2" }}
+                      to="/logout"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </>
+              )}
+              {!isAuthenticated && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
+              )}
+            </ul>{" "}
+            <form className="d-flex" role="search">
+              <input
+                className={`form-control me-2 ${styles.searchInput}`}
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                ref={nameRef}
+                style={{ backgroundColor: "#56b6c2", color: "white" }}
+              />
+              <button
+                className={`btn ${styles.searchButton}`}
+                type="submit"
+                onClick={doSearch}
+                style={{ color: "#56b6c2" }}
+              >
+                Search
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

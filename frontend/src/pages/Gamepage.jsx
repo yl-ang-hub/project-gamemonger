@@ -130,7 +130,6 @@ const Gamepage = () => {
 
   return (
     <>
-      {gameName}
       {showAddGameToListModal && (
         <AddGameToListModal
           setShowAddGameToListModal={setShowAddGameToListModal}
