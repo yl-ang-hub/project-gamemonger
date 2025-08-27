@@ -37,17 +37,19 @@ const UserpagePurchases = (props) => {
   }, []);
 
   return (
-    <>
+    <div className="overflow-scroll" style={{ maxHeight: "400px" }}>
       {/* Map items */}
       {mutation?.data?.map((item, idx) => (
-        <div className="card" key={idx}>
-          <div className="card-header">{item.name}</div>
-          <div>Cost: ${item.cost}</div>
-          <div>Purchased on: {getFormattedDate(item.purchased_date)}</div>
-          {/* <div>{item.quantity}</div> */}
+        <div className="card my-1 px-2 py-2" key={idx}>
+          <div className="card-header text-bg-dark fw-bold">{item.name}</div>
+          <div className="card-body">
+            <div>Cost: ${item.cost}</div>
+            <div>Purchased on: {getFormattedDate(item.purchased_date)}</div>
+            {/* <div>{item.quantity}</div> */}
+          </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

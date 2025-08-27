@@ -8,6 +8,9 @@ import RenameListModal from "../components/RenameListModal";
 import AddListModal from "../components/AddListModal";
 import UserpageReviews from "../components/UserpageReviews";
 import UserpagePurchases from "../components/UserpagePurchases";
+import { FaTrash } from "react-icons/fa";
+import { IoMdAddCircle } from "react-icons/io";
+import { BiRename } from "react-icons/bi";
 
 const Userpage = () => {
   const queryClient = useQueryClient();
@@ -92,7 +95,7 @@ const Userpage = () => {
   });
 
   return (
-    <>
+    <div>
       {showAddListModal && (
         <AddListModal setShowAddListModal={setShowAddListModal} />
       )}
@@ -117,7 +120,7 @@ const Userpage = () => {
         />
       )}
 
-      <div className="ms-3 mt-3">
+      <div className="mt-3 mb-3">
         <div className="mx-2 my-2" id="userProfile">
           <div>
             <h1>{authCtx.username}</h1>
@@ -132,10 +135,10 @@ const Userpage = () => {
           </div>
         </div>
 
-        <div className="mx-2 my-2" id="userLists">
+        <div className="mx-2 my-3" id="userLists">
           <label htmlFor="userlists">Select your list -</label>
           <select
-            className="mx-2"
+            className="mx-2 my-3"
             name="userlists"
             id="userlists"
             onChange={(event) => {
@@ -151,39 +154,55 @@ const Userpage = () => {
             })}
           </select>
 
+          {/* List Names and Add/Edit/Delete buttons */}
           <div
-            className="card overflow-scroll px-2"
-            style={{ height: "400px" }}>
+            className="card text-bg-light px-2 py-2"
+            style={{ height: "600px" }}>
             {/* List Name & Options */}
-            <div className="row">
-              <h3 className="col">{displayedListName}</h3>
+            <div className="row mb-3 px-2">
+              <h3 className="col fw-bold fs-2">{displayedListName}</h3>
               <button
-                className="col-sm-2 btn btn-primary"
-                onClick={() => setShowAddListModal(true)}>
-                Add List
+                className="col-sm-1 btn btn-outline-success fs-5 mx-1"
+                style={{ height: "50px", width: "50px" }}
+                onClick={() => setShowAddListModal(true)}
+                data-toggle="tooltip"
+                title="Add new list">
+                <IoMdAddCircle />
               </button>
+
               <button
-                className="col-sm-2 btn btn-primary"
-                onClick={() => setShowRenameListModal(true)}>
-                Rename List
+                className="col-sm-1 btn btn-outline-primary fs-5 mx-1"
+                style={{ height: "50px", width: "50px" }}
+                onClick={() => setShowRenameListModal(true)}
+                data-toggle="tooltip"
+                title="Rename my list">
+                <BiRename />
               </button>
+
               <button
-                className="col-sm-2 btn btn-warning"
-                onClick={() => setShowDeleteListModal(true)}>
-                Delete List
+                className="col-sm-1 btn btn-outline-danger fs-6 mx-1"
+                style={{ height: "50px", width: "50px" }}
+                onClick={() => setShowDeleteListModal(true)}
+                data-toggle="tooltip"
+                title="Delete my list">
+                <FaTrash />
               </button>
             </div>
 
             {/* List of Games */}
-            <div>
+            <div className="overflow-scroll">
               {queryUserlists.isSuccess &&
                 displayedListId !== "" &&
                 getDisplayedListGames(queryUserlists?.data).map((game) => {
                   return (
-                    <div className="card text-center my-1" key={game._id}>
-                      <div className="card-header fw-bold">{game.name}</div>
+                    <div
+                      className="card text-bg-light text-center my-1"
+                      key={game._id}>
+                      <div className="card-header text-bg-dark fw-bold">
+                        {game.name}
+                      </div>
 
-                      <div className="row">
+                      <div className="row px-1 py-2">
                         <div className="col-sm-4" id="game-img">
                           {game.screenshots.map((img, idx) => (
                             <li key={idx}>
@@ -198,7 +217,7 @@ const Userpage = () => {
                         <div className="col-sm-1"> </div>
 
                         <div className="col-sm-7" id="game-desc">
-                          <div className="row text-start">
+                          <div className="row text-start fs-6">
                             <span
                               dangerouslySetInnerHTML={{
                                 __html: game.description,
@@ -207,9 +226,10 @@ const Userpage = () => {
                           </div>
                           <div className="row">
                             <button
-                              className="col-sm-4 offset-sm-7 btn btn-primary mb-3"
+                              className="col-sm-1 offset-sm-10 btn btn-outline-danger mb-3"
+                              style={{ height: "50px", width: "50px" }}
                               onClick={() => mutate.mutate(game._id)}>
-                              Delete game from my list
+                              <FaTrash />
                             </button>
                             <br />
                           </div>
@@ -222,13 +242,13 @@ const Userpage = () => {
           </div>
         </div>
 
-        <div className="card mx-2 my-2" id="userComments">
-          <h3>Recent Purchases</h3>
+        <div className="card mx-2 my-2 px-2 py-2" id="userComments">
+          <h3 className="fw-bold fs-2">Recent Purchases</h3>
           <UserpagePurchases />
         </div>
 
-        <div className="card mx-2 my-2" id="userComments">
-          <h3>My Comments</h3>
+        <div className="card mx-2 my-2 px-2 py-2" id="userComments">
+          <h3 className="fw-bold fs-2">My Comments</h3>
           {queryUserReviews.isSuccess &&
             queryUserReviews.data.map((item) => {
               return (
@@ -243,7 +263,7 @@ const Userpage = () => {
             })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
