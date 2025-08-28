@@ -215,6 +215,7 @@ const Userpage = () => {
                             {game.screenshots.map((img, idx) => (
                               <li key={idx}>
                                 <img
+                                  alt={game.name}
                                   src={img}
                                   style={{
                                     maxHeight: "100%",
