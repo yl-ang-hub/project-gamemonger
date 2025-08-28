@@ -9,7 +9,7 @@ import { auth } from "../middleware/auth.js";
 const router = express.Router();
 
 router.put("/", auth, createCheckoutSession);
-router.post("/", retrieveCheckoutSession);
-router.put("/save", saveSuccessfulPurchase);
+router.post("/", auth, retrieveCheckoutSession);
+router.put("/save", auth, saveSuccessfulPurchase);
 
 export default router;

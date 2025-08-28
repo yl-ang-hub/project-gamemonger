@@ -42,36 +42,47 @@ const Homepage = () => {
   };
 
   return (
-    <Container>
-      {query.isLoading && <div>Loading...</div>}
-      {query.isSuccess &&
-        chunkedItems.map((chunk, chunkIndex) => (
-          <Row key={chunkIndex}>
-            {chunk.map((item) => (
-              <Col key={item.id} md={4}>
-                <Games
-                  rawgId={item.id}
-                  name={item.name}
-                  background_image={item.background_image}
-                />
-              </Col>
+    <>
+      <br />
+      <Container>
+        {query.isLoading && <div>Loading...</div>}
+        <div
+          className={`overflow-auto ${styles.scrollWhite}`}
+          style={{
+            maxHeight: "600px",
+            border: "2px solid #56b6c2",
+            borderRadius: 10,
+          }}>
+          {query.isSuccess &&
+            chunkedItems.map((chunk, chunkIndex) => (
+              <Row className="my-3" key={chunkIndex}>
+                {chunk.map((item) => (
+                  <Col key={item.id} md={4}>
+                    <Games
+                      rawgId={item.id}
+                      name={item.name}
+                      background_image={item.background_image}
+                    />
+                  </Col>
+                ))}
+              </Row>
             ))}
-          </Row>
-        ))}
+        </div>
 
-      <ReactPaginate
-        previousLabel={"Previous"}
-        nextLabel={"Next"}
-        breakLabel={"..."}
-        breakClassName={"break-me"}
-        pageCount={pageCount} // Total number of pages
-        marginPagesDisplayed={2} // How many pages to show at the beginning and end
-        pageRangeDisplayed={3} // How many pages to show around the current page
-        onPageChange={handlePageClick} // What happens when a page is clicked
-        containerClassName={styles.pagination} // CSS class for the pagination container
-        activeClassName={styles.active} // CSS class for the active page
-      />
-    </Container>
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount} // Total number of pages
+          marginPagesDisplayed={2} // How many pages to show at the beginning and end
+          pageRangeDisplayed={3} // How many pages to show around the current page
+          onPageChange={handlePageClick} // What happens when a page is clicked
+          containerClassName={styles.pagination} // CSS class for the pagination container
+          activeClassName={styles.active} // CSS class for the active page
+        />
+      </Container>
+    </>
   );
 };
 export default Homepage;

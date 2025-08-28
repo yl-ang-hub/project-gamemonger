@@ -4,16 +4,29 @@ import styles from "./ListModal.module.css";
 import useFetch from "../hooks/useFetch";
 import { use } from "react";
 import AuthCtx from "../context/authContext";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const OverLay = (props) => {
   const queryClient = useQueryClient();
   const authCtx = use(AuthCtx);
   const fetchData = useFetch();
 
-  const userlists = queryClient.getQueryData(["userlists"]);
+  const fetchLists = async () => {
+    return await fetchData(
+      `/lists`,
+      "POST",
+      { userId: authCtx.userId },
+      authCtx.accessToken
+    );
+  };
+
+  const queryUserlists = useQuery({
+    queryKey: ["userlists"],
+    queryFn: fetchLists,
+  });
+
   const gameDetail = queryClient.getQueryData(["gameDetail", props.rawgId]);
-  const [listId, setListId] = useState(userlists[0]._id);
+  const [listId, setListId] = useState(queryUserlists.data?.[0]?._id);
 
   const addGame = async () => {
     const res = await fetchData(
@@ -43,17 +56,17 @@ const OverLay = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
-        <div className="text-center my-3">
+        <div className="container text-center my-3">
           {/* Dropdown selection of user's lists */}
-          <label htmlFor="userlists">Select your list -</label>
+          <label htmlFor="userlists">Select your list</label>
           <select
-            className="mx-2"
+            className={`mx-2 form-select ${styles.themedSelect}`}
             name="userlists"
             id="userlists"
             onChange={(event) => {
               setListId(event.target.value);
             }}>
-            {userlists?.map((list) => {
+            {queryUserlists.data?.map((list) => {
               return (
                 <option value={list._id} key={list._id} listname={list.name}>
                   {list.name}
@@ -65,12 +78,14 @@ const OverLay = (props) => {
 
         <div className="row my-3">
           <div className="col-md-3"></div>
-          <button onClick={mutate.mutate} className="col-md-3 btn btn-primary mx-1">
+          <button
+            onClick={mutate.mutate}
+            className={`col-md-3 ${styles.Button} mx-1`}>
             Add
           </button>
           <button
             onClick={() => props.setShowAddGameToListModal(false)}
-            className="col-md-3 btn btn-primary mx-1">
+            className={`col-md-3 ${styles.Button} mx-1`}>
             Cancel
           </button>
           <div className="col-md-3"></div>

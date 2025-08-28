@@ -41,15 +41,12 @@ const Loginpage = (props) => {
     retry: false,
   });
 
-  const refreshAccessToken = async () => {
-    const res = await fetchData(`/auth/refresh`, "POST", {
-      refresh: localStorage.getItem("refresh"),
-    });
-    return res;
-  };
-
-  const refreshMutate = useMutation({
-    mutationFn: refreshAccessToken,
+  const refreshAccessTokenMutation = useMutation({
+    mutationFn: async () => {
+      return await fetchData(`/auth/refresh`, "POST", {
+        refresh: localStorage.getItem("refresh"),
+      });
+    },
     onSuccess: (data) => {
       try {
         authCtx.setAccessToken(data.access);
@@ -59,67 +56,70 @@ const Loginpage = (props) => {
           authCtx.setUserId(decoded.id);
         }
         navigate("/user");
-      } catch (e) {}
+      } catch (e) {
+        console.error(e.message);
+      }
     },
   });
 
   useEffect(() => {
     // Auto login for users with refresh token in localStorage
     const refresh = localStorage.getItem("refresh");
-    if (refresh && refresh !== "undefined") refreshMutate.mutate();
+    if (refresh && refresh !== "undefined") refreshAccessTokenMutation.mutate();
   }, []);
 
   return (
-    <div className="w-50 h-50 mx-auto">
-      <div className="card">
-        <div className="card-title text-center mt-4 mb-4">
-          <h3>Login</h3>
-        </div>
+    <>
+      <br />
+      <div className="w-50 h-50 mx-auto">
+        <br />
+        <div className="card text-bg-dark">
+          <div className="card-title text-center mt-4 mb-4">
+            <h3>Login</h3>
+          </div>
 
-        <div className="card-body">
-          <label className="col-sm-2" htmlFor="username">
-            Username
-          </label>
-          <input
-            className="col-sm-10"
-            id="username"
-            value={usernameInput}
-            onChange={(event) => setUsernameInput(event.target.value)}
-          />
-          {auth.isError && JSON.stringify(auth.error)}
-          {/* // TODO: Display error messages */}
-        </div>
+          <div className="card-body">
+            <label className="col-sm-3" htmlFor="username">
+              Username
+            </label>
+            <input
+              className="col-sm-9"
+              id="username"
+              value={usernameInput}
+              onChange={(event) => setUsernameInput(event.target.value)}
+            />
+            {auth.isError && JSON.stringify(auth.error)}
+          </div>
 
-        <div className="card-body">
-          <label className="col-sm-2" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="col-sm-10"
-            type="password"
-            id="password"
-            value={passwordInput}
-            onChange={(event) => setPasswordInput(event.target.value)}
-          />
-          {/* // TODO: Display error messages */}
-        </div>
+          <div className="card-body">
+            <label className="col-sm-3" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="col-sm-9"
+              type="password"
+              id="password"
+              value={passwordInput}
+              onChange={(event) => setPasswordInput(event.target.value)}
+            />
+          </div>
 
-        <div className="card-body row">
-          <div className="col-sm-4" />
-          <button className="col-sm-4 btn btn-primary" onClick={auth.refetch}>
-            Login
-          </button>
-          <div className="col-sm-4" />
-        </div>
+          <div className="card-body row">
+            <div className="col-sm-4" />
+            <button className="col-sm-4 btn btn-primary" onClick={auth.refetch}>
+              Login
+            </button>
+            <div className="col-sm-4" />
+          </div>
 
-        <div
-          className="card-body row text-center"
-          style={{ marginTop: "-20px" }}
-        >
-          <Link to="/registration">Sign up</Link>
+          <div
+            className="card-body row text-center"
+            style={{ marginTop: "-20px" }}>
+            <Link to="/registration">Sign up</Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
