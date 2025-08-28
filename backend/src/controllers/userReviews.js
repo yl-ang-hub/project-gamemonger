@@ -47,7 +47,7 @@ export const getOneGameReviews = async (req, res) => {
   }
 };
 
-export const deleteOneGameReviewByUserId = async (req, res) => {
+export const deleteOneGameReviewByReviewId = async (req, res) => {
   try {
     const deleteOneGameReview = await UserReviewModel.deleteOne({
       _id: req.body.reviewId, // this is looking at reviewId or {reviewId: reviewId}?
@@ -55,20 +55,6 @@ export const deleteOneGameReviewByUserId = async (req, res) => {
     });
     res.json({ status: "ok", msg: "Review delete successfully" });
   } catch (error) {
-    res
-      .status(400)
-      .send("an error has occured when deleting one game reviews by userId");
-  }
-};
-
-export const deleteOneGameReviewByReviewId = async (req, res) => {
-  try {
-    const deleteOneGameReview = await UserReviewModel.findByIdAndDelete(
-      req.body.reviewId
-    );
-    res.json({ status: "ok", msg: "Review delete successfully" });
-  } catch (error) {
-    console.error(error.message);
     res
       .status(400)
       .send("an error has occured when deleting one game reviews by userId");

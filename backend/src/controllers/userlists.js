@@ -80,7 +80,6 @@ export const deleteGame = async (req, res) => {
   }
 };
 
-// Seed user's lists
 export const seedUsersListsGames = async (req, res) => {
   try {
     await Userlists.deleteMany({});
@@ -91,7 +90,7 @@ export const seedUsersListsGames = async (req, res) => {
   }
 };
 
-// Helper function - To help with seeding data
+// To help with seeding data
 export const getAllUsersAndList = async (req, res) => {
   try {
     const response = await Userlists.find();
@@ -110,12 +109,28 @@ const usersAndUserlistsSeedData = [
     lists: [
       {
         name: "Wishlist",
-        games: [],
+        games: [
+          {
+            rawgId: "06f2d398-ac79-42aa-87da-a750eda71b2d",
+            name: "Digimon Original",
+            description: "predecessor to pokemon",
+            screenshots: ["img1", "img2", "dimensionaltravel"],
+            _id: "68a14d69a873f294438018fd",
+          },
+        ],
         _id: "68a12f53d27ee9c5eb639560",
       },
       {
         name: "Anime games",
-        games: [],
+        games: [
+          {
+            rawgId: "d742aa6a-277d-4f73-bef3-0ae9919abdc8",
+            name: "Final Fantasy XII",
+            description: "best animation",
+            screenshots: ["img1", "img2"],
+            _id: "68a14e7ac323c5a09536c929",
+          },
+        ],
         _id: "68a14e3bc323c5a09536c923",
       },
     ],

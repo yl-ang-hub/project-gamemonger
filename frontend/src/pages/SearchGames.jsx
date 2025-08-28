@@ -7,7 +7,7 @@ import chunk from "lodash/chunk";
 import Games from "../components/Games";
 import ReactPaginate from "react-paginate";
 import styles from "./Pagination.module.css";
-import css from "../components/ListModal.module.css";
+
 const SearchGames = () => {
   const fetchData = useFetch();
   const nameRef = useRef(null);
@@ -68,12 +68,11 @@ const SearchGames = () => {
   const chunkedItems = chunk(items, 3);
 
   return (
-    <div className="containers">
+    <div>
       <input
         ref={nameRef}
         type="text"
         className="col-md-3"
-        style={{ display: "none" }}
         placeholder="Search for a game..."
       />
 
@@ -82,36 +81,28 @@ const SearchGames = () => {
           setSearchTerm(nameRef.current.value);
           setCurrentPage(0);
         }}
-        className={`col-md-3 ${css.Button}`}
-        style={{ display: "none" }}>
+        className="col-md-3"
+      >
         Search Games
       </button>
 
       <Container>
         {search.isLoading && <div>Loading...</div>}
-        <br />
-        <div
-          className={`container overflow-auto ${styles.scrollWhite}`}
-          style={{
-            maxHeight: "600px",
-            border: "2px solid #56b6c2",
-            borderRadius: 10,
-          }}>
-          {search.isSuccess &&
-            chunkedItems.map((chunk, chunkIndex) => (
-              <Row className="my-3" key={chunkIndex}>
-                {chunk.map((item) => (
-                  <Col key={item.id} md={4}>
-                    <Games
-                      rawgId={item.id}
-                      name={item.name}
-                      background_image={item.background_image}
-                    />
-                  </Col>
-                ))}
-              </Row>
-            ))}
-        </div>
+        {search.isSuccess &&
+          chunkedItems.map((chunk, chunkIndex) => (
+            <Row key={chunkIndex}>
+              {chunk.map((item) => (
+                <Col key={item.id} md={4}>
+                  <Games
+                    rawgId={item.id}
+                    name={item.name}
+                    background_image={item.background_image}
+                  />
+                </Col>
+              ))}
+            </Row>
+          ))}
+
         <ReactPaginate
           previousLabel={"Previous"}
           nextLabel={"Next"}

@@ -7,11 +7,6 @@ import DeleteListModal from "../components/DeleteListModal";
 import RenameListModal from "../components/RenameListModal";
 import AddListModal from "../components/AddListModal";
 import UserpageReviews from "../components/UserpageReviews";
-import UserpagePurchases from "../components/UserpagePurchases";
-import { FaTrash } from "react-icons/fa";
-import { IoMdAddCircle } from "react-icons/io";
-import { BiRename } from "react-icons/bi";
-import { Link } from "react-router-dom";
 
 const Userpage = () => {
   const queryClient = useQueryClient();
@@ -96,7 +91,7 @@ const Userpage = () => {
   });
 
   return (
-    <div>
+    <>
       {showAddListModal && (
         <AddListModal setShowAddListModal={setShowAddListModal} />
       )}
@@ -121,8 +116,7 @@ const Userpage = () => {
         />
       )}
 
-      {/* Show user's name and picture */}
-      <div className="mt-3 mb-3">
+      <div className="ms-3 mt-3">
         <div className="mx-2 my-2" id="userProfile">
           <div>
             <h1>{authCtx.username}</h1>
@@ -130,22 +124,17 @@ const Userpage = () => {
           <div>
             {queryUser.isSuccess && (
               <img
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  objectFit: "cover",
-                }}
+                style={{ maxHeight: "200px" }}
                 src={queryUser.data.picture}
               />
             )}
           </div>
         </div>
 
-        {/* Dropdown option to select one user's list */}
-        <div className="mx-2 my-3" id="userLists">
+        <div className="mx-2 my-2" id="userLists">
           <label htmlFor="userlists">Select your list -</label>
           <select
-            className="mx-2 my-3"
+            className="mx-2"
             name="userlists"
             id="userlists"
             onChange={(event) => {
@@ -161,116 +150,87 @@ const Userpage = () => {
             })}
           </select>
 
-          {/* List Name & Add/Edit/Delete buttons */}
           <div
-            className="card text-bg-light px-2 py-2"
-            style={{ height: "600px" }}>
+            className="card overflow-scroll px-2"
+            style={{ height: "400px" }}>
             {/* List Name & Options */}
-            <div className="row mb-3 px-2">
-              <h3 className="col fw-bold fs-2">{displayedListName}</h3>
+            <div className="row">
+              <h3 className="col">{displayedListName}</h3>
               <button
-                className="col-sm-1 btn btn-outline-success fs-5 mx-1"
-                style={{ height: "50px", width: "50px" }}
-                onClick={() => setShowAddListModal(true)}
-                data-toggle="tooltip"
-                title="Add new list">
-                <IoMdAddCircle />
+                className="col-sm-2 btn btn-primary"
+                onClick={() => setShowAddListModal(true)}>
+                Add List
               </button>
-
               <button
-                className="col-sm-1 btn btn-outline-primary fs-5 mx-1"
-                style={{ height: "50px", width: "50px" }}
-                onClick={() => setShowRenameListModal(true)}
-                data-toggle="tooltip"
-                title="Rename my list">
-                <BiRename />
+                className="col-sm-2 btn btn-primary"
+                onClick={() => setShowRenameListModal(true)}>
+                Rename List
               </button>
-
               <button
-                className="col-sm-1 btn btn-outline-danger fs-6 mx-1"
-                style={{ height: "50px", width: "50px" }}
-                onClick={() => setShowDeleteListModal(true)}
-                data-toggle="tooltip"
-                title="Delete my list">
-                <FaTrash />
+                className="col-sm-2 btn btn-warning"
+                onClick={() => setShowDeleteListModal(true)}>
+                Delete List
               </button>
             </div>
 
             {/* List of Games */}
-            <div className="overflow-scroll">
+            <div>
               {queryUserlists.isSuccess &&
                 displayedListId !== "" &&
                 getDisplayedListGames(queryUserlists?.data).map((game) => {
                   return (
-                    <Link
-                      key={game._id}
-                      to={`/gamepage/${game.rawgId}`}
-                      className="text-reset text-decoration-none">
-                      <div className="card text-bg-light text-center my-1">
-                        <div className="card-header text-bg-dark fw-bold">
-                          {game.name}
-                        </div>
-                        <div className="row px-1 py-2">
-                          <div className="col-sm-4" id="game-img">
-                            {game.screenshots.map((img, idx) => (
-                              <li key={idx}>
-                                <img
-                                  src={img}
-                                  style={{
-                                    maxHeight: "100%",
-                                    maxWidth: "120%",
-                                  }}
-                                />
-                              </li>
-                            ))}
-                          </div>
+                    <div className="card text-center my-1" key={game._id}>
+                      <div className="card-header fw-bold">{game.name}</div>
 
-                          <div className="col-sm-1"> </div>
-
-                          <div className="col-sm-7" id="game-desc">
-                            <div className="row text-start fs-6">
-                              <span
-                                dangerouslySetInnerHTML={{
-                                  __html: game.description,
-                                }}
+                      <div className="row">
+                        <div className="col-sm-4" id="game-img">
+                          {game.screenshots.map((img, idx) => (
+                            <li key={idx}>
+                              <img
+                                src={img}
+                                style={{ maxHeight: "100%", maxWidth: "120%" }}
                               />
-                            </div>
-                            <div className="row">
-                              <button
-                                className="col-sm-1 offset-sm-10 btn btn-outline-danger mb-3"
-                                style={{ height: "50px", width: "50px" }}
-                                onClick={(event) => {
-                                  event.preventDefault();
-                                  mutate.mutate(game._id);
-                                }}>
-                                <FaTrash />
-                              </button>
-                              <br />
-                            </div>
+                            </li>
+                          ))}
+                        </div>
+
+                        <div className="col-sm-1"> </div>
+
+                        <div className="col-sm-7" id="game-desc">
+                          <div className="row text-start">
+                            <span
+                              dangerouslySetInnerHTML={{
+                                __html: game.description,
+                              }}
+                            />
+                          </div>
+                          <div className="row">
+                            <button
+                              className="col-sm-4 offset-sm-7 btn btn-primary mb-3"
+                              onClick={() => mutate.mutate(game._id)}>
+                              Delete game from my list
+                            </button>
+                            <br />
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   );
                 })}
             </div>
           </div>
         </div>
 
-        {/* User's purchases */}
-        <div className="card mx-2 my-2 px-2 py-2">
-          <h3 className="fw-bold fs-2">Recent Purchases</h3>
-          <UserpagePurchases />
+        <div className="card mx-2 my-2" id="userComments">
+          <h3>Recent Purchases</h3>
         </div>
 
-        {/* User's reviews */}
-        <div className="card mx-2 my-2 px-2 py-2" id="userComments">
-          <h3 className="fw-bold fs-2">My Comments</h3>
+        <div className="card mx-2 my-2" id="userComments">
+          <h3>My Comments</h3>
           {queryUserReviews.isSuccess &&
             queryUserReviews.data.map((item) => {
               return (
                 <UserpageReviews
-                  rawgId={item.rawgId}
                   gameName={item.gameName}
                   reviewId={item._id}
                   review={item.review}
@@ -281,7 +241,7 @@ const Userpage = () => {
             })}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
