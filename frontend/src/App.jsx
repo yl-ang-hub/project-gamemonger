@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from "react-router";
 import NavBar from "./components/NavBar";
 import AuthCtx from "./context/authContext";
 import ProtectedRouter from "./components/ProtectedRouter";
+
+import Games from "./components/Games";
 import Loginpage from "./pages/Loginpage";
 import Userpage from "./pages/Userpage";
 import Gamepage from "./pages/Gamepage";
@@ -23,12 +25,15 @@ function App() {
   const [userId, setUserId] = useState("");
   const [cart, setCart] = useState([]);
 
-  const refreshAccessTokenMutation = useMutation({
-    mutationFn: async () => {
-      return await fetchData(`/auth/refresh`, "POST", {
-        refresh: localStorage.getItem("refresh"),
-      });
-    },
+  const refreshAccessToken = async () => {
+    const res = await fetchData(`/auth/refresh`, "POST", {
+      refresh: localStorage.getItem("refresh"),
+    });
+    return res;
+  };
+
+  const refreshMutate = useMutation({
+    mutationFn: refreshAccessToken,
     onSuccess: (data) => {
       try {
         setAccessToken(data.access);
@@ -37,17 +42,14 @@ function App() {
           setUsername(decoded.username);
           setUserId(decoded.id);
         }
-      } catch (e) {
-        console.error(e.message);
-      }
+      } catch (e) {}
     },
   });
 
   useEffect(() => {
     // Auto login for users with refresh token in localStorage
     const refresh = localStorage.getItem("refresh");
-
-    if (refresh && refresh !== "undefined") refreshAccessTokenMutation.mutate();
+    if (refresh && refresh !== "undefined") refreshMutate.mutate();
   }, []);
 
   return (
