@@ -140,8 +140,7 @@ const Userpage = () => {
             onChange={(event) => {
               setDisplayedListId(event.target.value);
               setDisplayedListName(event.target.selectedOptions[0].innerText);
-            }}
-          >
+            }}>
             {queryUserlists.data?.map((list) => {
               return (
                 <option value={list._id} key={list._id} listname={list.name}>
@@ -153,27 +152,23 @@ const Userpage = () => {
 
           <div
             className="card overflow-scroll px-2"
-            style={{ height: "400px" }}
-          >
+            style={{ height: "400px" }}>
             {/* List Name & Options */}
             <div className="row">
               <h3 className="col">{displayedListName}</h3>
               <button
                 className="col-sm-2 btn btn-primary"
-                onClick={() => setShowAddListModal(true)}
-              >
+                onClick={() => setShowAddListModal(true)}>
                 Add List
               </button>
               <button
                 className="col-sm-2 btn btn-primary"
-                onClick={() => setShowRenameListModal(true)}
-              >
+                onClick={() => setShowRenameListModal(true)}>
                 Rename List
               </button>
               <button
                 className="col-sm-2 btn btn-warning"
-                onClick={() => setShowDeleteListModal(true)}
-              >
+                onClick={() => setShowDeleteListModal(true)}>
                 Delete List
               </button>
             </div>
@@ -194,7 +189,6 @@ const Userpage = () => {
                               <img
                                 src={img}
                                 style={{ maxHeight: "100%", maxWidth: "120%" }}
-                                alt={game.name}
                               />
                             </li>
                           ))}
@@ -213,8 +207,7 @@ const Userpage = () => {
                           <div className="row">
                             <button
                               className="col-sm-4 offset-sm-7 btn btn-primary mb-3"
-                              onClick={() => mutate.mutate(game._id)}
-                            >
+                              onClick={() => mutate.mutate(game._id)}>
                               Delete game from my list
                             </button>
                             <br />

@@ -49,6 +49,7 @@ function App() {
   useEffect(() => {
     // Auto login for users with refresh token in localStorage
     const refresh = localStorage.getItem("refresh");
+
     if (refresh && refresh !== "undefined") refreshMutate.mutate();
   }, []);
 
@@ -70,10 +71,17 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Navigate to="/homepage" replace />} />
+            {/* <Route
+              path="/gamepage"
+              element={<Navigate to="/homepage" replace />}
+            /> */}
+            {/* <Route path="/" element={<Navigate replace to="/games" />} /> */}
+            {/* <Route path="/games" element={<Games />} /> */}
             <Route path="/gamepage/:rawgId" element={<Gamepage />} />
             <Route path="/homepage" element={<Homepage />} />
             <Route path="/search" element={<SearchGames />} />
             <Route path="/search/:query" element={<SearchGames />} />
+            {/* <Route path="/favourites" element={<Favourites id={currentList} />} /> */}
             <Route
               path="/user"
               element={
@@ -82,6 +90,7 @@ function App() {
                 </ProtectedRouter>
               }
             />
+            {/* Hello World!!!! */}
             <Route path="/login" element={<Loginpage />} />
             <Route path="/registration" element={<Registration />} />
             <Route
