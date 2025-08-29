@@ -1,0 +1,19 @@
+---
+title: GameMonger React Component Tree
+---
+flowchart TD
+		App --> NavBar
+    App --> LoginPage
+	    LoginPage --> Registration
+    App --> Homepage
+	    Homepage --> GamesA[Games]
+    App --> Userpage
+	    Userpage --> UserpagePurchases
+	    Userpage --> UserpageReviews 
+    App --> Gamepage
+	    Gamepage --> GamePageReviews
+    App --> SearchGames
+	    SearchGames --> GamesB[Games]
+    App --> CartPage
+	    CartPage --> CheckoutSuccess
+    App --> Logout

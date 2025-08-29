@@ -1,10 +1,57 @@
-# Abstract
+# Gamemonger
 
-Gamemonger is a demo of a MERN stack game storefront. It pulls in game data from [RawG](https://rawg.io/), and allow users to register and login in order to leave reviews or to purchase games.
+Gamemonger is a demo of a MERN stack game storefront and discovery hub. It pulls in game data from [RAWG](https://rawg.io/), and allow users to register and login in order to leave reviews or to purchase games.
 
-> Disclaimer: This project is for demostration purposes only. The Stripe protocol used in this project is a sandbox and will not actually work as an real storefront.
+> Disclaimer: This project is for demonstration purposes only. The Stripe protocol used in this project is a sandbox and will not actually work as an real storefront.
 
-# Enviroment Variables
+![photo](./readme/homepage.png)
+
+## Tech Stack
+
+**Core Framework**: MERN stack (MongoDB, Express, React, Node.js)
+
+Other libraries/packages:
+
+- **Frontend**: React Router DOM, React Query, React Paginate
+- **Authentication & Security**: JWT, bcrypt, helmet, express-rate-limit, CORS
+- **Payment**: Stripe integration
+
+## Features
+
+### 🎮 Core Platform
+
+- **Game Discovery & Search** – browse and filter games by title, genre, and other attributes
+- **Game Storefront** – view game details, add to cart, and purchase through Stripe
+
+### 👤 User Features
+
+- **Authentication & Accounts** – secure signup/login using JWT with protected routes
+- **Favourites & Wishlists** – save personal game collections for easy access
+- **User Reviews** – submit, edit, and view reviews from other players
+
+### 💳 Commerce
+
+- **Cart & Checkout** – persistent shopping cart with item count in navbar
+- **Stripe Payments** – checkout flow with Stripe, supporting multiple payment methods
+- **Order History** – track past purchases in the user profile page
+
+## Future Updates (maybe)
+
+- **Instant Messaging** - between users for game discovery and social interaction
+
+## React Component Tree
+
+![Component Tree](./readme/reactComponentTree.png)
+
+## MongoDB Database schema
+
+![Component Tree](./readme/dbSchema.png)
+
+# Running the App
+
+Game details are sourced from the RAWG - you will need to obtain the free API key from [RAWG API](https://rawg.io/apidocs).
+
+## Enviroment Variables
 
 ### Frontend
 
@@ -17,16 +64,8 @@ Gamemonger is a demo of a MERN stack game storefront. It pulls in game data from
 - ACCESS_SECRET: secret key to access login function
 - REFRESH_SECRET: secret key to enter a logged in session
 - RAWG_API_KEY: key required to access the external API
-  -RAWG_API_DATABASE: The URI to access to RAWG api (https://api.rawg.io/api)
+- RAWG_API_DATABASE: The URI to access to RAWG api (https://api.rawg.io/api)
 - STRIPE_SANDBOX_SECRET_KEY: secret key for payment pages
-
-# React Component Tree
-
-![Component Tree](treediagram.png)
-
-# MongoDB Database schema
-
-![Component Tree](schema.png)
 
 # App Development
 
@@ -41,6 +80,8 @@ Gamemonger is a demo of a MERN stack game storefront. It pulls in game data from
 ### Gamepage
 
 The gamepage was designed to showcase the basic information of each game that routered from other paths/endpoints and to serve as a favourite and purchase point for the user to proceed to next course of action. And also to leave reviews after playing the game.
+
+![](./readme/gamepage.png)
 
 #### Screenshot & trailer carousel
 
@@ -79,17 +120,44 @@ The slide's state is controlled by both the `Arrow indicators` located on the le
 ![Review Feature](./frontend/src/assets/readMeFiles/gamePageReview.png)
 Easy-to-click rating is implemented using stars icon so that provides an interactive experience with the user.
 
-### Cartpage
+### Game Storefront
 
-#### Payment feature
+The storefront allows users to seamlessly browse available games, add titles to their shopping cart, and view the cart summary at any time. A live cart counter is displayed in the navigation bar for quick reference.
+When ready, users can review their selections and proceed to checkout.
+
+> Note: This storefront is implemented as a proof of concept for demonstration purposes. It is not affiliated with or selling games from any actual publishers or distributors.
+
+![](./readme/cartpage.png)
+
+#### Payment
+
+Payments are powered by **Stripe**, providing a secure and realistic checkout flow:
+
+- When a user initiates checkout, a **Stripe Checkout Session** is created with the selected items.
+- Users are redirected to the Stripe-hosted payment portal, which supports credit cards and alternative payment methods.
+- After the transaction is processed, users are redirected back to the app. Gamemonger then verifies the payment status by retrieving the Checkout Session details.
+- Successful orders are saved in the database, allowing users to review their purchase history on their profile page.
 
 ### Loginpage
+
+To support personalized experiences, Gamemonger includes user authentication and account features:
+
+- **Account creation & login**: Users can register to build wishlists, purchase games, and leave reviews.
+- **JWT-based authentication**: Sessions are secured with JSON Web Tokens, ensuring robust and stateless security.
+- **Personal dashboards**: Each user has access to their own wishlists, order history, and reviews.
 
 ---
 
 ## Backend
 
-### Process flow after HTTP request begains
+### Security
+
+- **Helmet** – sets secure HTTP headers to reduce vulnerabilities.
+- **express-rate-limit** – protects against brute-force and denial-of-service attacks.
+- **JWT Authentication** – provides token-based security for protected routes.
+- **bcrypt** – hashes user passwords to ensure secure storage.
+
+### Process flow after HTTP request begins
 
 #### Server to Routers to Controllers to Middleware or Models
 
@@ -187,7 +255,7 @@ router.post("/login", validateLoginData, checkErrors, authControl.login);
 router.post("/refresh", authControl.refresh);
 ```
 
-3. Valdiate input via express-validators
+3. Validate input via express-validators
 
 ```javascript
 export const validateRegistrationData = [
@@ -269,7 +337,7 @@ export const login = async (req, res) => {
 };
 ```
 
-5. With accessTokens, we can now protect the endpoint if the incoming accessToken is valid.
+6. With accessTokens, we can now protect the endpoint if the incoming accessToken is valid.
 
 ```javascript
 export const auth = (req, res, next) => {

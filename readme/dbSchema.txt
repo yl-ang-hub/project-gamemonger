@@ -1,0 +1,49 @@
+---
+title: GameMonger Database Schema
+---
+erDiagram
+    User ||--|{ Userlists : has
+    Userlists ||--|{ Lists : has
+    Lists ||--o{ GamesInLists : has
+    User ||--o{ Purchases : buys
+    User }o--o{ UserReviews : has
+    
+    User {
+        String username
+        String hash
+        String picture
+        Date created_at
+    }
+    Userlists {
+        ObjectId userId
+        Lists[] lists
+    }
+    Lists {
+		    String name
+		    GamesInLists[] games
+    }
+    GamesInLists {
+        String rawgId
+        String name
+        String description
+        String screenshots
+    }
+    UserReviews {
+		    ObjectId userID
+		    String rawgId
+        String gameName
+        Number rating
+        String review
+    }
+    Purchases {
+        ObjectId userID
+        String sessionId
+        Date purchased_date
+        Number amount
+        Array items
+    }
+    Games {
+		    String rawgId
+		    Number price
+    }
+     
