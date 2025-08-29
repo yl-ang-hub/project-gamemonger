@@ -166,6 +166,131 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 ```
 
+### Authentication process
+
+1. Setup path/endpoint
+
+```javascript
+app.use("/auth", authRouter);
+```
+
+2. Setup CR
+
+```javascript
+router.put(
+  "/register",
+  validateRegistrationData,
+  checkErrors,
+  authControl.register
+);
+router.post("/login", validateLoginData, checkErrors, authControl.login);
+router.post("/refresh", authControl.refresh);
+```
+
+3. Valdiate input via express-validators
+
+```javascript
+export const validateRegistrationData = [
+  body("username", "username is required").notEmpty(),
+  body("password", "password is required").notEmpty(),
+  body("password", "password must be at least 8 characters long").isLength({
+    min: 8,
+  }),
+];
+
+export const validateLoginData = [
+  body("username", "username is required").notEmpty(),
+  body("password", "password is required").notEmpty(),
+];
+```
+
+4. Create username & hashed passwords and store in databased
+
+```javascript
+export const register = async (req, res) => {
+  try {
+    const duplicate = await Users.findOne({ username: req.body.username });
+
+    if (duplicate) {
+      return res.status(400).json("username has been used");
+    }
+
+    // Create new user in Users collection
+    const hash = await bcrypt.hash(req.body.password, 12);
+    const newUser = await Users.create({
+      username: req.body.username,
+      hash,
+    });
+
+    // Create default wishlist for new user
+    await Userlists.create({
+      userId: newUser._id,
+    });
+
+    res.json({ status: "ok", msg: "user registered" });
+  } catch (e) {
+    res.status(400).json({ status: "error", msg: "user cannot be registered" });
+  }
+};
+```
+
+5. Create accessToken
+
+```javascript
+export const login = async (req, res) => {
+  try {
+    const user = await Users.findOne({ username: req.body.username });
+    if (!user) {
+      return res.status(401).json({ status: "error", msg: "login failed" });
+    }
+
+    const auth = await bcrypt.compare(req.body.password, user.hash);
+    if (!auth) {
+      return res.status(401).json({ status: "error", msg: "login failed" });
+    }
+
+    const claims = {
+      username: req.body.username,
+      id: user._id,
+    };
+    const access = jwt.sign(claims, process.env.ACCESS_SECRET, {
+      expiresIn: "20m",
+      jwtid: uuidv4(),
+    });
+    const refresh = jwt.sign(claims, process.env.REFRESH_SECRET, {
+      expiresIn: "30d",
+      jwtid: uuidv4(),
+    });
+
+    res.json({ access, refresh });
+  } catch (e) {
+    res.status(401).json({ status: "error", msg: "login failed" });
+  }
+};
+```
+
+5. With accessTokens, we can now protect the endpoint if the incoming accessToken is valid.
+
+```javascript
+export const auth = (req, res, next) => {
+  if (!"authorization" in req.headers) {
+    return res.status(400).json({ status: "error", msg: "no token found" });
+  }
+  const token = req.headers["authorization"].replace("Bearer ", "");
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
+      if (decoded) req.decoded = decoded;
+      next();
+    } catch (e) {
+      return res.status(401).json({ status: "error", msg: "unauthorised" });
+    }
+  } else {
+    return res.status(403).json({ status: "error", msg: "missing token" });
+  }
+};
+```
+
 # Thank you!
 
 Thanks for reading this project! If you have any question, do feel free to contact us!
