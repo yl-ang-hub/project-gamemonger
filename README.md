@@ -34,11 +34,15 @@ Gamemonger is a demo of a MERN stack game storefront. It pulls in game data from
 
 ### Homepage
 
+#### Pagination
+
 #### Search feature
 
 ### Gamepage
 
 The gamepage was designed to showcase the basic information of each game that routered from other paths/endpoints and to serve as a favourite and purchase point for the user to proceed to next course of action. And also to leave reviews after playing the game.
+
+#### Screenshot & trailer carousel
 
 User will be served with the game's screenshots and trailers to have the first visual impression of the gameplay. This is designed with carousel concept by mapping the URLs and only displaying the selected one via `const [slide, setSlide] = useState(0)` and condtional `styles.css`.
 
@@ -72,10 +76,96 @@ The slide's state is controlled by both the `Arrow indicators` located on the le
 
 #### Review feature
 
+![Review Feature](./frontend/src/assets/readMeFiles/gamePageReview.png)
+Easy-to-click rating is implemented using stars icon so that provides an interactive experience with the user.
+
 ### Cartpage
 
 #### Payment feature
 
 ### Loginpage
 
+---
+
 ## Backend
+
+### Process flow after HTTP request begains
+
+#### Server to Routers to Controllers to Middleware or Models
+
+1. First HTTP request comes in
+
+```javascript
+app.use("/api", rawgApi);
+```
+
+2. Diverted to Router
+
+```javascript
+router.get("/games", rawgApi.getGamesPaginated);
+```
+
+3. Invoked functions within controllers
+
+```javascript
+export const getGamesPaginated = async (req, res) => {
+  try {
+    const data = await fetchDataWithParams2("/games", "GET", undefined, {
+      page: req.query.page,
+    });
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+```
+
+4. Fetch data
+
+```javascript
+export const fetchDataWithParams2 = async (endpoint, method, body, params) => {
+  const searchParams = new URLSearchParams({
+    key: process.env.RAWG_API_KEY,
+    ...params,
+  });
+  const uri = `${
+    process.env.RAWG_API_DATABASE
+  }${endpoint}?${searchParams.toString()}`;
+  const res = await fetch(uri, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+
+  if (!res.ok) {
+    if (data?.errors) {
+      throw data.errors[0].msg;
+    } else if (data.status === "error") {
+      throw data.msg;
+    } else {
+      throw "an unknown error has occurred, please try again later";
+    }
+  }
+  return data;
+};
+```
+
+#### Various checks in place throughout the API calls
+
+Basic checks on the incoming HTTP Request
+
+```javascript
+app.use(cors());
+app.use(helmet());
+app.use(limiter);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+```
+
+# Thank you!
+
+Thanks for reading this project! If you have any question, do feel free to contact us!
