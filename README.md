@@ -37,7 +37,7 @@ Other libraries/packages:
 
 ## Future Updates (maybe)
 
-- **Instant Messaging** - between users for game discovery and social interaction
+🗣️ **Instant Messaging** - between users for game discovery and social interaction
 
 ## React Component Tree
 
@@ -53,11 +53,11 @@ Game details are sourced from the RAWG - you will need to obtain the free API ke
 
 ## Enviroment Variables
 
-### Frontend
+### Client (Front-end)
 
 - VITE_SERVER: the URI of the backend server
 
-### Backend
+### Server (Backend)
 
 - MONGODB_URI: the uri which MongoDB runs in
 - PORT: the port the Express app runs in
@@ -69,13 +69,34 @@ Game details are sourced from the RAWG - you will need to obtain the free API ke
 
 # App Development
 
-## Frontend
+## Client (Front-end)
 
-### Homepage
+### Homepage and Game Search
+
+The homepage displayed the top games and allows the users to easily navigate between the various areas in the site, and users may easily search for games with the handy search bar in the navigation bar.
 
 #### Pagination
 
-#### Search feature
+As RAWG offers a robust collection of games spanning across decades, we elected to paginate the games in the homepage and search page so that users may easily browse through the diverse choices and yet provide a decent load time for each page.
+
+`react-paginate` was used to cleanly render the pagination at the client side:
+
+```Javascript
+<ReactPaginate
+  previousLabel={"Previous"}
+  nextLabel={"Next"}
+  breakLabel={"..."}
+  breakClassName={"break-me"}
+  pageCount={pageCount}
+  marginPagesDisplayed={2}
+  pageRangeDisplayed={3}
+  onPageChange={handlePageClick}
+  containerClassName={styles.pagination}
+  activeClassName={styles.active}
+/>
+```
+
+![](./readme/search.png)
 
 ### Gamepage
 
@@ -148,7 +169,7 @@ To support personalized experiences, Gamemonger includes user authentication and
 
 ---
 
-## Backend
+## Server (Backend)
 
 ### Security
 
@@ -156,6 +177,14 @@ To support personalized experiences, Gamemonger includes user authentication and
 - **express-rate-limit** – protects against brute-force and denial-of-service attacks.
 - **JWT Authentication** – provides token-based security for protected routes.
 - **bcrypt** – hashes user passwords to ensure secure storage.
+
+### External API Integration
+
+RAWG API calls are proxied through our Express server to:
+
+- Prevent exposure of sensitive API keys.
+- Apply request validation and rate limiting before reaching the external API.
+- Provide a consistent API layer for the frontend.
 
 ### Process flow after HTTP request begins
 
